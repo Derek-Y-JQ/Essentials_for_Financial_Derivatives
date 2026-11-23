@@ -1,13 +1,13 @@
 # Essentials for Financial Derivatives
 
 [![Web Edition](https://img.shields.io/badge/Web_Edition-GitHub_Pages-1D4ED8?style=flat-square)](https://derek-y-jq.github.io/Essentials_for_Financial_Derivatives/)
-[![PDF Edition](https://img.shields.io/badge/PDF-180_Pages_(Libertinus)-0F172A?style=flat-square)](Essentials_for_Financial_Derivatives.pdf)
+[![PDF Edition](https://img.shields.io/badge/PDF-183_Pages_(Libertinus)-0F172A?style=flat-square)](Essentials_for_Financial_Derivatives.pdf)
 [![LaTeX](https://img.shields.io/badge/Typeset-XeLaTeX_%2B_Libertinus_Math-0D9488?style=flat-square)](#building-from-source)
 
 A rigorous, self-contained monograph on **Mathematical Finance and Financial Derivatives**, bridging classical no-arbitrage pricing theory with modern quantitative desk practice and contemporary research frontiers.
 
 - **Read Online (Interactive Web Edition):** [derek-y-jq.github.io/Essentials_for_Financial_Derivatives](https://derek-y-jq.github.io/Essentials_for_Financial_Derivatives/) — includes **8 interactive quantitative labs** (Payoffs, CRR Convergence, Fractional Brownian Motion, Black–Scholes & 2nd-order Greeks, SVI/Rough Volatility, Barrier/BGK Correction, Perpetual American Free Boundary, and CIR/Vasicek Yield Curves & CDS).
-- **Download PDF Edition:** [Essentials_for_Financial_Derivatives.pdf](Essentials_for_Financial_Derivatives.pdf) — 180 pages, typeset in the **Libertinus** family (Serif, Sans, Mono, and Math) via XeLaTeX.
+- **Download PDF Edition:** [Essentials_for_Financial_Derivatives.pdf](Essentials_for_Financial_Derivatives.pdf) — 183 pages, typeset in the **Libertinus** family (Serif, Sans, Mono, and Math) via XeLaTeX.
 - **Companion Python Scripts:** See [`code/`](code/README.md) for runnable numerical experiments separated cleanly from the mathematical text.
 
 ---
@@ -25,7 +25,7 @@ A rigorous, self-contained monograph on **Mathematical Finance and Financial Der
 | **Chapter 7** | [American Options](chapters/ch07_american_options.tex) | Snell envelope, LCP & smooth pasting, perpetual Put & dividend Call, **PSOR**, **Longstaff–Schwartz (LSM)**, **Deep Optimal Stopping** |
 | **Chapter 8** | [Interest Rate Modelling](chapters/ch08_interest_rate_modelling.tex) | Ho–Lee, Vasicek, **CIR (Feller)**, **HJM**, **Bachelier / Shifted Lognormal**, **Post-LIBOR SOFR & OIS Multi-Curve**, **FMM**, **ISDA CDS & XVA (CVA/DVA/FVA)** |
 | **Chapter 9** | [Problem Set](chapters/ch09_problem_set.tex) | 21 analytical and numerical exercises spanning discrete trees, stochastic calculus, PDEs, Monte Carlo, and FX vol bootstrapping |
-| **Appendices A–E** | Mathematical & Reference Appendices | Measure-theoretic expectation & conditioning (A), **Monte Carlo, SDE Schemes, Variance Reduction & QMC** (B), Alternative BS PDE (C), Girsanov proof via Lévy (D), English–Chinese Glossary (E) |
+| **Appendices A–E** | Mathematical & Reference Appendices | Measure-theoretic expectation & conditioning (A), **Monte Carlo, SDE Schemes, Variance Reduction & QMC** (B), Alternative BS PDE (C), **Proofs of Key Stochastic Calculus Theorems: SDE Well-Posedness, MRT & Girsanov** (D), English–Chinese Glossary (E) |
 
 ---
 

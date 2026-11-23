@@ -41,8 +41,8 @@ PAGES = [
      "CLT confidence intervals, Euler–Maruyama & Milstein schemes, Antithetic/Control/Importance Sampling, and QMC.", None),
     ("appC", "chapters/appC_bs_pde_alternative.tex", "Appendix C", "C", "Alternative Derivation of Black–Scholes PDE",
      "Self-financing portfolio derivation via instantaneous riskless return equivalence.", None),
-    ("appD", "chapters/appD_girsanov_proof.tex", "Appendix D", "D", "An Abbreviated Proof of Girsanov's Theorem",
-     "Lévy's characterization of Brownian motion and Radon–Nikodym drift transformation under Novikov's condition.", None),
+    ("appD", "chapters/appD_girsanov_proof.tex", "Appendix D", "D", "Proofs of Key Stochastic Calculus Theorems",
+     "Complete proofs of SDE strong well-posedness (Picard & Grönwall), the Martingale Representation Theorem, and Girsanov's Theorem via Lévy's characterization.", None),
     ("appE", "chapters/appE_bilingual_table.tex", "Appendix E", "E", "Bilingual Terminology Table",
      "English–Chinese quantitative finance glossary covering classical and frontier derivatives terminology.", None),
 ]
@@ -461,7 +461,7 @@ def main():
       <p class="hero-subtitle">A modern, self-contained monograph on mathematical finance and derivatives pricing—spanning discrete trees, Itô &amp; rough calculus, Black–Scholes, SVI &amp; rough volatility, exotic &amp; American options, post-LIBOR SOFR multi-curve interest rates, and XVA.</p>
       <div class="hero-cta">
         <a class="btn-pill primary" href="ch01.html">Start Reading (Chapter 1)</a>
-        <a class="btn-pill" href="Essentials_for_Financial_Derivatives.pdf" target="_blank">Download 180-Page PDF (Libertinus)</a>
+        <a class="btn-pill" href="Essentials_for_Financial_Derivatives.pdf" target="_blank">Download 183-Page PDF (Libertinus)</a>
         <a class="btn-pill" href="https://github.com/Derek-Y-JQ/Essentials_for_Financial_Derivatives/tree/main/code" target="_blank">Companion Python Code</a>
       </div>
     </div>

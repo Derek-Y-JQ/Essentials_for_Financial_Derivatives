@@ -34,7 +34,7 @@
       <div class="sidebar-group-title">Chapters</div>
       <ul class="nav-list"><li><a class="nav-link" href="ch01.html"><span class="nav-num">01</span><span>Introduction</span></a></li><li><a class="nav-link" href="ch02.html"><span class="nav-num">02</span><span>Discrete Time Models</span></a></li><li><a class="nav-link" href="ch03.html"><span class="nav-num">03</span><span>Math Preliminaries</span></a></li><li><a class="nav-link" href="ch04.html"><span class="nav-num">04</span><span>Black–Scholes Model</span></a></li><li><a class="nav-link active" href="ch05.html"><span class="nav-num">05</span><span>Implied Volatility Skew (Smile)</span></a></li><li><a class="nav-link" href="ch06.html"><span class="nav-num">06</span><span>Exotic Options</span></a></li><li><a class="nav-link" href="ch07.html"><span class="nav-num">07</span><span>American Options</span></a></li><li><a class="nav-link" href="ch08.html"><span class="nav-num">08</span><span>Interest Rate Modelling</span></a></li><li><a class="nav-link" href="ch09.html"><span class="nav-num">09</span><span>Problem Set</span></a></li></ul>
       <div class="sidebar-group-title">Appendices</div>
-      <ul class="nav-list"><li><a class="nav-link" href="appA.html"><span class="nav-num">A</span><span>Expectation, Information and Conditioning</span></a></li><li><a class="nav-link" href="appB.html"><span class="nav-num">B</span><span>Monte Carlo Simulation</span></a></li><li><a class="nav-link" href="appC.html"><span class="nav-num">C</span><span>Alternative Derivation of Black–Scholes PDE</span></a></li><li><a class="nav-link" href="appD.html"><span class="nav-num">D</span><span>An Abbreviated Proof of Girsanov&#x27;s Theorem</span></a></li><li><a class="nav-link" href="appE.html"><span class="nav-num">E</span><span>Bilingual Terminology Table</span></a></li></ul>
+      <ul class="nav-list"><li><a class="nav-link" href="appA.html"><span class="nav-num">A</span><span>Expectation, Information and Conditioning</span></a></li><li><a class="nav-link" href="appB.html"><span class="nav-num">B</span><span>Monte Carlo Simulation</span></a></li><li><a class="nav-link" href="appC.html"><span class="nav-num">C</span><span>Alternative Derivation of Black–Scholes PDE</span></a></li><li><a class="nav-link" href="appD.html"><span class="nav-num">D</span><span>Proofs of Key Stochastic Calculus Theorems</span></a></li><li><a class="nav-link" href="appE.html"><span class="nav-num">E</span><span>Bilingual Terminology Table</span></a></li></ul>
     </nav>
 
     <main class="content">
@@ -210,6 +210,7 @@ $$
     $$
 <p>where $\psi(x) := 2 - 4\bigl(\sqrt{x^2 + x} - x\bigr)$ maps $[0, \infty]$ strictly decreasingly onto $[0, 2]$, with $\psi(0) = 2$ and $\psi(\infty) = 0$.</p>
 </div>
+<p><em>Reference.</em> For the complete proof, see R.&nbsp;Lee (2004), <em>The Moment Formula for Implied Volatility at Extreme Strikes</em>, Mathematical Finance 14(3), 469&ndash;480.</p>
 <p>Theorem&nbsp;<a href="#thm:ch05-lee-moment">05.1</a> implies that total implied variance $w(k, T)$ can grow <em>at most linearly</em> in $|k|$ as $|k| \to \infty$, with slope bounded above by $2$ (equivalently, $\sigma_I(k, T)$ grows at most as $\sqrt{2|k|/T}$). In particular, naive quadratic-in-$k$ implied volatility extrapolations inevitably violate butterfly no-arbitrage in the wings.</p>
 <h3 id="sub-6-4">05.6.4 SVI and SSVI Surface Parameterizations</h3>
 <p><span id="sec:ch05-svi"></span>
@@ -243,7 +244,7 @@ $$
         \]
 </ol>
 </div>
-<p>These closed-form inequalities make SSVI a workhorse for institutional volatility surface construction, guaranteeing a globally arbitrage-free implied volatility surface prior to computing Dupire local volatility or pricing exotics.</p>
+<p><em>Reference.</em> See J.&nbsp;Gatheral and A.&nbsp;Jacquier (2014), <em>Arbitrage-Free SVI Volatility Surfaces</em>, Quantitative Finance 14(1), 59&ndash;71. These closed-form inequalities make SSVI a workhorse for institutional volatility surface construction, guaranteeing a globally arbitrage-free implied volatility surface prior to computing Dupire local volatility or pricing exotics.</p>
 <h2 id="sec-3">05.3 Market-Implied Density</h2>
 <p><span id="sec:ch05-implied-density"></span></p>
 <p>A continuum of European call prices across strikes uniquely determines the risk-neutral terminal distribution of $S_T$, a classic result due to <strong>Breeden and Litzenberger (1978)</strong>. We first recall Leibniz's integral rule.</p>
@@ -556,6 +557,7 @@ $$
     \]
     Then there exists a Markovian SDE $\dd \widetilde{X}_t = \widetilde{\mu}(t, \widetilde{X}_t)\dd t + \widetilde{\sigma}(t, \widetilde{X}_t)\dd \widetilde{W}_t$ whose one-dimensional marginal distribution matches that of $X_t$ for every $t \ge 0$.</p>
 </div>
+<p><em>Reference.</em> See I.&nbsp;Gyöngy (1986), <em>Mimicking the One-Dimensional Marginal Distributions of Processes Having an Itô Differential</em>, Probab. Theory Relat. Fields 71, 501&ndash;516.</p>
 <p>Applying Theorem&nbsp;<a href="#thm:ch05-gyongy">05.4</a> to the LSV spot process&nbsp;<a href="#eq:ch05-lsv-sde">05.15</a>, its one-dimensional marginal distributions (and therefore <em>all</em> European vanilla option prices across all strikes $K$ and maturities $t$) coincide with Dupire's local volatility model $\dd \widetilde{S}_t = r\widetilde{S}_t \dd t + \sigma_{\mathrm{loc}}(t, \widetilde{S}_t)\widetilde{S}_t \dd \widetilde{W}_t^{\Q}$ if and only if
 \[
     \sigma_{\mathrm{loc}}^2(t, K)

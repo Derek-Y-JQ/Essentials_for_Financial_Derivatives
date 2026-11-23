@@ -78,6 +78,7 @@ A classical boundary classification due to Feller determines whether the origin 
     \]
     holds, then the origin is inaccessible and $r_t > 0$ almost surely for all $t \geq 0$. If $0 < 2\kappa\theta < \sigma^2$, the process can reach $0$ with positive probability, after which it instantaneously reflects back into $(0, \infty)$.
 \end{proposition}
+\noindent\emph{Reference.} See W.~Feller (1951), \emph{Two Singular Diffusion Problems}, Annals of Mathematics 54(1), 173--182, and J.~C.~Cox, J.~E.~Ingersoll, and S.~A.~Ross (1985), \emph{A Theory of the Term Structure of Interest Rates}, Econometrica 53(2), 385--407.
 Unlike the Vasicek model, $r_T$ in the CIR model is not Gaussian; instead, conditional on $r_0$, a suitably scaled multiple of $r_T$ follows a non-central chi-squared distribution with $\nu = 4\kappa\theta/\sigma^2$ degrees of freedom, mean $\E[r_T] = r_0 e^{-\kappa T} + \theta(1 - e^{-\kappa T})$, and variance
 \[
 \Var(r_T) = r_0 \frac{\sigma^2}{\kappa}\bigl(e^{-\kappa T} - e^{-2\kappa T}\bigr) + \frac{\theta\sigma^2}{2\kappa}\bigl(1 - e^{-\kappa T}\bigr)^2.

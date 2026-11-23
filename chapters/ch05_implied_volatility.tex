@@ -212,6 +212,7 @@ Two static arbitrage constraints govern $w(k, T)$, together with an asymptotic w
     \end{equation}
     where $\psi(x) := 2 - 4\bigl(\sqrt{x^2 + x} - x\bigr)$ maps $[0, \infty]$ strictly decreasingly onto $[0, 2]$, with $\psi(0) = 2$ and $\psi(\infty) = 0$.
 \end{theorem}
+\noindent\emph{Reference.} For the complete proof, see R.~Lee (2004), \emph{The Moment Formula for Implied Volatility at Extreme Strikes}, Mathematical Finance 14(3), 469--480.
 
 Theorem~\ref{thm:ch05-lee-moment} implies that total implied variance $w(k, T)$ can grow \emph{at most linearly} in $|k|$ as $|k| \to \infty$, with slope bounded above by $2$ (equivalently, $\sigma_I(k, T)$ grows at most as $\sqrt{2|k|/T}$). In particular, naive quadratic-in-$k$ implied volatility extrapolations inevitably violate butterfly no-arbitrage in the wings.
 
@@ -250,7 +251,7 @@ where $\theta_t := w(0, t) > 0$ is the ATM total variance term structure, $\rho 
         \]
     \end{enumerate}
 \end{theorem}
-These closed-form inequalities make SSVI a workhorse for institutional volatility surface construction, guaranteeing a globally arbitrage-free implied volatility surface prior to computing Dupire local volatility or pricing exotics.
+\noindent\emph{Reference.} See J.~Gatheral and A.~Jacquier (2014), \emph{Arbitrage-Free SVI Volatility Surfaces}, Quantitative Finance 14(1), 59--71. These closed-form inequalities make SSVI a workhorse for institutional volatility surface construction, guaranteeing a globally arbitrage-free implied volatility surface prior to computing Dupire local volatility or pricing exotics.
 
 \section{Market-Implied Density}
 \label{sec:ch05-implied-density}
@@ -600,6 +601,7 @@ where $v_t$ is a stochastic variance process (e.g., Heston or log-normal) and $L
     \]
     Then there exists a Markovian SDE $\dd \widetilde{X}_t = \widetilde{\mu}(t, \widetilde{X}_t)\dd t + \widetilde{\sigma}(t, \widetilde{X}_t)\dd \widetilde{W}_t$ whose one-dimensional marginal distribution matches that of $X_t$ for every $t \ge 0$.
 \end{theorem}
+\noindent\emph{Reference.} See I.~Gy\"ongy (1986), \emph{Mimicking the One-Dimensional Marginal Distributions of Processes Having an It\^o Differential}, Probab.\ Theory Relat.\ Fields 71, 501--516.
 
 Applying Theorem~\ref{thm:ch05-gyongy} to the LSV spot process~\eqref{eq:ch05-lsv-sde}, its one-dimensional marginal distributions (and therefore \emph{all} European vanilla option prices across all strikes $K$ and maturities $t$) coincide with Dupire's local volatility model $\dd \widetilde{S}_t = r\widetilde{S}_t \dd t + \sigma_{\mathrm{loc}}(t, \widetilde{S}_t)\widetilde{S}_t \dd \widetilde{W}_t^{\Q}$ if and only if
 \[

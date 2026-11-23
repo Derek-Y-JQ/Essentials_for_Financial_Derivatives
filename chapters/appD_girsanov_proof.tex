@@ -1,4 +1,135 @@
-\chapter{An Abbreviated Proof of Girsanov's Theorem}\label{ch:girsanov-proof}
+\chapter{Proofs of Key Stochastic Calculus Theorems}\label{ch:girsanov-proof}
+
+This appendix collects self-contained proofs of the three foundational theorems stated in Chapter~\ref{ch:math-preliminaries}: strong well-posedness of stochastic differential equations, the Martingale Representation Theorem, and Girsanov's Theorem.
+
+\section{Existence and Uniqueness of Strong Solutions to SDEs}\label{sec:proof-sde-wellposed}
+
+We prove Theorem~\ref{thm:sde-existence-uniqueness} on a finite horizon $[0, T]$ for the one-dimensional SDE
+\begin{equation}\label{eq:app-sde}
+    \dd X_t = \mu(t, X_t)\dd t + \sigma(t, X_t)\dd W_t, \qquad X_0 = \xi,
+\end{equation}
+where $\xi$ is $\F_0$-measurable with $\E[\xi^2] < \infty$, and $\mu, \sigma \colon [0, T] \times \R \to \R$ are jointly measurable functions satisfying the global Lipschitz and linear growth bounds
+\begin{align}
+    |\mu(t, x) - \mu(t, y)| + |\sigma(t, x) - \sigma(t, y)| &\leq K |x - y|, \label{eq:app-lipschitz} \\
+    |\mu(t, x)| + |\sigma(t, x)| &\leq C(1 + |x|) \label{eq:app-growth}
+\end{align}
+for constants $K, C > 0$ and all $t \in [0, T]$, $x, y \in \R$. We first record Gr\"onwall's inequality.
+
+\begin{lemma}[Gr\"onwall's Inequality]\label{lem:gronwall}
+    Let $v \colon [0, T] \to [0, \infty)$ be a bounded measurable function satisfying
+    \[
+    v(t) \leq \alpha + \beta \int_0^t v(s)\dd s \qquad \text{for all } t \in [0, T],
+    \]
+    where $\alpha \geq 0$ and $\beta > 0$ are constants. Then $v(t) \leq \alpha e^{\beta t}$ for all $t \in [0, T]$.
+\end{lemma}
+\begin{proof}
+    Iterating the integral inequality $n$ times gives
+    \[
+    v(t) \leq \alpha \sum_{k=0}^{n-1} \frac{(\beta t)^k}{k!} + \beta^n \int_0^t \frac{(t - s)^{n-1}}{(n - 1)!}\,v(s)\dd s
+    \leq \alpha e^{\beta t} + \frac{(\beta T)^n}{n!}\sup_{0 \leq s \leq T} v(s).
+    \]
+    Letting $n \to \infty$ sends the remainder to zero.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:sde-existence-uniqueness} (Strong Uniqueness and Existence)]
+    \textbf{Uniqueness.} Let $X_t$ and $\widetilde{X}_t$ be two continuous adapted solutions of~\eqref{eq:app-sde} with $\E[\int_0^T X_t^2 \dd t] < \infty$ and $\E[\int_0^T \widetilde{X}_t^2 \dd t] < \infty$. Using $(a + b)^2 \leq 2a^2 + 2b^2$, Cauchy--Schwarz on the Lebesgue integral, It\^o's isometry on the stochastic integral, and the Lipschitz condition~\eqref{eq:app-lipschitz}, we estimate for every $t \in [0, T]$:
+    \begin{align*}
+        \E\bigl[(X_t - \widetilde{X}_t)^2\bigr]
+        &\leq 2\,\E\!\left[\left(\int_0^t \bigl(\mu(s, X_s) - \mu(s, \widetilde{X}_s)\bigr)\dd s\right)^2\right]
+           + 2\,\E\!\left[\left(\int_0^t \bigl(\sigma(s, X_s) - \sigma(s, \widetilde{X}_s)\bigr)\dd W_s\right)^2\right] \\
+        &\leq 2t\,\E\!\left[\int_0^t \bigl(\mu(s, X_s) - \mu(s, \widetilde{X}_s)\bigr)^2 \dd s\right]
+           + 2\,\E\!\left[\int_0^t \bigl(\sigma(s, X_s) - \sigma(s, \widetilde{X}_s)\bigr)^2 \dd s\right] \\
+        &\leq 2(T + 1)K^2 \int_0^t \E\bigl[(X_s - \widetilde{X}_s)^2\bigr]\dd s.
+    \end{align*}
+    Applying Lemma~\ref{lem:gronwall} with $\alpha = 0$ and $\beta = 2(T + 1)K^2$ forces $\E[(X_t - \widetilde{X}_t)^2] = 0$ for every $t \in [0, T]$. Hence $X_t = \widetilde{X}_t$ almost surely for all rational $t \in [0, T]$, and by sample-path continuity $\Prob(X_t = \widetilde{X}_t \text{ for all } t \in [0, T]) = 1$.
+
+    \textbf{Existence (Picard Iteration).} Define $X_t^{(0)} := \xi$ for all $t \in [0, T]$, and recursively set
+    \[
+    X_t^{(n+1)} := \xi + \int_0^t \mu\bigl(s, X_s^{(n)}\bigr)\dd s + \int_0^t \sigma\bigl(s, X_s^{(n)}\bigr)\dd W_s, \qquad n \geq 0.
+    \]
+    By induction and the linear growth bound~\eqref{eq:app-growth}, each $X^{(n)}$ is continuous, adapted, and satisfies $\sup_{0 \leq t \leq T} \E[(X_t^{(n)})^2] < \infty$. For $n = 0$, the same Cauchy--Schwarz and It\^o isometry bound together with~\eqref{eq:app-growth} produces a constant $A := 4(T + 1)C^2(1 + \E[\xi^2])$ such that
+    \[
+    \E\bigl[(X_t^{(1)} - X_t^{(0)})^2\bigr] \leq A t \leq A T, \qquad t \in [0, T].
+    \]
+    For $n \geq 1$, the Lipschitz estimate used in the uniqueness step gives
+    \[
+    \E\bigl[(X_t^{(n+1)} - X_t^{(n)})^2\bigr] \leq B \int_0^t \E\bigl[(X_s^{(n)} - X_s^{(n-1)})^2\bigr]\dd s, \qquad B := 2(T + 1)K^2.
+    \]
+    Iterating this recursion yields, by induction on $n$,
+    \begin{equation}\label{eq:picard-l2}
+        \E\bigl[(X_t^{(n+1)} - X_t^{(n)})^2\bigr] \leq A T\,\frac{(B t)^n}{n!}, \qquad n \geq 0,\; t \in [0, T].
+    \end{equation}
+    To upgrade $L^2$-convergence to almost-sure uniform convergence in $t$, we control the running supremum. By Cauchy--Schwarz and Doob's $L^2$ maximal inequality ($\E[\sup_{0 \leq t \leq T} M_t^2] \leq 4\,\E[M_T^2]$ applied to the continuous martingale $\int_0^t (\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)}))\dd W_s$),
+    \begin{align*}
+        \E\!\left[\sup_{0 \leq t \leq T} \bigl|X_t^{(n+1)} - X_t^{(n)}\bigr|^2\right]
+        &\leq 2T\,\E\!\left[\int_0^T \bigl(\mu(s, X_s^{(n)}) - \mu(s, X_s^{(n-1)})\bigr)^2 \dd s\right] \\
+        &\quad + 8\,\E\!\left[\int_0^T \bigl(\sigma(s, X_s^{(n)}) - \sigma(s, X_s^{(n-1)})\bigr)^2 \dd s\right] \\
+        &\leq 4 B \int_0^T \E\bigl[(X_s^{(n)} - X_s^{(n-1)})^2\bigr]\dd s
+        \leq 4 A T\,\frac{(B T)^{n+1}}{(n + 1)!}.
+    \end{align*}
+    By Markov's inequality,
+    \[
+    \Prob\!\left(\sup_{0 \leq t \leq T} \bigl|X_t^{(n+1)} - X_t^{(n)}\bigr| > 2^{-n}\right)
+    \leq 4^n\,\E\!\left[\sup_{0 \leq t \leq T} \bigl|X_t^{(n+1)} - X_t^{(n)}\bigr|^2\right]
+    \leq 4 A T\,\frac{(4 B T)^{n+1}}{(n + 1)!}.
+    \]
+    Because the right-hand side is summable over $n \geq 0$, the Borel--Cantelli lemma guarantees that $\sup_{0 \leq t \leq T} |X_t^{(n+1)} - X_t^{(n)}| \leq 2^{-n}$ for all sufficiently large $n$ almost surely. Consequently, the telescoping series $X_t^{(0)} + \sum_{n=0}^{\infty} (X_t^{(n+1)} - X_t^{(n)})$ converges uniformly on $[0, T]$ almost surely to a continuous adapted limit process $X_t$.
+
+    Finally,~\eqref{eq:picard-l2} shows that $\{X^{(n)}\}$ is Cauchy in $L^2(\Omega \times [0, T])$, so $X^{(n)} \to X$ in $L^2(\Omega \times [0, T])$ as well. Passing to the $L^2$-limit in the Picard recursion via~\eqref{eq:app-lipschitz} and It\^o's isometry verifies that $X_t$ satisfies~\eqref{eq:app-sde} for every $t \in [0, T]$.
+\end{proof}
+
+\section{Proof of the Martingale Representation Theorem}\label{sec:proof-mrt}
+
+We prove Theorem~\ref{thm:martingale-representation} in its fundamental form: every square-integrable $\F_T^W$-measurable random variable admits a unique representation as a constant plus an It\^o integral against Brownian motion (from which the martingale statement $M_t = \E[M_T \mid \F_t^W] = M_0 + \int_0^t \phi_s\dd W_s$ follows immediately).
+
+\begin{lemma}[Density of Stochastic Exponentials]\label{lem:stoch-exp-dense}
+    For any deterministic function $h \in L^2([0, T])$, define the stochastic exponential
+    \[
+    Z_t(h) := \exp\!\left(\int_0^t h_s\dd W_s - \frac{1}{2}\int_0^t h_s^2\dd s\right), \qquad t \in [0, T].
+    \]
+    The linear span $\mathcal{E} := \operatorname{span}\{Z_T(h) : h \in L^2([0, T])\}$ is dense in $L^2(\Omega, \F_T^W, \Prob)$.
+\end{lemma}
+\begin{proof}
+    Since $L^2(\Omega, \F_T^W, \Prob)$ is a Hilbert space, it suffices to show that any $Y \in L^2(\Omega, \F_T^W, \Prob)$ orthogonal to $\mathcal{E}$ satisfies $Y = 0$ almost surely. Suppose $\E[Y Z_T(h)] = 0$ for all deterministic $h \in L^2([0, T])$. Fix any partition $0 = t_0 < t_1 < \cdots < t_m \leq T$ and any step function $h_s = \sum_{j=1}^m c_j \ind_{(t_{j-1}, t_j]}(s)$ with $c = (c_1, \ldots, c_m) \in \R^m$. Then
+    \[
+    0 = \E[Y Z_T(h)] = \exp\!\left(-\frac{1}{2}\sum_{j=1}^m c_j^2 (t_j - t_{j-1})\right)
+    \E\!\left[Y \exp\!\left(\sum_{j=1}^m c_j \Delta W_j\right)\right],
+    \]
+    where $\Delta W_j := W_{t_j} - W_{t_{j-1}}$. Stripping the strictly positive deterministic prefactor gives $\E[Y \exp(\sum_{j=1}^m c_j \Delta W_j)] = 0$ for all $c \in \R^m$.
+
+    Because $\E[|Y|\exp(\sum_{j=1}^m |z_j| |\Delta W_j|)] < \infty$ for every $z \in \mathbb{C}^m$ (by Cauchy--Schwarz and Gaussian moment bounds), the function $F(z) := \E[Y \exp(\sum_{j=1}^m z_j \Delta W_j)]$ is analytic in each coordinate $z_j \in \mathbb{C}$ and vanishes identically on $\R^m$. By analytic continuation, $F(i u) = \E[Y \exp(i \sum_{j=1}^m u_j \Delta W_j)] = 0$ for all $u \in \R^m$. Conditioning on $\sigma(\Delta W_1, \ldots, \Delta W_m)$ yields
+    \[
+    \E\!\left[\E\bigl[Y \mid \Delta W_1, \ldots, \Delta W_m\bigr] e^{i \langle u, \Delta W \rangle}\right] = 0 \qquad \text{for all } u \in \R^m.
+    \]
+    By uniqueness of the Fourier transform of finite signed Borel measures on $\R^m$, we obtain $\E[Y \mid \Delta W_1, \ldots, \Delta W_m] = 0$ almost surely, so $\E[Y \ind_A] = 0$ for every cylinder event $A \in \sigma(W_{t_1}, \ldots, W_{t_m})$. Since the collection of all cylinder events is a $\pi$-system generating $\F_T^W$, Dynkin's $\pi$--$\lambda$ theorem implies $\E[Y \ind_A] = 0$ for all $A \in \F_T^W$, forcing $Y = 0$ almost surely.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:martingale-representation} (Martingale Representation)]
+    First, for any deterministic $h \in L^2([0, T])$, It\^o's Lemma applied to $Z_t(h)$ gives $\dd Z_t(h) = h_t Z_t(h)\dd W_t$ with $Z_0(h) = 1$, so
+    \[
+    Z_T(h) = 1 + \int_0^T h_s Z_s(h)\dd W_s,
+    \]
+    where $\E[\int_0^T h_s^2 Z_s(h)^2\dd s] = \int_0^T h_s^2 e^{\int_0^s h_u^2\dd u}\dd s = e^{\int_0^T h_u^2\dd u} - 1 < \infty$. By linearity of the It\^o integral, every $G \in \mathcal{E}$ has the form $G = \E[G] + \int_0^T \psi_s\dd W_s$ for some $\psi \in \mathcal{L}^2[0, T]$.
+
+    Now let $\{M_t\}_{0 \leq t \leq T}$ be any square-integrable $\{\F_t^W\}$-martingale, so $M_T \in L^2(\Omega, \F_T^W, \Prob)$. By Lemma~\ref{lem:stoch-exp-dense}, there exists a sequence $G^{(n)} = \E[G^{(n)}] + \int_0^T \phi_s^{(n)}\dd W_s \in \mathcal{E}$ converging to $M_T$ in $L^2(\Prob)$. Clearly $\E[G^{(n)}] \to \E[M_T] = M_0$. By It\^o's isometry,
+    \[
+    \E\!\left[\int_0^T \bigl(\phi_s^{(n)} - \phi_s^{(m)}\bigr)^2 \dd s\right]
+    = \E\!\left[\left(\int_0^T \bigl(\phi_s^{(n)} - \phi_s^{(m)}\bigr)\dd W_s\right)^2\right]
+    = \Var\bigl(G^{(n)} - G^{(m)}\bigr) \to 0
+    \]
+    as $n, m \to \infty$. Thus $\{\phi^{(n)}\}$ is Cauchy in the Hilbert space $\mathcal{L}^2[0, T]$ and converges to an adapted process $\phi \in \mathcal{L}^2[0, T]$. Passing to the $L^2$-limit gives
+    \[
+    M_T = M_0 + \int_0^T \phi_s\dd W_s.
+    \]
+    Taking conditional expectations with respect to $\F_t^W$ and using the martingale property of both $M$ and the It\^o integral yields
+    \[
+    M_t = \E[M_T \mid \F_t^W] = M_0 + \int_0^t \phi_s\dd W_s, \qquad t \in [0, T].
+    \]
+    Finally, if $\widetilde{\phi} \in \mathcal{L}^2[0, T]$ also satisfies this identity, then $\int_0^T (\phi_s - \widetilde{\phi}_s)\dd W_s = 0$ almost surely; It\^o's isometry immediately forces $\E[\int_0^T (\phi_s - \widetilde{\phi}_s)^2\dd s] = 0$, establishing uniqueness in $\mathcal{L}^2[0, T]$.
+\end{proof}
+
+\section{L\'evy's Characterization and Girsanov's Theorem}\label{sec:proof-girsanov}
+
 \begin{lemma}[L\'evy's Characterization Theorem]\label{lem:levy-theorem}
     Let $\{M_t\}_{t \geq 0}$ be a continuous martingale with respect to a filtration $\{\F_t\}_{t \geq 0}$ such that $M_0 = 0$. If the quadratic variation of $M$ satisfies
     \[
@@ -7,35 +138,19 @@
     then $M$ is a standard Brownian motion with respect to $\{\F_t\}_{t \geq 0}$.
 \end{lemma}
 \begin{proof}
-    It\^o's formula holds for any continuous semimartingale, and in particular for $M_t$. For any function $f \in C^{1,2}([0,\infty) \times \R)$, we have
-    \[
-    \dd f(t, M_t) = \frac{\partial f}{\partial t}(t, M_t)\dd t + \frac{\partial f}{\partial x}(t, M_t)\dd M_t + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(t, M_t)\dd t.
-    \]
-    In integral form, for any $0 \leq s \leq t$,
+    It\^o's formula holds for any continuous semimartingale, and in particular for $M_t$. For any function $f \in C^{1,2}([0,\infty) \times \R)$ and any $0 \leq s \leq t$,
     \[
     f(t, M_t) - f(s, M_s) = \int_s^t \left(\frac{\partial f}{\partial t}(v, M_v) + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(v, M_v)\right)\dd v + \int_s^t \frac{\partial f}{\partial x}(v, M_v)\dd M_v.
     \]
-    For any fixed $u \in \R$, consider the bounded complex-valued function (applying It\^o's formula separately to its real and imaginary parts)
-    \[
-    f(t, x) = \exp\!\left(i u x + \frac{1}{2} u^2 t\right),
-    \]
-    which satisfies
-    \[
-    \frac{\partial f}{\partial x} = i u f, \qquad \frac{\partial^2 f}{\partial x^2} = -u^2 f, \qquad \frac{\partial f}{\partial t} = \frac{1}{2} u^2 f,
-    \]
-    and hence $\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} = 0$. Therefore,
+    To isolate the conditional characteristic function of $M_t - M_s$, fix $u \in \R$ and apply It\^o's formula (separately to real and imaginary parts) to $f(t, x) = \exp(i u x + \frac{1}{2} u^2 t)$, which satisfies $\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} = 0$. We obtain
     \[
     f(t, M_t) - f(s, M_s) = \int_s^t i u f(v, M_v)\dd M_v.
     \]
-    Since $|f(v, M_v)| = \exp(\frac{1}{2}u^2 v) \leq \exp(\frac{1}{2}u^2 t)$ is uniformly bounded on $[s, t]$, the stochastic integral on the right-hand side is a true martingale (its integrand is bounded in $L^2$). Taking conditional expectation given $\F_s$ on both sides yields
-    \[
-    \E\!\left[\exp\!\left(i u M_t + \frac{1}{2} u^2 t\right) \;\middle|\; \F_s\right] = \exp\!\left(i u M_s + \frac{1}{2} u^2 s\right),
-    \]
-    which rearranges to
+    Since $|f(v, M_v)| = \exp(\frac{1}{2}u^2 v) \leq \exp(\frac{1}{2}u^2 t)$ is uniformly bounded on $[s, t]$, the stochastic integral on the right-hand side is a true martingale. Taking conditional expectation given $\F_s$ on both sides and dividing by $\exp(i u M_s + \frac{1}{2} u^2 t)$ gives
     \[
     \E\!\left[\exp\bigl(i u (M_t - M_s)\bigr) \;\middle|\; \F_s\right] = \exp\!\left(-\frac{1}{2} u^2 (t - s)\right).
     \]
-    Because the right-hand side is deterministic (independent of $\F_s$) and equals the characteristic function of a $\mathcal{N}(0, t - s)$ distribution, the increment $M_t - M_s$ is independent of $\F_s$ and distributed as $\mathcal{N}(0, t - s)$. Combined with $M_0 = 0$ and the continuity of sample paths, this proves that $M$ is a standard Brownian motion with respect to $\{\F_t\}_{t \geq 0}$.
+    Because the right-hand side is deterministic and equals the characteristic function of $\mathcal{N}(0, t - s)$, the increment $M_t - M_s$ is independent of $\F_s$ and distributed as $\mathcal{N}(0, t - s)$. Combined with $M_0 = 0$ and path continuity, this establishes that $M$ is a standard $\{\F_t\}$-Brownian motion.
 \end{proof}
 
 \begin{theorem}[Girsanov's Theorem]\label{thm:girsanov-app}
@@ -54,27 +169,21 @@
     is a standard Brownian motion under $\Q$.
 \end{theorem}
 \begin{proof}
-    First, since $L_t = e^{X_t}$ where $X_t = \int_0^t k_s\dd W_s - \frac{1}{2}\int_0^t k_s^2\dd s$, It\^o's formula applied to $g(x) = e^x$ gives
+    Writing $L_t = e^{X_t}$ with $X_t = \int_0^t k_s\dd W_s - \frac{1}{2}\int_0^t k_s^2\dd s$, It\^o's formula gives
     \[
     \dd L_t = L_t\dd X_t + \frac{1}{2} L_t (\dd X_t)^2 = L_t\left(k_t\dd W_t - \frac{1}{2}k_t^2\dd t\right) + \frac{1}{2} L_t k_t^2\dd t = k_t L_t\dd W_t.
     \]
-    Thus $L_t$ is a continuous local martingale under $\Prob$ with $L_0 = 1$. By Novikov's condition, $L_t$ is in fact a \textbf{true martingale} under $\Prob$, so $\E[L_t] = L_0 = 1$ for all $t \in [0, T]$ and $\Q$ is a well-defined probability measure equivalent to $\Prob$.
+    Thus $L_t$ is a continuous local martingale under $\Prob$ with $L_0 = 1$. By Novikov's condition, $L_t$ is a \textbf{true martingale} under $\Prob$, so $\E[L_t] = 1$ for all $t \in [0, T]$ and $\Q$ is a well-defined probability measure equivalent to $\Prob$.
 
-    Next, note that $\widetilde{W}_0 = 0$, $\widetilde{W}_t$ has continuous sample paths, and its quadratic variation is
-    \[
-    \dd\langle \widetilde{W}, \widetilde{W} \rangle_t = (\dd W_t - k_t\dd t)^2 = \dd t,
-    \]
-    so $\langle \widetilde{W}, \widetilde{W} \rangle_t = t$ for all $t \in [0, T]$ (almost surely under $\Prob$, and hence under the equivalent measure $\Q$).
-
-    It remains to verify that $\widetilde{W}_t$ is a martingale under $\Q$. Applying It\^o's product rule to $\widetilde{W}_t L_t$ gives
+    Next, $\widetilde{W}_0 = 0$, $\widetilde{W}_t$ has continuous sample paths, and $\dd\langle \widetilde{W}, \widetilde{W} \rangle_t = (\dd W_t - k_t\dd t)^2 = \dd t$, so $\langle \widetilde{W}, \widetilde{W} \rangle_t = t$ almost surely under $\Prob$ (and hence under $\Q$). Applying It\^o's product rule to $\widetilde{W}_t L_t$, we find
     \begin{align*}
     \dd(\widetilde{W}_t L_t) &= \widetilde{W}_t\dd L_t + L_t\dd\widetilde{W}_t + \dd\langle \widetilde{W}, L \rangle_t \\
     &= \widetilde{W}_t k_t L_t\dd W_t + L_t(\dd W_t - k_t\dd t) + k_t L_t\dd t \\
     &= (\widetilde{W}_t k_t + 1) L_t\dd W_t.
     \end{align*}
-    Hence $\widetilde{W}_t L_t$ is a local martingale under $\Prob$ (and, under standard integrability or via a localization argument, a true $\Prob$-martingale). For any $0 \leq s \leq t \leq T$, the abstract Bayes' rule for conditional expectation under a change of measure gives
+    Hence $\widetilde{W}_t L_t$ is a $\Prob$-local martingale (and a true $\Prob$-martingale under standard integrability or localization). For any $0 \leq s \leq t \leq T$, the abstract Bayes' rule yields
     \[
     \E^{\Q}[\widetilde{W}_t \mid \F_s] = \frac{1}{L_s}\E[\widetilde{W}_t L_t \mid \F_s] = \frac{1}{L_s}\widetilde{W}_s L_s = \widetilde{W}_s.
     \]
-    Thus $\widetilde{W}_t$ is a continuous $\Q$-martingale with $\widetilde{W}_0 = 0$ and $\langle \widetilde{W}, \widetilde{W} \rangle_t = t$. By Lemma~\ref{lem:levy-theorem} (L\'evy's Characterization Theorem), $\widetilde{W}_t$ is a standard Brownian motion under $\Q$.
+    Thus $\widetilde{W}_t$ is a continuous $\Q$-martingale with $\widetilde{W}_0 = 0$ and $\langle \widetilde{W}, \widetilde{W} \rangle_t = t$; by Lemma~\ref{lem:levy-theorem}, $\widetilde{W}_t$ is a standard Brownian motion under $\Q$.
 \end{proof}

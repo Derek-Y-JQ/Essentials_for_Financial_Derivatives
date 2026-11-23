@@ -34,7 +34,7 @@
       <div class="sidebar-group-title">Chapters</div>
       <ul class="nav-list"><li><a class="nav-link" href="ch01.html"><span class="nav-num">01</span><span>Introduction</span></a></li><li><a class="nav-link" href="ch02.html"><span class="nav-num">02</span><span>Discrete Time Models</span></a></li><li><a class="nav-link active" href="ch03.html"><span class="nav-num">03</span><span>Math Preliminaries</span></a></li><li><a class="nav-link" href="ch04.html"><span class="nav-num">04</span><span>Black–Scholes Model</span></a></li><li><a class="nav-link" href="ch05.html"><span class="nav-num">05</span><span>Implied Volatility Skew (Smile)</span></a></li><li><a class="nav-link" href="ch06.html"><span class="nav-num">06</span><span>Exotic Options</span></a></li><li><a class="nav-link" href="ch07.html"><span class="nav-num">07</span><span>American Options</span></a></li><li><a class="nav-link" href="ch08.html"><span class="nav-num">08</span><span>Interest Rate Modelling</span></a></li><li><a class="nav-link" href="ch09.html"><span class="nav-num">09</span><span>Problem Set</span></a></li></ul>
       <div class="sidebar-group-title">Appendices</div>
-      <ul class="nav-list"><li><a class="nav-link" href="appA.html"><span class="nav-num">A</span><span>Expectation, Information and Conditioning</span></a></li><li><a class="nav-link" href="appB.html"><span class="nav-num">B</span><span>Monte Carlo Simulation</span></a></li><li><a class="nav-link" href="appC.html"><span class="nav-num">C</span><span>Alternative Derivation of Black–Scholes PDE</span></a></li><li><a class="nav-link" href="appD.html"><span class="nav-num">D</span><span>An Abbreviated Proof of Girsanov&#x27;s Theorem</span></a></li><li><a class="nav-link" href="appE.html"><span class="nav-num">E</span><span>Bilingual Terminology Table</span></a></li></ul>
+      <ul class="nav-list"><li><a class="nav-link" href="appA.html"><span class="nav-num">A</span><span>Expectation, Information and Conditioning</span></a></li><li><a class="nav-link" href="appB.html"><span class="nav-num">B</span><span>Monte Carlo Simulation</span></a></li><li><a class="nav-link" href="appC.html"><span class="nav-num">C</span><span>Alternative Derivation of Black–Scholes PDE</span></a></li><li><a class="nav-link" href="appD.html"><span class="nav-num">D</span><span>Proofs of Key Stochastic Calculus Theorems</span></a></li><li><a class="nav-link" href="appE.html"><span class="nav-num">E</span><span>Bilingual Terminology Table</span></a></li></ul>
     </nav>
 
     <main class="content">
@@ -155,7 +155,7 @@ W_t^{(n)} = \frac{S_{\lfloor n t \rfloor}}{\sqrt{n}}, \quad t \in [0, T].
 Then, as $n \to \infty$, $\{W_t^{(n)}\}_{t \in [0, T]}$ converges <strong>weakly (in distribution)</strong> to a standard Wiener process $\{W_t\}_{t \in [0, T]}$.</p>
 </div>
 <div class="env-box env-remark"><div class="env-title">Remark 03.2</div>
-<p>Convergence in Donsker's Theorem is weak convergence in path space (the Skorokhod space $D[0, T]$, or $C[0, T]$ for the continuous piecewise-linear interpolation), not pointwise convergence on $\Omega$.</p>
+<p>Convergence in Donsker's Theorem is weak convergence in path space (the Skorokhod space $D[0, T]$, or $C[0, T]$ for the continuous piecewise-linear interpolation), not pointwise convergence on $\Omega$. For a complete proof via tightness in $D[0, T]$, see Billingsley (1999), <em>Convergence of Probability Measures</em>, Chapter&nbsp;2.</p>
 </div>
 <p>Using the Gaussian increment property, we can readily simulate sample paths of a Wiener process on a discrete time grid; see the companion script in <code>code/ch03_math_preliminaries.py</code> for the Python implementation used to generate Figure&nbsp;<a href="#fig:wiener-process">03.2</a>.</p>
 <figure class="tex-fig" id="fig:wiener-process"><img src="Figure/simulations_of_wp.png" alt="Simulated sample paths of a standard Wiener process." loading="lazy"><figcaption>Simulated sample paths of a standard Wiener process.</figcaption></figure>
@@ -913,6 +913,7 @@ and satisfy the <strong>linear growth condition</strong> if there exists a const
 \dd X_t = \mu(t, X_t)\dd t + \sigma(t, X_t)\dd W_t, \quad X_0 = \xi.
 \]</p>
 </div>
+<p><em>Proof.</em> See Appendix&nbsp;<a href="appD.html#ch:girsanov-proof">D</a>, Section&nbsp;<a href="appD.html#sec:proof-sde-wellposed">D.1</a> (via Picard iteration, Grönwall's inequality, and Doob's $L^2$ maximal inequality).</p>
 <div class="env-box env-example" id="ex:cev-process"><div class="env-title">Example 03.7 (Constant Elasticity of Variance (CEV) Process)</div>
 <p>Consider the CEV SDE
 \[
@@ -1025,6 +1026,7 @@ M_t = M_0 + \int_0^t \phi_s \dd W_s \qquad \text{a.s. for all } t \in [0, T].
 $$
 <p>In particular, every $\{\F_t^W\}$-martingale admits a version with continuous sample paths.</p>
 </div>
+<p><em>Proof.</em> See Appendix&nbsp;<a href="appD.html#ch:girsanov-proof">D</a>, Section&nbsp;<a href="appD.html#sec:proof-mrt">D.2</a> (via $L^2$-density of stochastic exponentials and Itô's isometry).</p>
 <p>The Martingale Representation Theorem is the mathematical foundation of <strong>dynamic replication and market completeness</strong> in continuous-time finance (Chapter&nbsp;<a href="ch04.html#ch:black-scholes">04</a>). Consider the Black&ndash;Scholes market of Example&nbsp;<a href="#ex:girsanov-drift-shift">03.9</a>, where under the risk-neutral measure $\Q$ the discounted stock price satisfies $\dd\widetilde{S}_t = \sigma \widetilde{S}_t \dd W_t^{\Q}$ and the filtration is generated by $W^{\Q}$. Let $H$ be any square-integrable $\F_T$-measurable derivative payoff at maturity $T$, and define its discounted risk-neutral value process by the Doob martingale
 \[
 M_t := \E^{\Q}\!\left[e^{-rT} H \,\middle|\, \F_t\right], \qquad 0 \le t \le T.
