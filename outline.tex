@@ -1,0 +1,186 @@
+%% Preamble (outline.tex)
+\usepackage{microtype} % Micro-typographic refinements
+
+% Core math & theorem packages (unicode-math replaces amsfonts/amssymb)
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{extarrows}
+
+% Tables, lists, graphics, colors
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{appendix}
+\usepackage{longtable}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+\usepackage{graphicx}
+
+% Fonts (XeLaTeX — Libertinus family, loaded directly from TeX Live OTF files)
+\usepackage{fontspec}
+\setmainfont{LibertinusSerif-Regular.otf}[
+    BoldFont=LibertinusSerif-Bold.otf,
+    ItalicFont=LibertinusSerif-Italic.otf,
+    BoldItalicFont=LibertinusSerif-BoldItalic.otf
+]
+\setsansfont{LibertinusSans-Regular.otf}[
+    BoldFont=LibertinusSans-Bold.otf,
+    ItalicFont=LibertinusSans-Italic.otf
+]
+\setmonofont{LibertinusMono-Regular.otf}[Scale=0.88]
+\usepackage{unicode-math}
+\setmathfont{LibertinusMath-Regular.otf}
+
+% Chinese support for Appendix E (Bilingual Table) under XeLaTeX
+\usepackage{xeCJK}
+\setCJKmainfont{FandolKai-Regular.otf}
+\setCJKsansfont{FandolKai-Regular.otf}
+\setCJKmonofont{FandolKai-Regular.otf}
+\newfontfamily{\kai}{FandolKai-Regular.otf}
+
+% Page geometry & headers
+\usepackage{geometry}
+\geometry{a4paper, left=2.2cm, right=2.2cm, top=2.4cm, bottom=2.4cm, headheight=15pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[ER]{\leftmark}
+\fancyhead[OL]{\rightmark}
+\fancyhead[EL,OR]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Section & ToC formatting
+\usepackage{titlesec}
+\titleformat{\chapter}{\Huge\bfseries}{\thechapter}{1em}{}
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}{\normalsize\bfseries}{\theparagraph}{1em}{}
+
+\usepackage{titletoc}
+\titlecontents{chapter}[0em]{\bfseries}{\thecontentslabel\quad}{}{\titlerule*[10pt]{$\cdot$}\contentspage}
+\titlecontents{section}[2em]{}{\thecontentslabel\quad}{}{\titlerule*[10pt]{$\cdot$}\contentspage}
+\titlecontents{subsection}[4em]{}{\thecontentslabel\quad}{}{\titlerule*[10pt]{$\cdot$}\contentspage}
+
+% Theorem box colors
+\definecolor{theoremBG}{rgb}{0.8, 0.89, 1}          % #CCE2FF
+\definecolor{theoremTitleBG}{rgb}{0.43, 0.7, 0.86}  % #6EB2DB
+\definecolor{definitionBG}{rgb}{0.86, 0.95, 0.98}   % #DBF2F9
+\definecolor{definitionTitleBG}{rgb}{0.55, 0.89, 0.89} % #8BE3E3
+\definecolor{mistyrose}{rgb}{1, 0.89, 0.88}
+\definecolor{seashell}{rgb}{1, 0.96, 0.93}
+\definecolor{lemmaBG}{rgb}{0.8, 0.94, 0.96}         % #CBF1F5
+\definecolor{lemmaTitleBG}{rgb}{0.65, 0.89, 0.91}   % #A6E3E9
+\definecolor{corollaryBG}{rgb}{0.74, 0.79, 0.92}    % #BDCAEA
+\definecolor{corollaryTitleBG}{rgb}{0.53, 0.56, 0.8} % #8890CC
+\definecolor{lightblue}{rgb}{0.8, 0.9, 1}
+
+% Framed theorem environments
+\usepackage{mdframed}
+
+\newmdtheoremenv[
+    linecolor=definitionTitleBG,
+    backgroundcolor=definitionBG,
+    linewidth=3pt,
+    topline=false,
+    bottomline=false,
+    rightline=false,
+    roundcorner=0pt,
+    frametitlebackgroundcolor=definitionTitleBG,
+    frametitlefont=\bfseries,
+    innertopmargin=2pt,
+    innerbottommargin=8pt,
+    innerrightmargin=8pt,
+    innerleftmargin=8pt
+]{definition}{Definition}[chapter]
+
+\newmdtheoremenv[
+    linecolor=mistyrose,
+    backgroundcolor=seashell,
+    linewidth=3pt,
+    topline=false,
+    bottomline=false,
+    rightline=false,
+    roundcorner=0pt,
+    frametitlebackgroundcolor=mistyrose,
+    frametitlefont=\bfseries,
+    innertopmargin=2pt,
+    innerbottommargin=8pt,
+    innerrightmargin=8pt,
+    innerleftmargin=8pt
+]{proposition}{Proposition}[chapter]
+
+\newmdtheoremenv[
+    linecolor=theoremTitleBG,
+    backgroundcolor=theoremBG,
+    linewidth=3pt,
+    topline=false,
+    bottomline=false,
+    rightline=false,
+    roundcorner=0pt,
+    frametitlebackgroundcolor=theoremTitleBG,
+    frametitlefont=\bfseries,
+    innertopmargin=2pt,
+    innerbottommargin=8pt,
+    innerrightmargin=8pt,
+    innerleftmargin=8pt
+]{theorem}{Theorem}[chapter]
+
+\newmdtheoremenv[
+    linecolor=lemmaTitleBG,
+    backgroundcolor=lemmaBG,
+    linewidth=3pt,
+    topline=false,
+    bottomline=false,
+    rightline=false,
+    roundcorner=0pt,
+    frametitlebackgroundcolor=lemmaTitleBG,
+    frametitlefont=\bfseries,
+    innertopmargin=2pt,
+    innerbottommargin=8pt,
+    innerrightmargin=8pt,
+    innerleftmargin=8pt
+]{lemma}{Lemma}[chapter]
+
+\newmdtheoremenv[
+    linecolor=corollaryTitleBG,
+    backgroundcolor=corollaryBG,
+    linewidth=3pt,
+    topline=false,
+    bottomline=false,
+    rightline=false,
+    roundcorner=0pt,
+    frametitlebackgroundcolor=corollaryTitleBG,
+    frametitlefont=\bfseries,
+    innertopmargin=2pt,
+    innerbottommargin=8pt,
+    innerrightmargin=8pt,
+    innerleftmargin=8pt
+]{corollary}{Corollary}[chapter]
+
+% Upright theorem environments numbered by chapter
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\newtheorem{note}{Note}[chapter]
+\newtheorem{remark}{Remark}[chapter]
+\newtheorem{problem}{Problem}[chapter]
+
+% Unified mathematical macros
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\ind}{\mathbb{1}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\BS}{BS}
+
+% Load hyperref last
+\usepackage[hidelinks]{hyperref}

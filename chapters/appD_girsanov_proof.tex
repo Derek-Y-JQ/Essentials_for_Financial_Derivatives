@@ -1,0 +1,80 @@
+\chapter{An Abbreviated Proof of Girsanov's Theorem}\label{ch:girsanov-proof}
+\begin{lemma}[L\'evy's Characterization Theorem]\label{lem:levy-theorem}
+    Let $\{M_t\}_{t \geq 0}$ be a continuous martingale with respect to a filtration $\{\F_t\}_{t \geq 0}$ such that $M_0 = 0$. If the quadratic variation of $M$ satisfies
+    \[
+    \langle M, M \rangle_t = t \qquad \text{for all } t \geq 0,
+    \]
+    then $M$ is a standard Brownian motion with respect to $\{\F_t\}_{t \geq 0}$.
+\end{lemma}
+\begin{proof}
+    It\^o's formula holds for any continuous semimartingale, and in particular for $M_t$. For any function $f \in C^{1,2}([0,\infty) \times \R)$, we have
+    \[
+    \dd f(t, M_t) = \frac{\partial f}{\partial t}(t, M_t)\dd t + \frac{\partial f}{\partial x}(t, M_t)\dd M_t + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(t, M_t)\dd t.
+    \]
+    In integral form, for any $0 \leq s \leq t$,
+    \[
+    f(t, M_t) - f(s, M_s) = \int_s^t \left(\frac{\partial f}{\partial t}(v, M_v) + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(v, M_v)\right)\dd v + \int_s^t \frac{\partial f}{\partial x}(v, M_v)\dd M_v.
+    \]
+    For any fixed $u \in \R$, consider the bounded complex-valued function (applying It\^o's formula separately to its real and imaginary parts)
+    \[
+    f(t, x) = \exp\!\left(i u x + \frac{1}{2} u^2 t\right),
+    \]
+    which satisfies
+    \[
+    \frac{\partial f}{\partial x} = i u f, \qquad \frac{\partial^2 f}{\partial x^2} = -u^2 f, \qquad \frac{\partial f}{\partial t} = \frac{1}{2} u^2 f,
+    \]
+    and hence $\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} = 0$. Therefore,
+    \[
+    f(t, M_t) - f(s, M_s) = \int_s^t i u f(v, M_v)\dd M_v.
+    \]
+    Since $|f(v, M_v)| = \exp(\frac{1}{2}u^2 v) \leq \exp(\frac{1}{2}u^2 t)$ is uniformly bounded on $[s, t]$, the stochastic integral on the right-hand side is a true martingale (its integrand is bounded in $L^2$). Taking conditional expectation given $\F_s$ on both sides yields
+    \[
+    \E\!\left[\exp\!\left(i u M_t + \frac{1}{2} u^2 t\right) \;\middle|\; \F_s\right] = \exp\!\left(i u M_s + \frac{1}{2} u^2 s\right),
+    \]
+    which rearranges to
+    \[
+    \E\!\left[\exp\bigl(i u (M_t - M_s)\bigr) \;\middle|\; \F_s\right] = \exp\!\left(-\frac{1}{2} u^2 (t - s)\right).
+    \]
+    Because the right-hand side is deterministic (independent of $\F_s$) and equals the characteristic function of a $\mathcal{N}(0, t - s)$ distribution, the increment $M_t - M_s$ is independent of $\F_s$ and distributed as $\mathcal{N}(0, t - s)$. Combined with $M_0 = 0$ and the continuity of sample paths, this proves that $M$ is a standard Brownian motion with respect to $\{\F_t\}_{t \geq 0}$.
+\end{proof}
+
+\begin{theorem}[Girsanov's Theorem]\label{thm:girsanov-app}
+    Let $\{W_t\}_{0 \leq t \leq T}$ be a Brownian motion under $\Prob$ with respect to $\{\F_t\}_{0 \leq t \leq T}$, and let $\{k_t\}_{0 \leq t \leq T}$ be an adapted (predictable) process satisfying \textbf{Novikov's condition}:
+    \[
+    \E\!\left[\exp\!\left(\frac{1}{2}\int_0^T k_s^2\dd s\right)\right] < \infty.
+    \]
+    Define the Radon--Nikodym density process
+    \[
+    L_t = \exp\!\left(\int_0^t k_s\dd W_s - \frac{1}{2}\int_0^t k_s^2\dd s\right), \qquad 0 \leq t \leq T,
+    \]
+    and define a new probability measure $\Q$ on $\F_T$ by $\frac{\dd\Q}{\dd\Prob} = L_T$ (so that $\left.\frac{\dd\Q}{\dd\Prob}\right|_{\F_t} = L_t$). Then
+    \[
+    \widetilde{W}_t = W_t - \int_0^t k_s\dd s, \qquad 0 \leq t \leq T,
+    \]
+    is a standard Brownian motion under $\Q$.
+\end{theorem}
+\begin{proof}
+    First, since $L_t = e^{X_t}$ where $X_t = \int_0^t k_s\dd W_s - \frac{1}{2}\int_0^t k_s^2\dd s$, It\^o's formula applied to $g(x) = e^x$ gives
+    \[
+    \dd L_t = L_t\dd X_t + \frac{1}{2} L_t (\dd X_t)^2 = L_t\left(k_t\dd W_t - \frac{1}{2}k_t^2\dd t\right) + \frac{1}{2} L_t k_t^2\dd t = k_t L_t\dd W_t.
+    \]
+    Thus $L_t$ is a continuous local martingale under $\Prob$ with $L_0 = 1$. By Novikov's condition, $L_t$ is in fact a \textbf{true martingale} under $\Prob$, so $\E[L_t] = L_0 = 1$ for all $t \in [0, T]$ and $\Q$ is a well-defined probability measure equivalent to $\Prob$.
+
+    Next, note that $\widetilde{W}_0 = 0$, $\widetilde{W}_t$ has continuous sample paths, and its quadratic variation is
+    \[
+    \dd\langle \widetilde{W}, \widetilde{W} \rangle_t = (\dd W_t - k_t\dd t)^2 = \dd t,
+    \]
+    so $\langle \widetilde{W}, \widetilde{W} \rangle_t = t$ for all $t \in [0, T]$ (almost surely under $\Prob$, and hence under the equivalent measure $\Q$).
+
+    It remains to verify that $\widetilde{W}_t$ is a martingale under $\Q$. Applying It\^o's product rule to $\widetilde{W}_t L_t$ gives
+    \begin{align*}
+    \dd(\widetilde{W}_t L_t) &= \widetilde{W}_t\dd L_t + L_t\dd\widetilde{W}_t + \dd\langle \widetilde{W}, L \rangle_t \\
+    &= \widetilde{W}_t k_t L_t\dd W_t + L_t(\dd W_t - k_t\dd t) + k_t L_t\dd t \\
+    &= (\widetilde{W}_t k_t + 1) L_t\dd W_t.
+    \end{align*}
+    Hence $\widetilde{W}_t L_t$ is a local martingale under $\Prob$ (and, under standard integrability or via a localization argument, a true $\Prob$-martingale). For any $0 \leq s \leq t \leq T$, the abstract Bayes' rule for conditional expectation under a change of measure gives
+    \[
+    \E^{\Q}[\widetilde{W}_t \mid \F_s] = \frac{1}{L_s}\E[\widetilde{W}_t L_t \mid \F_s] = \frac{1}{L_s}\widetilde{W}_s L_s = \widetilde{W}_s.
+    \]
+    Thus $\widetilde{W}_t$ is a continuous $\Q$-martingale with $\widetilde{W}_0 = 0$ and $\langle \widetilde{W}, \widetilde{W} \rangle_t = t$. By Lemma~\ref{lem:levy-theorem} (L\'evy's Characterization Theorem), $\widetilde{W}_t$ is a standard Brownian motion under $\Q$.
+\end{proof}

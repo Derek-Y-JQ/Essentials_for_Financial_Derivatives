@@ -1,0 +1,64 @@
+\chapter{Another Way to Derive the Black--Scholes PDE}\label{ch:bs-pde-alternative}
+Assume that the stock price follows geometric Brownian motion
+\[
+\dd S_t = \mu S_t\dd t + \sigma S_t\dd W_t,
+\]
+and the money market bank account follows the deterministic process
+\[
+\dd B_t = r B_t\dd t.
+\]
+
+\begin{definition}\label{def:self-financing-app}
+    A portfolio strategy $(\beta_t, \kappa_t)$ investing $\beta_t$ units in the bank account and $\kappa_t$ shares in the underlying asset is called \textbf{self-financing} if its value process
+    \[
+    \Pi_t = \beta_t B_t + \kappa_t S_t
+    \]
+    satisfies
+    \[
+    \dd \Pi_t = \beta_t\dd B_t + \kappa_t\dd S_t.
+    \]
+\end{definition}
+
+\begin{lemma}\label{lem:riskless-portfolio}
+    If the value process $\Pi_t$ of a self-financing portfolio satisfies $\Pi_t > 0$ and has locally riskless dynamics
+    \[
+    \dd \Pi_t = k_t \Pi_t\dd t,
+    \]
+    where $k_t$ is an adapted process, then no arbitrage implies $k_t = r$.
+\end{lemma}
+\begin{proof}
+    If $k_t > r$, an investor can borrow $\Pi_t$ at the risk-free rate $r$ to invest in the portfolio and earn an instantaneous riskless profit of
+    \[
+    \Pi_t(k_t - r)\dd t > 0.
+    \]
+    Conversely, if $k_t < r$, an investor can short the portfolio and invest the proceeds at the risk-free rate $r$, earning an instantaneous riskless profit of
+    \[
+    \Pi_t(r - k_t)\dd t > 0.
+    \]
+    Hence, to preclude arbitrage, we must have $k_t = r$.
+\end{proof}
+
+Now consider a self-financing portfolio holding $\gamma_t$ units of a derivative with price $V_t = V(t, S_t)$ and $\kappa_t$ shares of the underlying stock with price $S_t$. The value of the portfolio is $\Pi_t = \gamma_t V_t + \kappa_t S_t$. By the self-financing condition and It\^o's Lemma, $\Pi_t$ has dynamics
+\begin{align*}
+\dd \Pi_t &= \gamma_t\dd V_t + \kappa_t\dd S_t \\
+&= \gamma_t \left(\left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t + \frac{\partial V}{\partial S}\dd S_t\right) + \kappa_t\dd S_t.
+\end{align*}
+
+Choose the delta-neutral hedge $\kappa_t = -\gamma_t \frac{\partial V}{\partial S}$, so that $\Pi_t = \gamma_t\bigl(V_t - S_t \frac{\partial V}{\partial S}\bigr)$. Then the $\dd S_t$ terms cancel:
+\[
+\dd \Pi_t = \gamma_t\left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t.
+\]
+Assuming $V_t - S_t \frac{\partial V}{\partial S} \neq 0$, we may choose $\gamma_t$ such that $\Pi_t > 0$, i.e., $\gamma_t = \Pi_t / \bigl(V_t - S_t \frac{\partial V}{\partial S}\bigr)$, giving
+\[
+\dd \Pi_t = \frac{\Pi_t}{V_t - S_t \frac{\partial V}{\partial S}} \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t =: k_t \Pi_t\dd t,
+\]
+where
+\[
+\left(V_t - S_t \frac{\partial V}{\partial S}\right) k_t = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}.
+\]
+(Note that if $V_t - S_t \frac{\partial V}{\partial S} = 0$, then $\Pi_t = 0$, and no arbitrage directly requires $\dd \Pi_t = 0$, which yields $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2} = 0$ and still satisfies the equation below.)
+
+By Lemma~\ref{lem:riskless-portfolio}, $k_t = r$, and we obtain the Black--Scholes PDE:
+\[
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0.
+\]

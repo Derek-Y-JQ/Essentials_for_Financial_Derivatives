@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>An Abbreviated Proof of Girsanov&#x27;s Theorem — Essentials for Financial Derivatives</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="btn-pill menu-toggle" id="menu-toggle" aria-label="Toggle chapters">Chapters</button>
+      <a class="topbar-brand" href="index.html">Essentials for Financial Derivatives</a>
+    </div>
+    <div class="topbar-actions">
+      <a class="btn-pill" href="Essentials_for_Financial_Derivatives.pdf" target="_blank">PDF Edition</a>
+      <a class="btn-pill" href="https://github.com/Derek-Y-JQ/Essentials_for_Financial_Derivatives" target="_blank">GitHub</a>
+      <button class="btn-pill" id="theme-toggle">Dark mode</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Table of Contents">
+      <input class="sidebar-search" id="nav-search" type="search" placeholder="Filter chapters...">
+      <div class="sidebar-group-title">Chapters</div>
+      <ul class="nav-list"><li><a class="nav-link" href="ch01.html"><span class="nav-num">01</span><span>Introduction</span></a></li><li><a class="nav-link" href="ch02.html"><span class="nav-num">02</span><span>Discrete Time Models</span></a></li><li><a class="nav-link" href="ch03.html"><span class="nav-num">03</span><span>Math Preliminaries</span></a></li><li><a class="nav-link" href="ch04.html"><span class="nav-num">04</span><span>Black–Scholes Model</span></a></li><li><a class="nav-link" href="ch05.html"><span class="nav-num">05</span><span>Implied Volatility Skew (Smile)</span></a></li><li><a class="nav-link" href="ch06.html"><span class="nav-num">06</span><span>Exotic Options</span></a></li><li><a class="nav-link" href="ch07.html"><span class="nav-num">07</span><span>American Options</span></a></li><li><a class="nav-link" href="ch08.html"><span class="nav-num">08</span><span>Interest Rate Modelling</span></a></li><li><a class="nav-link" href="ch09.html"><span class="nav-num">09</span><span>Problem Set</span></a></li></ul>
+      <div class="sidebar-group-title">Appendices</div>
+      <ul class="nav-list"><li><a class="nav-link" href="appA.html"><span class="nav-num">A</span><span>Expectation, Information and Conditioning</span></a></li><li><a class="nav-link" href="appB.html"><span class="nav-num">B</span><span>Monte Carlo Simulation</span></a></li><li><a class="nav-link" href="appC.html"><span class="nav-num">C</span><span>Alternative Derivation of Black–Scholes PDE</span></a></li><li><a class="nav-link active" href="appD.html"><span class="nav-num">D</span><span>An Abbreviated Proof of Girsanov&#x27;s Theorem</span></a></li><li><a class="nav-link" href="appE.html"><span class="nav-num">E</span><span>Bilingual Terminology Table</span></a></li></ul>
+    </nav>
+
+    <main class="content">
+      <div class="chapter-eyebrow">Appendix D</div>
+      <h1>An Abbreviated Proof of Girsanov&#x27;s Theorem</h1>
+      <div class="env-box env-lemma" id="lem:levy-theorem"><div class="env-title">Lemma D.1 (Lévy's Characterization Theorem)</div>
+<p>Let $\{M_t\}_{t \geq 0}$ be a continuous martingale with respect to a filtration $\{\F_t\}_{t \geq 0}$ such that $M_0 = 0$. If the quadratic variation of $M$ satisfies
+    \[
+    \langle M, M \rangle_t = t \qquad \text{for all } t \geq 0,
+    \]
+    then $M$ is a standard Brownian motion with respect to $\{\F_t\}_{t \geq 0}$.</p>
+</div>
+<div class="env-proof"><div class="env-title">Proof.</div>
+<p>Itô's formula holds for any continuous semimartingale, and in particular for $M_t$. For any function $f \in C^{1,2}([0,\infty) \times \R)$, we have
+    \[
+    \dd f(t, M_t) = \frac{\partial f}{\partial t}(t, M_t)\dd t + \frac{\partial f}{\partial x}(t, M_t)\dd M_t + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(t, M_t)\dd t.
+    \]
+    In integral form, for any $0 \leq s \leq t$,
+    \[
+    f(t, M_t) - f(s, M_s) = \int_s^t \left(\frac{\partial f}{\partial t}(v, M_v) + \frac{1}{2}\frac{\partial^2 f}{\partial x^2}(v, M_v)\right)\dd v + \int_s^t \frac{\partial f}{\partial x}(v, M_v)\dd M_v.
+    \]
+    For any fixed $u \in \R$, consider the bounded complex-valued function (applying Itô's formula separately to its real and imaginary parts)
+    \[
+    f(t, x) = \exp\!\left(i u x + \frac{1}{2} u^2 t\right),
+    \]
+    which satisfies
+    \[
+    \frac{\partial f}{\partial x} = i u f, \qquad \frac{\partial^2 f}{\partial x^2} = -u^2 f, \qquad \frac{\partial f}{\partial t} = \frac{1}{2} u^2 f,
+    \]
+    and hence $\frac{\partial f}{\partial t} + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} = 0$. Therefore,
+    \[
+    f(t, M_t) - f(s, M_s) = \int_s^t i u f(v, M_v)\dd M_v.
+    \]
+    Since $|f(v, M_v)| = \exp(\frac{1}{2}u^2 v) \leq \exp(\frac{1}{2}u^2 t)$ is uniformly bounded on $[s, t]$, the stochastic integral on the right-hand side is a true martingale (its integrand is bounded in $L^2$). Taking conditional expectation given $\F_s$ on both sides yields
+    \[
+    \E\!\left[\exp\!\left(i u M_t + \frac{1}{2} u^2 t\right) \;\middle|\; \F_s\right] = \exp\!\left(i u M_s + \frac{1}{2} u^2 s\right),
+    \]
+    which rearranges to
+    \[
+    \E\!\left[\exp\bigl(i u (M_t - M_s)\bigr) \;\middle|\; \F_s\right] = \exp\!\left(-\frac{1}{2} u^2 (t - s)\right).
+    \]
+    Because the right-hand side is deterministic (independent of $\F_s$) and equals the characteristic function of a $\mathcal{N}(0, t - s)$ distribution, the increment $M_t - M_s$ is independent of $\F_s$ and distributed as $\mathcal{N}(0, t - s)$. Combined with $M_0 = 0$ and the continuity of sample paths, this proves that $M$ is a standard Brownian motion with respect to $\{\F_t\}_{t \geq 0}$. <span class="qed-mark">&#9723;</span></p>
+</div>
+<div class="env-box env-theorem" id="thm:girsanov-app"><div class="env-title">Theorem D.1 (Girsanov's Theorem)</div>
+<p>Let $\{W_t\}_{0 \leq t \leq T}$ be a Brownian motion under $\Prob$ with respect to $\{\F_t\}_{0 \leq t \leq T}$, and let $\{k_t\}_{0 \leq t \leq T}$ be an adapted (predictable) process satisfying <strong>Novikov's condition</strong>:
+    \[
+    \E\!\left[\exp\!\left(\frac{1}{2}\int_0^T k_s^2\dd s\right)\right] < \infty.
+    \]
+    Define the Radon&ndash;Nikodym density process
+    \[
+    L_t = \exp\!\left(\int_0^t k_s\dd W_s - \frac{1}{2}\int_0^t k_s^2\dd s\right), \qquad 0 \leq t \leq T,
+    \]
+    and define a new probability measure $\Q$ on $\F_T$ by $\frac{\dd\Q}{\dd\Prob} = L_T$ (so that $\left.\frac{\dd\Q}{\dd\Prob}\right|_{\F_t} = L_t$). Then
+    \[
+    \widetilde{W}_t = W_t - \int_0^t k_s\dd s, \qquad 0 \leq t \leq T,
+    \]
+    is a standard Brownian motion under $\Q$.</p>
+</div>
+<div class="env-proof"><div class="env-title">Proof.</div>
+<p>First, since $L_t = e^{X_t}$ where $X_t = \int_0^t k_s\dd W_s - \frac{1}{2}\int_0^t k_s^2\dd s$, Itô's formula applied to $g(x) = e^x$ gives
+    \[
+    \dd L_t = L_t\dd X_t + \frac{1}{2} L_t (\dd X_t)^2 = L_t\left(k_t\dd W_t - \frac{1}{2}k_t^2\dd t\right) + \frac{1}{2} L_t k_t^2\dd t = k_t L_t\dd W_t.
+    \]
+    Thus $L_t$ is a continuous local martingale under $\Prob$ with $L_0 = 1$. By Novikov's condition, $L_t$ is in fact a <strong>true martingale</strong> under $\Prob$, so $\E[L_t] = L_0 = 1$ for all $t \in [0, T]$ and $\Q$ is a well-defined probability measure equivalent to $\Prob$.</p>
+<p>Next, note that $\widetilde{W}_0 = 0$, $\widetilde{W}_t$ has continuous sample paths, and its quadratic variation is
+    \[
+    \dd\langle \widetilde{W}, \widetilde{W} \rangle_t = (\dd W_t - k_t\dd t)^2 = \dd t,
+    \]
+    so $\langle \widetilde{W}, \widetilde{W} \rangle_t = t$ for all $t \in [0, T]$ (almost surely under $\Prob$, and hence under the equivalent measure $\Q$).</p>
+<p>It remains to verify that $\widetilde{W}_t$ is a martingale under $\Q$. Applying Itô's product rule to $\widetilde{W}_t L_t$ gives</p>
+$$\begin{aligned}
+    \dd(\widetilde{W}_t L_t) &= \widetilde{W}_t\dd L_t + L_t\dd\widetilde{W}_t + \dd\langle \widetilde{W}, L \rangle_t \\
+    &= \widetilde{W}_t k_t L_t\dd W_t + L_t(\dd W_t - k_t\dd t) + k_t L_t\dd t \\
+    &= (\widetilde{W}_t k_t + 1) L_t\dd W_t.
+    \end{aligned}$$
+<p>Hence $\widetilde{W}_t L_t$ is a local martingale under $\Prob$ (and, under standard integrability or via a localization argument, a true $\Prob$-martingale). For any $0 \leq s \leq t \leq T$, the abstract Bayes' rule for conditional expectation under a change of measure gives
+    \[
+    \E^{\Q}[\widetilde{W}_t \mid \F_s] = \frac{1}{L_s}\E[\widetilde{W}_t L_t \mid \F_s] = \frac{1}{L_s}\widetilde{W}_s L_s = \widetilde{W}_s.
+    \]
+    Thus $\widetilde{W}_t$ is a continuous $\Q$-martingale with $\widetilde{W}_0 = 0$ and $\langle \widetilde{W}, \widetilde{W} \rangle_t = t$. By Lemma&nbsp;<a href="#lem:levy-theorem">D.1</a> (Lévy's Characterization Theorem), $\widetilde{W}_t$ is a standard Brownian motion under $\Q$. <span class="qed-mark">&#9723;</span></p>
+</div>
+      <div class="chapter-pager"><a class="pager-card prev" href="appC.html"><span class="pager-dir">&larr; Previous (Appendix C)</span><span class="pager-title">Alternative Derivation of Black–Scholes PDE</span></a><a class="pager-card next" href="appE.html"><span class="pager-dir">Next (Appendix E) &rarr;</span><span class="pager-title">Bilingual Terminology Table</span></a></div>
+    </main>
+
+    <aside class="toc-panel"></aside>
+  </div>
+</body>
+</html>

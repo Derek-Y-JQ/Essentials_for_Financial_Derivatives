@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problem Set — Essentials for Financial Derivatives</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="btn-pill menu-toggle" id="menu-toggle" aria-label="Toggle chapters">Chapters</button>
+      <a class="topbar-brand" href="index.html">Essentials for Financial Derivatives</a>
+    </div>
+    <div class="topbar-actions">
+      <a class="btn-pill" href="Essentials_for_Financial_Derivatives.pdf" target="_blank">PDF Edition</a>
+      <a class="btn-pill" href="https://github.com/Derek-Y-JQ/Essentials_for_Financial_Derivatives" target="_blank">GitHub</a>
+      <button class="btn-pill" id="theme-toggle">Dark mode</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Table of Contents">
+      <input class="sidebar-search" id="nav-search" type="search" placeholder="Filter chapters...">
+      <div class="sidebar-group-title">Chapters</div>
+      <ul class="nav-list"><li><a class="nav-link" href="ch01.html"><span class="nav-num">01</span><span>Introduction</span></a></li><li><a class="nav-link" href="ch02.html"><span class="nav-num">02</span><span>Discrete Time Models</span></a></li><li><a class="nav-link" href="ch03.html"><span class="nav-num">03</span><span>Math Preliminaries</span></a></li><li><a class="nav-link" href="ch04.html"><span class="nav-num">04</span><span>Black–Scholes Model</span></a></li><li><a class="nav-link" href="ch05.html"><span class="nav-num">05</span><span>Implied Volatility Skew (Smile)</span></a></li><li><a class="nav-link" href="ch06.html"><span class="nav-num">06</span><span>Exotic Options</span></a></li><li><a class="nav-link" href="ch07.html"><span class="nav-num">07</span><span>American Options</span></a></li><li><a class="nav-link" href="ch08.html"><span class="nav-num">08</span><span>Interest Rate Modelling</span></a></li><li><a class="nav-link active" href="ch09.html"><span class="nav-num">09</span><span>Problem Set</span></a></li></ul>
+      <div class="sidebar-group-title">Appendices</div>
+      <ul class="nav-list"><li><a class="nav-link" href="appA.html"><span class="nav-num">A</span><span>Expectation, Information and Conditioning</span></a></li><li><a class="nav-link" href="appB.html"><span class="nav-num">B</span><span>Monte Carlo Simulation</span></a></li><li><a class="nav-link" href="appC.html"><span class="nav-num">C</span><span>Alternative Derivation of Black–Scholes PDE</span></a></li><li><a class="nav-link" href="appD.html"><span class="nav-num">D</span><span>An Abbreviated Proof of Girsanov&#x27;s Theorem</span></a></li><li><a class="nav-link" href="appE.html"><span class="nav-num">E</span><span>Bilingual Terminology Table</span></a></li></ul>
+    </nav>
+
+    <main class="content">
+      <div class="chapter-eyebrow">Chapter 9</div>
+      <h1>Problem Set</h1>
+      <h2 id="sec-1">09.1 Set 1</h2>
+<div class="env-box env-problem"><div class="env-title">Problem 09.1</div>
+<p>Consider a 2-period binomial model with $S_0 = 4$, $u = 2$, and $d = \frac{1}{2}$. Let the continuously compounded interest rate per period be $r = \ln\frac{5}{4}$ (so that $e^r = \frac{5}{4}$).</p>
+<ol>
+<li>Write down the stock price state matrix for this model.
+        <li>Consider a European call option with strike price $K = 4$ that expires at time $2$. What is the price of this option at time $0$?
+        <li>Consider a <strong>floating-strike lookback put</strong> option that expires at time $2$, with terminal payoff $\max_{0 \leq k \leq 2} S_k - S_2$. What is the price of this option at time $0$? Derive the price via both the risk-neutral pricing formula and the replicating portfolio method.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.2</div>
+<p>(Asian option) Consider a 3-period binomial model with the same parameters as in the previous problem. For $n = 0, 1, 2, 3$, define $Y_n = \sum_{k=0}^n S_k$ to be the cumulative sum of the stock prices from time $0$ to time $n$. Consider an Asian call option expiring at time $3$ with strike $K = 4$, whose payoff is $\bigl(\frac{1}{4} Y_3 - 4\bigr)^{+}$. Let $v_n(s, y)$ denote the price of this option at time $n$ when $S_n = s$ and $Y_n = y$; in particular, $v_3(s, y) = \bigl(\frac{1}{4} y - 4\bigr)^{+}$.</p>
+<ol>
+<li>Develop a recursive algorithm for computing $v_n$ in terms of $v_{n+1}$.
+        <li>Apply the algorithm to compute $v_0(4, 4)$, the time-$0$ price of the Asian option.
+        <li>Provide a formula for $\delta_n(s, y)$, the number of shares of stock held by the replicating portfolio at time $n$ when $S_n = s$ and $Y_n = y$.
+        <li>Find the time-$0$ price and optimal exercise policy (optimal stopping time) for the path-dependent Asian-style American put whose intrinsic value at each time $n \in \{0, 1, 2, 3\}$ is $\bigl(4 - \frac{1}{n+1} \sum_{j=0}^n S_j\bigr)^{+}$.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.3</div>
+<p>Consider an $N$-period binomial model with discrete compounding at rate $r$ per period.</p>
+<ol>
+<li>Let $M_0, M_1, \ldots, M_N$ and $M_0', M_1', \ldots, M_N'$ be martingales under the risk-neutral measure $\widetilde{\Prob}$, where
+        \[
+        p_u = \frac{1 + r - d}{u - d}, \qquad p_d = \frac{u - 1 - r}{u - d}.
+        \]
+        Show that if $M_N = M_N'$, then $M_n = M_n'$ for every $n \in \{0, 1, \ldots, N\}$.
+        <li>Let $V_N$ be the payoff at time $N$ of a path-independent European derivative security, so that its value at time step $j$ depends only on the number of up-moves $i \in \{0, 1, \ldots, j\}$. Define $V_{i,j}$ recursively by
+        \[
+        V_{i,j} = \frac{1}{1+r}\bigl(p_u V_{i+1, j+1} + (1 - p_u) V_{i, j+1}\bigr), \qquad j = N-1, N-2, \ldots, 0,\quad 0 \leq i \leq j.
+        \]
+        (For a general path-dependent payoff depending on all $N$ coin tosses, the analogous recursion on a non-recombining tree is $V_j = \frac{1}{1+r}\widetilde{\E}[V_{j+1} \mid \F_j]$.) Show that the discounted value process
+        \[
+        V_0,\; \frac{V_1}{1+r},\; \ldots,\; \frac{V_{N-1}}{(1+r)^{N-1}},\; \frac{V_N}{(1+r)^N}
+        \]
+        is a martingale under $\widetilde{\Prob}$.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.4</div>
+<p>(Dividend-paying stock) Define a random variable $Y_{n+1}$ taking the value $u$ with probability $p_u$ and $d$ with probability $p_d$:
+    \[
+    Y_{n+1} = \begin{cases}
+    u, & \text{if the stock goes up at time } n+1, \\
+    d, & \text{if the stock goes down at time } n+1.
+    \end{cases}
+    \]
+    In a dividend-paying binomial model, suppose there is an additional random variable $A_{n+1} \in (0, 1)$ such that the dividend paid at time $n+1$ is $A_{n+1} Y_{n+1} S_n$, and the ex-dividend stock price at time $n+1$ is
+    \[
+    S_{n+1} = (1 - A_{n+1}) Y_{n+1} S_n.
+    \]
+    An agent starting with initial wealth $X_0$ who holds $\Delta_n$ shares of stock at time $n$ (where $\Delta_n$ depends only on the first $n$ coin tosses) has a portfolio governed by the wealth equation</p>
+$$\begin{aligned}
+    X_{n+1} &= \Delta_n S_{n+1} + (1+r)(X_n - \Delta_n S_n) + \Delta_n A_{n+1} Y_{n+1} S_n \\
+    &= \Delta_n Y_{n+1} S_n + (1+r)(X_n - \Delta_n S_n).
+    \end{aligned}$$
+<ol>
+<li>Show that the discounted wealth process $(1+r)^{-n} X_n$ is a martingale under the risk-neutral measure $\widetilde{\Prob}$.
+        <li>Show that the risk-neutral pricing formula still applies.
+        <li>Show that the discounted stock price $(1+r)^{-n} S_n$ is <em>not</em> a martingale under $\widetilde{\Prob}$. However, if $A_{n+1} \equiv a \in (0, 1)$ is constant, show that $\frac{S_n}{(1-a)^n (1+r)^n}$ is a martingale under $\widetilde{\Prob}$.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.5</div>
+<p>(Chooser option)</p>
+<ol>
+<li>Write down put&ndash;call parity for European options at time $m < N$ under discrete compounding at rate $r$ per period.
+        <li>Let $1 \leq m \leq N-1$ and $K > 0$ be given. A chooser option sold at time $0$ confers on its owner the right to choose at time $m$ to receive either a European call or a European put, each expiring at time $N$ with strike price $K$. Show that the time-$0$ price of the chooser option equals the sum of the time-$0$ price of a European put expiring at time $N$ with strike $K$ and a European call expiring at time $m$ with strike $\frac{K}{(1+r)^{N-m}}$.
+</ol>
+</div>
+<h2 id="sec-2">09.2 Set 2</h2>
+<div class="env-box env-problem"><div class="env-title">Problem 09.6</div>
+<p>Write down the answers to the following questions concisely:</p>
+<ol>
+<li>Derive the expression for $\Prob(Y \leq \nu)$ when $Y \sim \mathcal{LN}(\mu, \sigma^2)$, i.e., $Y$ is log-normally distributed ($\ln Y \sim \mathcal{N}(\mu, \sigma^2)$). From this, derive the probability density function of $Y$.
+        <li>Derive the SDE for each of the following processes:
+<ol>
+<li>$Y_t = t - W_t^2$,
+            <li>$Y_t = e^{W_t}$,
+            <li>$Y_t = e^{-rt} W_t$,
+            <li>$X_t = W_t - \beta \int_0^t e^{-\beta(t-s)} W_s\dd s$.
+</ol>
+<li>Let $x, \mu, h \in \R$ and $\sigma > 0$ be constants. If $X_t = x + \mu t + \sigma W_t$ ($t \geq 0$) and
+        \[
+        Y_t = h \int_0^t X_s\dd s, \qquad t \geq 0,
+        \]
+        derive $\E[Y_t]$ and $\Var(Y_t)$.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.7</div>
+<p>Suppose $\{M(t)\}_{0 \leq t \leq T}$ is a martingale with respect to a filtration $\{\F(t)\}_{0 \leq t \leq T}$. Let $\{\Delta(t)\}_{0 \leq t \leq T}$ be an adapted simple process, meaning there is a partition $\Pi = \{t_0, t_1, \ldots, t_n\}$ of $[0, T]$ such that for every $j$, $\Delta(t_j)$ is $\F(t_j)$-measurable and $\Delta(t)$ is constant on $[t_j, t_{j+1})$. For $t \in [t_k, t_{k+1})$, define the stochastic integral
+    \[
+    I(t) = \sum_{j=0}^{k-1} \Delta(t_j)\bigl[M(t_{j+1}) - M(t_j)\bigr] + \Delta(t_k)\bigl[M(t) - M(t_k)\bigr].
+    \]
+    Interpreting $M(t)$ as an asset price and $\Delta(t_j)$ as the number of shares held over $[t_j, t_{j+1})$, $I(t)$ represents the cumulative trading gains up to time $t$. Show that $\{I(t)\}_{0 \leq t \leq T}$ is a martingale.</p>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.8</div>
+<p>Verify that the Black&ndash;Scholes European call price $C_t = S_t\Phi(d_1) - K e^{-r(T-t)}\Phi(d_2)$ satisfies the Black&ndash;Scholes PDE.</p>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.9</div>
+<p>Consider a non-dividend-paying stock $S(t)$ in the Black&ndash;Scholes model with constant risk-free rate $r$. Let $t_0 \in (0, T)$, and consider a chooser option granting the holder the right at time $t_0$ to choose either a European call or a European put on $S$, both with strike price $K > 0$ and maturity $T$. Denote by $C(t_0)$ the time-$t_0$ price of that European call, and by $F(t_0) = S(t_0) - K e^{-r(T - t_0)}$ the time-$t_0$ value of a forward contract with delivery price $K$ and maturity $T$.</p>
+<ol>
+<li>Show that at time $t_0$ the value of the chooser option is
+        \[
+        C(t_0) + \max\{0, -F(t_0)\} = C(t_0) + \bigl(e^{-r(T - t_0)} K - S(t_0)\bigr)^{+}.
+        \]
+        <li>Show that the time-$0$ value of the chooser option equals the sum of a European call expiring at time $T$ with strike $K$ and a European put expiring at time $t_0$ with strike $e^{-r(T - t_0)} K$.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.10</div>
+<p>(Cost of carry) Consider a commodity whose unit price at time $t$ is $S(t)$. Holding one unit of the commodity requires a continuous storage payment at rate $a$ per unit time (a fixed cost per unit of commodity, not a fraction of its price). A self-financing portfolio holding $\Delta(t)$ units of the commodity and investing the remainder in a money market account with constant rate $r$ has dynamics
+    \[
+    \dd X(t) = \Delta(t)\dd S(t) - a\Delta(t)\dd t + r\bigl(X(t) - \Delta(t)S(t)\bigr)\dd t.
+    \]
+    Under the risk-neutral measure $\widetilde{\Prob}$, the discounted portfolio value $e^{-rt} X(t)$ must be a martingale, and $S(t)$ follows
+    \[
+    \dd S(t) = r S(t)\dd t + \sigma S(t)\dd\widetilde{W}(t) + a\dd t,
+    \]
+    where $\widetilde{W}(t)$ is a $\widetilde{\Prob}$-Brownian motion.</p>
+<ol>
+<li>Show that the discounted portfolio value process $e^{-rt} X(t)$ is a martingale under $\widetilde{\Prob}$.
+        <li>Define
+        \[
+        Y(t) = \exp\!\left\{\sigma\widetilde{W}(t) + \left(r - \frac{1}{2}\sigma^2\right)t\right\}.
+        \]
+        Verify that for $0 \leq t \leq T$, $\dd Y(t) = r Y(t)\dd t + \sigma Y(t)\dd\widetilde{W}(t)$, that $e^{-rt} Y(t)$ is a $\widetilde{\Prob}$-martingale, and that
+        \[
+        S(t) = S(0) Y(t) + Y(t) \int_0^t \frac{a}{Y(s)}\dd s
+        \]
+        solves the SDE for $S(t)$.
+        <li>For $0 \leq t \leq T$, derive a formula for $\widetilde{\E}[S(T) \mid \F(t)]$ in terms of $S(t)$ by writing
+$$\begin{aligned}
+        \widetilde{\E}[S(T) \mid \F(t)] &= S(0)\,\widetilde{\E}[Y(T) \mid \F(t)] + \widetilde{\E}[Y(T) \mid \F(t)] \int_0^t \frac{a}{Y(s)}\dd s \\
+        &\quad + a \int_t^T \widetilde{\E}\!\left[\frac{Y(T)}{Y(s)} \;\middle|\; \F(t)\right]\dd s
+        \end{aligned}$$
+<p>and simplifying the right-hand side.
+        <li>The process $\operatorname{Fut}_S(t, T) = \widetilde{\E}[S(T) \mid \F(t)]$ is the futures price process of the commodity and must be a $\widetilde{\Prob}$-martingale. Check your formula from part 3 by differentiating it to verify that $\widetilde{\E}[S(T) \mid \F(t)]$ is a $\widetilde{\Prob}$-martingale.
+        <li>For $0 \leq t \leq T$, consider a forward contract entered at time $t$ to buy one unit of the commodity at time $T$ for price $K$ paid at $T$, whose time-$t$ value is
+        \[
+        \widetilde{\E}\!\left[e^{-r(T-t)}\bigl(S(T) - K\bigr) \;\middle|\; \F(t)\right].
+        \]
+        The forward price $\operatorname{For}_S(t, T)$ is the value of $K$ that sets this value to zero. Show that $\operatorname{For}_S(t, T) = \operatorname{Fut}_S(t, T)$.</p>
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.11</div>
+<p>Consider the linear stochastic differential equation
+    \[
+    \dd X(u) = \bigl(a(u) + b(u) X(u)\bigr)\dd u + \bigl(\gamma(u) + \sigma(u) X(u)\bigr)\dd W(u),
+    \]
+    where $W(u)$ is a Brownian motion relative to a filtration $\{\F(u)\}_{u \geq 0}$, and $a(u), b(u), \gamma(u), \sigma(u)$ are adapted processes. Fix an initial time $t \geq 0$ and initial value $x \in \R$, and define</p>
+$$\begin{aligned}
+    Z(u) &= \exp\!\left\{\int_t^u \sigma(v)\dd W(v) + \int_t^u \left(b(v) - \frac{1}{2}\sigma^2(v)\right)\dd v\right\}, \\
+    Y(u) &= x + \int_t^u \frac{a(v) - \sigma(v)\gamma(v)}{Z(v)}\dd v + \int_t^u \frac{\gamma(v)}{Z(v)}\dd W(v).
+    \end{aligned}$$
+<ol>
+<li>Show that $Z(t) = 1$ and $\dd Z(u) = b(u) Z(u)\dd u + \sigma(u) Z(u)\dd W(u)$ for $u \geq t$.
+        <li>By definition, $Y(t) = x$ and
+        \[
+        \dd Y(u) = \frac{a(u) - \sigma(u)\gamma(u)}{Z(u)}\dd u + \frac{\gamma(u)}{Z(u)}\dd W(u), \qquad u \geq t.
+        \]
+        Show that $X(u) = Y(u) Z(u)$ solves the SDE above with initial condition $X(t) = x$.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.12</div>
+<p>(Zero-strike Asian call) Consider a zero-strike Asian call whose payoff at time $T$ is
+    \[
+    V(T) = \frac{1}{T}\int_0^T S(u)\dd u.
+    \]</p>
+<ol>
+<li>Suppose at time $t$ we have $S(t) = x \geq 0$ and $Y(t) = \int_0^t S(u)\dd u = y \geq 0$. Use the fact that $e^{-ru} S(u)$ is a martingale under $\widetilde{\Prob}$ to compute
+        \[
+        v(t, x, y) = e^{-r(T - t)}\widetilde{\E}\!\left[\frac{1}{T}\int_0^T S(u)\dd u \;\middle|\; \F(t)\right].
+        \]
+        <li>Verify that $v(t, x, y)$ satisfies the Asian-option Black&ndash;Scholes PDE
+        \[
+        v_t(t, x, y) + r x v_x(t, x, y) + x v_y(t, x, y) + \frac{1}{2}\sigma^2 x^2 v_{xx}(t, x, y) = r v(t, x, y), \qquad 0 \leq t < T,\; x \geq 0,\; y \geq 0,
+        \]
+        together with the boundary and terminal conditions (with strike $K = 0$):
+$$\begin{aligned}
+        v(t, 0, y) &= e^{-r(T - t)}\frac{y}{T}, \qquad 0 \leq t < T,\; y \geq 0, \\
+        v(T, x, y) &= \frac{y}{T}, \qquad x \geq 0,\; y \geq 0.
+        \end{aligned}$$
+<li>Determine explicitly the hedge ratio $\Delta(t) = v_x(t, S(t), Y(t))$, and observe that it is deterministic.
+        <li>Use Itô's formula to show that starting with initial capital $X(0) = v(0, S(0), 0)$ and holding $\Delta(t)$ shares of the underlying asset at each time $t$ (borrowing or investing the remainder at rate $r$) replicates the terminal payoff
+        \[
+        X(T) = \frac{1}{T}\int_0^T S(u)\dd u.
+        \]
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.13</div>
+<p>(Portfolios under change of numéraire) Consider two assets with prices $S(t)$ and $N(t)$ given by</p>
+$$\begin{aligned}
+    S(t) &= S(0)\exp\!\left\{\sigma\widetilde{W}(t) + \left(r - \frac{1}{2}\sigma^2\right)t\right\}, \\
+    N(t) &= N(0)\exp\!\left\{\nu\widetilde{W}(t) + \left(r - \frac{1}{2}\nu^2\right)t\right\},
+    \end{aligned}$$
+<p>where $\widetilde{W}(t)$ is a one-dimensional Brownian motion under the risk-neutral measure $\widetilde{\Prob}$, and $\sigma > 0$, $\nu > 0$, and $r$ are constants. Define the money market account $M(t) = e^{rt}$. Denominating prices in units of the numéraire $N$, set
+    \[
+    \widehat{S}(t) = \frac{S(t)}{N(t)}, \qquad \widehat{M}(t) = \frac{M(t)}{N(t)}.
+    \]</p>
+<ol>
+<li>Show that $\dd\widehat{S}(t) = (\sigma - \nu)\widehat{S}(t)\dd\widehat{W}(t)$, where $\widehat{W}(t) = \widetilde{W}(t) - \nu t$.
+        <li>Compute the stochastic differential of $\frac{1}{N(t)}$.
+        <li>Compute the stochastic differential of $\widehat{M}(t)$ in terms of $\dd\widehat{W}(t)$.
+        <li>Consider a self-financing portfolio holding $\Delta(t)$ shares of $S$ and $\Gamma(t) = \frac{X(t) - \Delta(t)S(t)}{M(t)}$ units of the money market account, so that
+        \[
+        X(t) = \Delta(t)S(t) + \Gamma(t)M(t), \qquad \dd X(t) = \Delta(t)\dd S(t) + \Gamma(t)\dd M(t).
+        \]
+        Defining $\widehat{X}(t) = \frac{X(t)}{N(t)} = \Delta(t)\widehat{S}(t) + \Gamma(t)\widehat{M}(t)$, use stochastic calculus to show that
+        \[
+        \dd\widehat{X}(t) = \Delta(t)\dd\widehat{S}(t) + \Gamma(t)\dd\widehat{M}(t),
+        \]
+        confirming that the self-financing property is invariant under a change of numéraire.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.14</div>
+<p>Consider the SDE
+    \[
+    \dd S_t = S_t(\mu\dd t + \sigma\dd W_t^{\Prob}),
+    \]
+    where $W_t^{\Prob}$ is a Brownian motion under $\Prob$. Find an equivalent probability measure $\Q$ under which the inverse process $S_t^{-1}$ is a martingale.</p>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.15</div>
+<p>Let $S(t)$ and $N(t)$ be the prices of two assets denominated in a common currency, with constant volatilities $\sigma, \nu > 0$ and constant interest rate $r$:</p>
+$$\begin{aligned}
+    \dd S(t) &= r S(t)\dd t + \sigma S(t)\dd\widetilde{W}_1(t), \\
+    \dd N(t) &= r N(t)\dd t + \nu N(t)\dd\widetilde{W}_3(t),
+    \end{aligned}$$
+<p>where $\widetilde{W}_1(t)$ and $\widetilde{W}_3(t)$ are correlated $\widetilde{\Prob}$-Brownian motions with $\dd\widetilde{W}_1(t)\dd\widetilde{W}_3(t) = \rho\dd t$ for a constant $\rho \in (-1, 1)$.</p>
+<ol>
+<li>Show that $S^{(N)}(t) = \frac{S(t)}{N(t)}$ has volatility $\gamma = \sqrt{\sigma^2 - 2\rho\sigma\nu + \nu^2}$; that is, construct a $\widetilde{\Prob}$-Brownian motion $\widetilde{W}_4$ such that
+        \[
+        \frac{\dd S^{(N)}(t)}{S^{(N)}(t)} = (\text{drift})\dd t + \gamma\dd\widetilde{W}_4(t).
+        \]
+        <li>Construct a $\widetilde{\Prob}$-Brownian motion $\widetilde{W}_2(t)$ independent of $\widetilde{W}_1(t)$ such that
+        \[
+        \dd N(t) = r N(t)\dd t + \nu N(t)\left[\rho\dd\widetilde{W}_1(t) + \sqrt{1 - \rho^2}\dd\widetilde{W}_2(t)\right].
+        \]
+        <li>Let $\widetilde{\Prob}^{(N)}$ denote the equivalent martingale measure associated with taking $N(t)$ as numéraire, and let $\widetilde{W}_1^{(N)}(t), \widetilde{W}_2^{(N)}(t)$ be the corresponding independent $\widetilde{\Prob}^{(N)}$-Brownian motions obtained via Girsanov's theorem. Determine the volatility vector $(v_1, v_2)$ of $S^{(N)}(t)$ such that
+        \[
+        \dd S^{(N)}(t) = S^{(N)}(t)\left[v_1\dd\widetilde{W}_1^{(N)}(t) + v_2\dd\widetilde{W}_2^{(N)}(t)\right],
+        \]
+        and verify that $v_1^2 + v_2^2 = \sigma^2 + \nu^2 - 2\rho\sigma\nu$.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.16</div>
+<p>Assume no dividends and a constant risk-free interest rate $r \geq 0$. Let $C(S, t)$ and $P(S, t)$ denote the time-$t$ prices of an American call and an American put with the same maturity $T$ and strike price $K$. Show that
+    \[
+    C(S, t) - P(S, t) \geq S - K.
+    \]
+    <em>Hint:</em> Suppose the inequality does not hold and construct an arbitrage strategy.</p>
+</div>
+<h2 id="sec-3">09.3 Set 3</h2>
+<div class="env-box env-problem"><div class="env-title">Problem 09.17</div>
+<p>In this problem, you will implement a finite-difference PDE solver for pricing equity options under the Black&ndash;Scholes model. Take $S_0 = 100$, $K = 100$ (with general strike $K > 0$), $\sigma = 15\%$, $r = 5\%$, and $T = 1$ year. Recall the Black&ndash;Scholes PDE:
+    \[
+    \frac{\partial V}{\partial t} + r S\frac{\partial V}{\partial S} + \frac{1}{2}\sigma^2 S^2\frac{\partial^2 V}{\partial S^2} - r V = 0.
+    \]</p>
+<ol>
+<li>Rewrite the PDE in terms of time to maturity $\tau = T - t$, and state the initial conditions (at $\tau = 0$) for a European call and a European put with strike $K$.
+        <li>Encapsulate the initial condition in a Python function <code>payoff(opt_type, S, K)</code> where <code>opt_type</code> takes values <code>'c'</code> or <code>'p'</code>, returning the terminal payoff. Verify your implementation by plotting the payoffs with <code>matplotlib</code>.
+        <li>Use Dirichlet boundary conditions on a truncated spatial domain $[S_{\min}, S_{\max}]$ (for this exercise, take $S_{\min} = 20$ and $S_{\max} = 180$, or $S_{\min} = 0$ for the put; in practice, boundaries should be chosen dynamically from the model parameters). Using the asymptotic behavior of European options as $S \to 0$ and $S \to \infty$, write down the discounted Dirichlet boundary conditions:
+<ul>
+<li><em>European call:</em> $V(S_{\min}, \tau) \approx 0$ (for $S_{\min} \ll K$) and $V(S_{\max}, \tau) \approx S_{\max} - K e^{-r\tau}$;
+            <li><em>European put:</em> $V(S_{\min}, \tau) \approx (K e^{-r\tau} - S_{\min})^{+}$ (in particular, $K e^{-r\tau}$ at $S_{\min} = 0$) and $V(S_{\max}, \tau) \approx 0$.
+</ul>
+<li>Discretize the PDE using the explicit finite-difference scheme on a grid $\mathbf{V}[i, j]$, where $i \in \{0, \ldots, N_T\}$ indexes time $\tau_i = i\Delta\tau$ and $j \in \{0, \ldots, N_S\}$ indexes stock price $S_j = S_{\min} + j\Delta S$, with uniform spacings $\Delta S = \frac{S_{\max} - S_{\min}}{N_S}$ and $\Delta\tau = \frac{T}{N_T}$. Show that the time-stepping scheme for $i = 0, 1, \ldots, N_T - 1$ can be written in matrix form as
+        \[
+        \mathbf{V}_{i+1}^{\top} = \mathbf{M}\,\mathbf{V}_i^{\top} + \mathbf{P}_i,
+        \]
+        where $\mathbf{V}_i$ is row $i$ of $\mathbf{V}$ (length $N_S + 1$), $\mathbf{P}_i$ is a length-$(N_S + 1)$ vector whose first and last entries impose the time-dependent Dirichlet boundary conditions at $\tau_{i+1}$ (with all interior entries zero), and $\mathbf{M}$ is the $(N_S + 1) \times (N_S + 1)$ tridiagonal-interior matrix
+        \[
+        \mathbf{M} = \begin{pmatrix}
+        0 & 0 & 0 & 0 & 0 & \cdots & 0 \\
+        a_1 & b_1 & c_1 & 0 & 0 & \cdots & 0 \\
+        0 & a_2 & b_2 & c_2 & 0 & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \ddots & \ddots & \ddots & \vdots \\
+        0 & 0 & \cdots & 0 & a_{N_S - 1} & b_{N_S - 1} & c_{N_S - 1} \\
+        0 & 0 & \cdots & 0 & 0 & 0 & 0
+        \end{pmatrix},
+        \]
+        with coefficients for $j = 1, \ldots, N_S - 1$ given by
+$$\begin{aligned}
+        k &= \frac{\Delta\tau}{2\,\Delta S^2}, &
+        a_j &= k\sigma^2 S_j^2 - r k S_j\,\Delta S, \\
+        b_j &= 1 - 2 k\sigma^2 S_j^2 - r\,\Delta\tau, &
+        c_j &= k\sigma^2 S_j^2 + r k S_j\,\Delta S.
+        \end{aligned}$$
+<li>Implement the solver with $N_S = N_T = 20$ and compare your prices for at-the-money call and put options across several values of $S_0$ against the analytical Black&ndash;Scholes formula.
+        <li>Increase the maturity $T$ from $1$ year to $5$ years while keeping $N_S = N_T = 20$ unchanged. Explain what you observe in terms of numerical stability (noting that the stability factor scales as $C\,\frac{\Delta\tau}{\Delta S^2}$ for a problem-dependent constant $C$), and propose how to modify the numerical scheme.
+        <li>Convert the solver to price American options by enforcing at each grid node $[i, j]$ the early-exercise constraint $V[i, j] = \max\{V^{\text{cont}}[i, j], \text{payoff}(S_j)\}$. Do you observe the same relationship between American and European call prices as in the binomial model?
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.18</div>
+<p>Write a Monte Carlo simulation to estimate the area of the quarter unit circle ($r = 1$) lying in the first quadrant (whose exact area is $\pi/4$). Check the convergence of the estimate against the exact value for sample sizes
+    \[
+    N \in \{100,\, 500,\, 1000,\, 5000,\, 10000,\, 50000,\, 100000,\, 1000000\},
+    \]
+    and plot the absolute error against $N$ (for example, on a log&ndash;log scale).</p>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.19</div>
+<p>Write a Python function to generate $N$ independent samples from the bimodal Gaussian mixture
+    \[
+    Z \sim 0.3\,\mathcal{N}(1, 0.8) + 0.7\,\mathcal{N}(4, 0.5)
+    \]
+    (where the second parameter denotes variance) using the <strong>acceptance&ndash;rejection</strong> algorithm.</p>
+<ol>
+<li>Choose a proposal distribution $q(x)$ that covers both modes effectively—for instance, $\mathcal{N}(3, 4)$ (mean $3$, variance $4$, i.e., standard deviation $2$)—and determine a valid envelope constant $M \geq \sup_{x \in \R} \frac{f(x)}{q(x)}$, where $f(x)$ is the target mixture density. (Why would a standard normal $\mathcal{N}(0, 1)$ proposal be impractical here?)
+        <li>At each iteration $i$, draw a candidate $a_i \sim q$ and an independent uniform random variable $b_i \sim \mathcal{U}(0, 1)$.
+        <li>Evaluate the proposal density $q(a_i)$ and target density $f(a_i)$, and apply the acceptance&ndash;rejection criterion: accept $a_i$ if
+        \[
+        b_i \leq \frac{f(a_i)}{M\,q(a_i)},
+        \]
+        and reject otherwise.
+        <li>Repeat until $N$ accepted samples are collected, and return the resulting array.
+        <li>Validate your sampler visually by plotting a normalized histogram of the samples alongside the exact density $f(x)$, and report the empirical acceptance rate (comparing it with $1/M$).
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.20</div>
+<p>In this exercise, you will price European and geometric Asian options under the Black&ndash;Scholes model via Monte Carlo simulation. Starter code for this problem is provided in <code>code/ch09_problem_set.py</code>. Recall that under the risk-neutral measure,
+    \[
+    S_T = S_0 \exp\!\left(\left(r - \frac{1}{2}\sigma^2\right)T + \sigma\sqrt{T}\,Z\right), \qquad Z \sim \mathcal{N}(0, 1),
+    \]
+    and the European call price is $C_0 = e^{-rT}\E^{\Q}[(S_T - K)^{+}]$.</p>
+<ol>
+<li>Write a function taking parameters <code>option_type, S_0, K, r, sigma, T, N</code> to estimate the European call or put price using $N$ Monte Carlo sample paths.
+        <li>Investigate convergence to the closed-form Black&ndash;Scholes price for $N \in \{2^{10}, 2^{11}, \ldots, 2^{17}\}$ with $S_0 = 100$, $K = 100$, $r = 0.05$, $\sigma = 0.2$, $T = 1$, tabulating the absolute relative error.
+        <li>Examine the convergence of a deep out-of-the-money put option with strike $K = 50$. You should observe a sharp deterioration in relative accuracy; explain why this occurs.
+        <li>Repeat the valuation using <strong>Quasi-Monte Carlo</strong> (QMC) methods by generating low-discrepancy points $u \in (0, 1)$ (e.g., Sobol or Halton sequences) and mapping them to standard normal variates via the inverse normal CDF $\Phi^{-1}(u)$ (e.g., <code>scipy.stats.norm.ppf</code>; see <code>code/ch09_problem_set.py</code>). Compare the convergence rate of QMC against standard Monte Carlo.
+        <li>Consider a discretely monitored <strong>geometric average Asian option</strong> sampled at $N + 1$ equally spaced time points $0, \delta t, 2\delta t, \ldots, N\delta t = T$ (with $\delta t = T/N$):
+        \[
+        S_{\text{av}} = \left(\prod_{i=0}^N S_{i\cdot\delta t}\right)^{\frac{1}{N+1}} = \exp\!\left(\frac{1}{N+1}\sum_{i=0}^N \ln S_{i\cdot\delta t}\right),
+        \]
+        with call payoff $(S_{\text{av}} - K)^{+}$ (and put payoff $(K - S_{\text{av}})^{+}$). Implement a Monte Carlo pricer <code>geom_asian_option</code> taking (<code>optType</code>, <code>S_0</code>, <code>strike</code>, <code>expiry</code>, <code>r</code>, <code>sigma</code>, <code>npaths</code>, <code>nsteps</code>) (template in <code>code/ch09_problem_set.py</code>) using the <strong>Euler&ndash;Maruyama</strong> scheme
+        \[
+        S_{t + \delta t} = S_t\bigl(1 + r\,\delta t + \sigma\sqrt{\delta t}\,Z\bigr), \qquad Z \sim \mathcal{N}(0, 1).
+        \]
+        <em>Numerical note:</em> When implementing $S_{\text{av}}$, accumulate $\ln S_{i\cdot\delta t}$ and exponentiate the mean rather than taking a direct product of stock prices, to avoid <code>float64</code> overflow when <code>nsteps</code> is large.
+</ol>
+</div>
+<div class="env-box env-problem"><div class="env-title">Problem 09.21</div>
+<p>Table&nbsp;<a href="#tab:fx-fwd-premiums">09.1</a> lists forward option premiums (quoted in U.S. cents, forwarded to expiry) for forward at-the-money EUR&ndash;USD FX call options across several maturities. The spot EUR&ndash;USD exchange rate is $x_0 = 1.08$ ($€1 = \$1.08$), and the continuously compounded domestic (USD) and foreign (EUR) interest rates are constant at $r_d = 5\%$ and $r_f = 3\%$, respectively. Starter code for all parts is provided in <code>code/ch09_problem_set.py</code>.</p>
+<div class="table-wrap" id="tab:fx-fwd-premiums"><table class="booktabs">
+<caption>Forward at-the-money EUR&ndash;USD FX call option premiums</caption>
+<thead>
+<tr><th>$T$ (years)</th><th>Forward Premium (cents)</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>5.2716</td></tr>
+<tr><td>2</td><td>7.0007</td></tr>
+<tr><td>3</td><td>8.0169</td></tr>
+<tr><td>5</td><td>8.9944</td></tr>
+<tr><td>7</td><td>9.7660</td></tr>
+<tr><td>10</td><td>10.7318</td></tr>
+<tr><td>12</td><td>10.9863</td></tr>
+</tbody></table></div>
+<ol>
+<li>Convert the premiums from cents to dollars and compute the forward at-the-money strike $K$ for each maturity $T$, which equals the forward FX rate:
+        \[
+        K = F(0, T) = x_0 e^{(r_d - r_f)T}, \qquad x_0 = 1.08,\; r_d = 0.05,\; r_f = 0.03.
+        \]
+        <li>Derive the forward Black formula for the forward price of a call option on forward EUR&ndash;USD under a log-normal forward FX model:
+        \[
+        C_{\text{fwd}} = F\Phi(d_1) - K\Phi(d_2), \qquad d_1 = \frac{\ln(F/K) + \frac{1}{2}\sigma^2 T}{\sigma\sqrt{T}}, \qquad d_2 = d_1 - \sigma\sqrt{T},
+        \]
+        and implement it as <code>black_formula(f, k, expiry, vol)</code>.
+        <li>Implement a central finite-difference approximation <code>black_vega(f, k, expiry, vol)</code> with step size $\varepsilon = 10^{-4}$ to compute the forward vega $\frac{\partial C_{\text{fwd}}}{\partial \sigma}$.
+        <li>Using Newton&ndash;Raphson iteration (with tolerance $10^{-6}$), implement <code>implied_vol</code> taking (<code>prem</code>, <code>f</code>, <code>k</code>, <code>expiry</code>, <code>init_guess</code>) to extract the implied volatility $\sigma_I(T_k)$ for each option in Table&nbsp;<a href="#tab:fx-fwd-premiums">09.1</a>.
+        <li>(<strong>Volatility term structure</strong>) Bootstrap the piecewise constant forward volatility over each interval $(T_{k-1}, T_k]$ ($0$&ndash;$1$y, $1$y&ndash;$2$y, $\ldots$, $10$y&ndash;$12$y) using
+        \[
+        \sigma(T_{k-1}, T_k) = \sqrt{\frac{\sigma_I^2(T_k)\,T_k - \sigma_I^2(T_{k-1})\,T_{k-1}}{T_k - T_{k-1}}},
+        \]
+        where $\sigma_I^2(T) = \frac{1}{T}\int_0^T \sigma^2(t)\dd t$. Inspect the resulting forward volatilities: what anomaly do you observe, and what calendar-spread trade does it suggest?
+</ol>
+</div>
+      <div class="chapter-pager"><a class="pager-card prev" href="ch08.html"><span class="pager-dir">&larr; Previous (Chapter 8)</span><span class="pager-title">Interest Rate Modelling</span></a><a class="pager-card next" href="appA.html"><span class="pager-dir">Next (Appendix A) &rarr;</span><span class="pager-title">Expectation, Information and Conditioning</span></a></div>
+    </main>
+
+    <aside class="toc-panel"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-h2"><a href="#sec-1">09.1 Set 1</a></li><li class="toc-h2"><a href="#sec-2">09.2 Set 2</a></li><li class="toc-h2"><a href="#sec-3">09.3 Set 3</a></li></ul></aside>
+  </div>
+</body>
+</html>

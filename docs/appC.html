@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alternative Derivation of Black–Scholes PDE — Essentials for Financial Derivatives</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="btn-pill menu-toggle" id="menu-toggle" aria-label="Toggle chapters">Chapters</button>
+      <a class="topbar-brand" href="index.html">Essentials for Financial Derivatives</a>
+    </div>
+    <div class="topbar-actions">
+      <a class="btn-pill" href="Essentials_for_Financial_Derivatives.pdf" target="_blank">PDF Edition</a>
+      <a class="btn-pill" href="https://github.com/Derek-Y-JQ/Essentials_for_Financial_Derivatives" target="_blank">GitHub</a>
+      <button class="btn-pill" id="theme-toggle">Dark mode</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Table of Contents">
+      <input class="sidebar-search" id="nav-search" type="search" placeholder="Filter chapters...">
+      <div class="sidebar-group-title">Chapters</div>
+      <ul class="nav-list"><li><a class="nav-link" href="ch01.html"><span class="nav-num">01</span><span>Introduction</span></a></li><li><a class="nav-link" href="ch02.html"><span class="nav-num">02</span><span>Discrete Time Models</span></a></li><li><a class="nav-link" href="ch03.html"><span class="nav-num">03</span><span>Math Preliminaries</span></a></li><li><a class="nav-link" href="ch04.html"><span class="nav-num">04</span><span>Black–Scholes Model</span></a></li><li><a class="nav-link" href="ch05.html"><span class="nav-num">05</span><span>Implied Volatility Skew (Smile)</span></a></li><li><a class="nav-link" href="ch06.html"><span class="nav-num">06</span><span>Exotic Options</span></a></li><li><a class="nav-link" href="ch07.html"><span class="nav-num">07</span><span>American Options</span></a></li><li><a class="nav-link" href="ch08.html"><span class="nav-num">08</span><span>Interest Rate Modelling</span></a></li><li><a class="nav-link" href="ch09.html"><span class="nav-num">09</span><span>Problem Set</span></a></li></ul>
+      <div class="sidebar-group-title">Appendices</div>
+      <ul class="nav-list"><li><a class="nav-link" href="appA.html"><span class="nav-num">A</span><span>Expectation, Information and Conditioning</span></a></li><li><a class="nav-link" href="appB.html"><span class="nav-num">B</span><span>Monte Carlo Simulation</span></a></li><li><a class="nav-link active" href="appC.html"><span class="nav-num">C</span><span>Alternative Derivation of Black–Scholes PDE</span></a></li><li><a class="nav-link" href="appD.html"><span class="nav-num">D</span><span>An Abbreviated Proof of Girsanov&#x27;s Theorem</span></a></li><li><a class="nav-link" href="appE.html"><span class="nav-num">E</span><span>Bilingual Terminology Table</span></a></li></ul>
+    </nav>
+
+    <main class="content">
+      <div class="chapter-eyebrow">Appendix C</div>
+      <h1>Alternative Derivation of Black–Scholes PDE</h1>
+      <p>Assume that the stock price follows geometric Brownian motion
+\[
+\dd S_t = \mu S_t\dd t + \sigma S_t\dd W_t,
+\]
+and the money market bank account follows the deterministic process
+\[
+\dd B_t = r B_t\dd t.
+\]</p>
+<div class="env-box env-definition" id="def:self-financing-app"><div class="env-title">Definition C.1</div>
+<p>A portfolio strategy $(\beta_t, \kappa_t)$ investing $\beta_t$ units in the bank account and $\kappa_t$ shares in the underlying asset is called <strong>self-financing</strong> if its value process
+    \[
+    \Pi_t = \beta_t B_t + \kappa_t S_t
+    \]
+    satisfies
+    \[
+    \dd \Pi_t = \beta_t\dd B_t + \kappa_t\dd S_t.
+    \]</p>
+</div>
+<div class="env-box env-lemma" id="lem:riskless-portfolio"><div class="env-title">Lemma C.1</div>
+<p>If the value process $\Pi_t$ of a self-financing portfolio satisfies $\Pi_t > 0$ and has locally riskless dynamics
+    \[
+    \dd \Pi_t = k_t \Pi_t\dd t,
+    \]
+    where $k_t$ is an adapted process, then no arbitrage implies $k_t = r$.</p>
+</div>
+<div class="env-proof"><div class="env-title">Proof.</div>
+<p>If $k_t > r$, an investor can borrow $\Pi_t$ at the risk-free rate $r$ to invest in the portfolio and earn an instantaneous riskless profit of
+    \[
+    \Pi_t(k_t - r)\dd t > 0.
+    \]
+    Conversely, if $k_t < r$, an investor can short the portfolio and invest the proceeds at the risk-free rate $r$, earning an instantaneous riskless profit of
+    \[
+    \Pi_t(r - k_t)\dd t > 0.
+    \]
+    Hence, to preclude arbitrage, we must have $k_t = r$. <span class="qed-mark">&#9723;</span></p>
+</div>
+<p>Now consider a self-financing portfolio holding $\gamma_t$ units of a derivative with price $V_t = V(t, S_t)$ and $\kappa_t$ shares of the underlying stock with price $S_t$. The value of the portfolio is $\Pi_t = \gamma_t V_t + \kappa_t S_t$. By the self-financing condition and Itô's Lemma, $\Pi_t$ has dynamics</p>
+$$\begin{aligned}
+\dd \Pi_t &= \gamma_t\dd V_t + \kappa_t\dd S_t \\
+&= \gamma_t \left(\left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t + \frac{\partial V}{\partial S}\dd S_t\right) + \kappa_t\dd S_t.
+\end{aligned}$$
+<p>Choose the delta-neutral hedge $\kappa_t = -\gamma_t \frac{\partial V}{\partial S}$, so that $\Pi_t = \gamma_t\bigl(V_t - S_t \frac{\partial V}{\partial S}\bigr)$. Then the $\dd S_t$ terms cancel:
+\[
+\dd \Pi_t = \gamma_t\left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t.
+\]
+Assuming $V_t - S_t \frac{\partial V}{\partial S} \neq 0$, we may choose $\gamma_t$ such that $\Pi_t > 0$, i.e., $\gamma_t = \Pi_t / \bigl(V_t - S_t \frac{\partial V}{\partial S}\bigr)$, giving
+\[
+\dd \Pi_t = \frac{\Pi_t}{V_t - S_t \frac{\partial V}{\partial S}} \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t =: k_t \Pi_t\dd t,
+\]
+where
+\[
+\left(V_t - S_t \frac{\partial V}{\partial S}\right) k_t = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}.
+\]
+(Note that if $V_t - S_t \frac{\partial V}{\partial S} = 0$, then $\Pi_t = 0$, and no arbitrage directly requires $\dd \Pi_t = 0$, which yields $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2} = 0$ and still satisfies the equation below.)</p>
+<p>By Lemma&nbsp;<a href="#lem:riskless-portfolio">C.1</a>, $k_t = r$, and we obtain the Black&ndash;Scholes PDE:
+\[
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0.
+\]</p>
+      <div class="chapter-pager"><a class="pager-card prev" href="appB.html"><span class="pager-dir">&larr; Previous (Appendix B)</span><span class="pager-title">Monte Carlo Simulation</span></a><a class="pager-card next" href="appD.html"><span class="pager-dir">Next (Appendix D) &rarr;</span><span class="pager-title">An Abbreviated Proof of Girsanov&#x27;s Theorem</span></a></div>
+    </main>
+
+    <aside class="toc-panel"></aside>
+  </div>
+</body>
+</html>

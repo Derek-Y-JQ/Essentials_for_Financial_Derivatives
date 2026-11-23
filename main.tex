@@ -1,0 +1,40 @@
+\documentclass[openany]{book}
+\input{outline.tex}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\Huge\textbf{Essentials for Financial Derivatives}} \\[1.5cm]
+    {\Large YIN JUNQI} \\[0.5cm]
+    \includegraphics[width=0.8\textwidth]{Figure/cover.pdf}
+    \vfill
+    {\large National University of Singapore} \\[0.5cm]
+    {\large \today}
+\end{titlepage}
+
+\frontmatter
+\tableofcontents
+\listoftables     % 生成表格目录
+\listoffigures    % 生成图片目录
+
+\mainmatter
+\input{chapters/ch01_introduction}
+\input{chapters/ch02_discrete_time_models}
+\input{chapters/ch03_math_preliminaries}
+\input{chapters/ch04_black_scholes_model}
+\input{chapters/ch05_implied_volatility}
+\input{chapters/ch06_exotic_options}
+\input{chapters/ch07_american_options}
+\input{chapters/ch08_interest_rate_modelling}
+\input{chapters/ch09_problem_set}
+
+\appendix
+\input{chapters/appA_expectation_conditioning}
+\input{chapters/appB_monte_carlo}
+\input{chapters/appC_bs_pde_alternative}
+\input{chapters/appD_girsanov_proof}
+\input{chapters/appE_bilingual_table}
+
+\end{document}

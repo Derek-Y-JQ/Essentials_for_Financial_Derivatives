@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Essentials for Financial Derivatives — Essentials for Financial Derivatives</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" defer></script>
+  <script src="assets/labs.js" defer></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="btn-pill menu-toggle" id="menu-toggle" aria-label="Toggle chapters">Chapters</button>
+      <a class="topbar-brand" href="index.html">Essentials for Financial Derivatives</a>
+    </div>
+    <div class="topbar-actions">
+      <a class="btn-pill" href="Essentials_for_Financial_Derivatives.pdf" target="_blank">PDF Edition</a>
+      <a class="btn-pill" href="https://github.com/Derek-Y-JQ/Essentials_for_Financial_Derivatives" target="_blank">GitHub</a>
+      <button class="btn-pill" id="theme-toggle">Dark mode</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Table of Contents">
+      <input class="sidebar-search" id="nav-search" type="search" placeholder="Filter chapters...">
+      <div class="sidebar-group-title">Chapters</div>
+      <ul class="nav-list"><li><a class="nav-link" href="ch01.html"><span class="nav-num">01</span><span>Introduction</span></a></li><li><a class="nav-link" href="ch02.html"><span class="nav-num">02</span><span>Discrete Time Models</span></a></li><li><a class="nav-link" href="ch03.html"><span class="nav-num">03</span><span>Math Preliminaries</span></a></li><li><a class="nav-link" href="ch04.html"><span class="nav-num">04</span><span>Black–Scholes Model</span></a></li><li><a class="nav-link" href="ch05.html"><span class="nav-num">05</span><span>Implied Volatility Skew (Smile)</span></a></li><li><a class="nav-link" href="ch06.html"><span class="nav-num">06</span><span>Exotic Options</span></a></li><li><a class="nav-link" href="ch07.html"><span class="nav-num">07</span><span>American Options</span></a></li><li><a class="nav-link" href="ch08.html"><span class="nav-num">08</span><span>Interest Rate Modelling</span></a></li><li><a class="nav-link" href="ch09.html"><span class="nav-num">09</span><span>Problem Set</span></a></li></ul>
+      <div class="sidebar-group-title">Appendices</div>
+      <ul class="nav-list"><li><a class="nav-link" href="appA.html"><span class="nav-num">A</span><span>Expectation, Information and Conditioning</span></a></li><li><a class="nav-link" href="appB.html"><span class="nav-num">B</span><span>Monte Carlo Simulation</span></a></li><li><a class="nav-link" href="appC.html"><span class="nav-num">C</span><span>Alternative Derivation of Black–Scholes PDE</span></a></li><li><a class="nav-link" href="appD.html"><span class="nav-num">D</span><span>An Abbreviated Proof of Girsanov&#x27;s Theorem</span></a></li><li><a class="nav-link" href="appE.html"><span class="nav-num">E</span><span>Bilingual Terminology Table</span></a></li></ul>
+    </nav>
+
+    <main class="content">
+      <div class="chapter-eyebrow">Interactive Web Monograph · Junqi Yin (NUS)</div>
+      <h1>Essentials for Financial Derivatives</h1>
+      
+    <div class="hero">
+      <p class="hero-subtitle">A modern, self-contained monograph on mathematical finance and derivatives pricing—spanning discrete trees, Itô &amp; rough calculus, Black–Scholes, SVI &amp; rough volatility, exotic &amp; American options, post-LIBOR SOFR multi-curve interest rates, and XVA.</p>
+      <div class="hero-cta">
+        <a class="btn-pill primary" href="ch01.html">Start Reading (Chapter 1)</a>
+        <a class="btn-pill" href="Essentials_for_Financial_Derivatives.pdf" target="_blank">Download 180-Page PDF (Libertinus)</a>
+        <a class="btn-pill" href="https://github.com/Derek-Y-JQ/Essentials_for_Financial_Derivatives/tree/main/code" target="_blank">Companion Python Code</a>
+      </div>
+    </div>
+    <section id="lab-4" class="quant-lab"></section>
+    <h2>Chapters</h2>
+    <div class="chapter-grid"><a class="chapter-card" href="ch01.html"><div class="c-num">Chapter 1 &middot; Interactive Lab</div><div class="c-title">Introduction</div><div class="c-desc">No-arbitrage, dividend cost-of-carry, Forwards vs. Futures &amp; CCPs, Put–Call Parity, and 0DTE options.</div></a><a class="chapter-card" href="ch02.html"><div class="c-num">Chapter 2 &middot; Interactive Lab</div><div class="c-title">Discrete Time Models</div><div class="c-desc">Binomial &amp; trinomial trees, CRR convergence, Discrete FTAP 1 &amp; 2, and dividend/negative-rate early exercise.</div></a><a class="chapter-card" href="ch03.html"><div class="c-num">Chapter 3 &middot; Interactive Lab</div><div class="c-title">Math Preliminaries</div><div class="c-desc">Brownian motion, Itô calculus, multi-D Itô, Girsanov, Feynman–Kac, jump-diffusion, and Fractional Brownian Motion.</div></a><a class="chapter-card" href="ch04.html"><div class="c-num">Chapter 4 &middot; Interactive Lab</div><div class="c-title">Black–Scholes Model</div><div class="c-desc">BS PDE &amp; Rannacher finite differences, 1st &amp; 2nd-order Greeks (Vanna/Volga/Charm), Black-76, and Deep Hedging.</div></a><a class="chapter-card" href="ch05.html"><div class="c-num">Chapter 5 &middot; Interactive Lab</div><div class="c-title">Implied Volatility Skew (Smile)</div><div class="c-desc">Static no-arbitrage, Breeden–Litzenberger, SVI/SSVI, Dupire, Heston/SABR, Rough Volatility, LSV, Variance Swaps &amp; VIX.</div></a><a class="chapter-card" href="ch06.html"><div class="c-num">Chapter 6 &middot; Interactive Lab</div><div class="c-title">Exotic Options</div><div class="c-desc">Digital options &amp; Pin Risk, Barriers &amp; BGK correction, Autocallables/Snowballs, Asian (Kemna–Vorst), Lookback, FX &amp; Quanto.</div></a><a class="chapter-card" href="ch07.html"><div class="c-num">Chapter 7 &middot; Interactive Lab</div><div class="c-title">American Options</div><div class="c-desc">Snell envelope, LCP &amp; smooth pasting, perpetual Put &amp; dividend Call, PSOR, Longstaff–Schwartz (LSM), and Deep Optimal Stopping.</div></a><a class="chapter-card" href="ch08.html"><div class="c-num">Chapter 8 &middot; Interactive Lab</div><div class="c-title">Interest Rate Modelling</div><div class="c-desc">Ho–Lee, Vasicek, CIR (Feller), HJM, Bachelier/Shifted LN, Post-LIBOR SOFR &amp; OIS Multi-Curve, FMM, ISDA CDS &amp; XVA.</div></a><a class="chapter-card" href="ch09.html"><div class="c-num">Chapter 9</div><div class="c-title">Problem Set</div><div class="c-desc">21 analytical and numerical exercises spanning discrete trees, stochastic calculus, PDEs, Monte Carlo, and FX vol.</div></a></div>
+    <h2>Appendices</h2>
+    <div class="chapter-grid"><a class="chapter-card" href="appA.html"><div class="c-num">Appendix A</div><div class="c-title">Expectation, Information and Conditioning</div><div class="c-desc">Measure-theoretic Lebesgue expectation, integrability, and conditional expectation (Tower Property).</div></a><a class="chapter-card" href="appB.html"><div class="c-num">Appendix B</div><div class="c-title">Monte Carlo Simulation</div><div class="c-desc">CLT confidence intervals, Euler–Maruyama &amp; Milstein schemes, Antithetic/Control/Importance Sampling, and QMC.</div></a><a class="chapter-card" href="appC.html"><div class="c-num">Appendix C</div><div class="c-title">Alternative Derivation of Black–Scholes PDE</div><div class="c-desc">Self-financing portfolio derivation via instantaneous riskless return equivalence.</div></a><a class="chapter-card" href="appD.html"><div class="c-num">Appendix D</div><div class="c-title">An Abbreviated Proof of Girsanov&#x27;s Theorem</div><div class="c-desc">Lévy&#x27;s characterization of Brownian motion and Radon–Nikodym drift transformation under Novikov&#x27;s condition.</div></a><a class="chapter-card" href="appE.html"><div class="c-num">Appendix E</div><div class="c-title">Bilingual Terminology Table</div><div class="c-desc">English–Chinese quantitative finance glossary covering classical and frontier derivatives terminology.</div></a></div>
+    
+      
+    </main>
+
+    <aside class="toc-panel"></aside>
+  </div>
+</body>
+</html>

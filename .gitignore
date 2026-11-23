@@ -1,0 +1,32 @@
+# LaTeX build artifacts
+build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.xdv
+
+# Original monolithic backups (keep main.tex + chapters/ as source of truth)
+EFD.tex
+EFD.pdf
+Problems.tex
+appendix_1.tex
+
+# Python & OS
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db

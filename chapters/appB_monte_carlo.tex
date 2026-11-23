@@ -1,0 +1,186 @@
+\chapter{Monte Carlo Simulation}\label{ch:monte-carlo}
+
+Many derivative pricing and risk-management problems (including multi-asset basket options, path-dependent exotics, stochastic-volatility models, and portfolio-level XVA calculations) reduce to evaluating high-dimensional risk-neutral expectations that admit no closed-form solution and are intractable on deterministic finite-difference grids. \textbf{Monte Carlo simulation} provides a general, dimension-independent numerical framework for approximating such expectations.
+
+\section{Monte Carlo Integration and Convergence}
+
+Consider the problem of evaluating a $d$-dimensional integral $\int_D f(\mathbf{x})\dd\mathbf{x}$ over a domain $D \subseteq \R^d$. Three classical paradigms are available:
+\begin{enumerate}
+    \item \textbf{Analytical Calculus:} When $f$ admits an elementary antiderivative, the integral is evaluated directly via the Fundamental Theorem of Calculus.
+    \item \textbf{Deterministic Grid Quadrature:} Approximate the integral by a Riemann sum or higher-order quadrature rule on a tensor-product grid. With $N$ total grid points in $d$ dimensions (i.e., $N^{1/d}$ points per coordinate), a rule of one-dimensional order $k$ has error $\mathcal{O}(N^{-k/d})$, which deteriorates exponentially as $d$ grows (the \emph{curse of dimensionality}).
+    \item \textbf{Monte Carlo Integration:} Factor the integrand as $f(\mathbf{x}) = g(\mathbf{x})\phi(\mathbf{x})$, where $\phi$ is a probability density function supported on $D$ with $\phi(\mathbf{x}) > 0$ whenever $f(\mathbf{x}) \neq 0$. The integral is then an expectation:
+    \[
+    \mu = \int_D f(\mathbf{x})\dd\mathbf{x} = \int_D g(\mathbf{x})\phi(\mathbf{x})\dd\mathbf{x} = \E[g(\mathbf{X})], \qquad \mathbf{X} \sim \phi.
+    \]
+\end{enumerate}
+
+Drawing $N$ independent and identically distributed (i.i.d.) samples $\mathbf{X}_1, \ldots, \mathbf{X}_N \sim \phi$, we form the \textbf{Monte Carlo estimator}
+\begin{equation}\label{eq:mc-estimator}
+S_N = \frac{1}{N}\sum_{i=1}^N g(\mathbf{X}_i).
+\end{equation}
+Two foundational limit theorems govern its asymptotic behavior:
+\begin{itemize}
+    \item \textbf{Strong Law of Large Numbers (SLLN):} If $\E[|g(\mathbf{X})|] < \infty$, then $S_N$ is unbiased ($\E[S_N] = \mu$) and strongly consistent:
+    \[
+    \Prob\!\left(\lim_{N \to \infty} S_N = \mu\right) = 1.
+    \]
+    \item \textbf{Central Limit Theorem (CLT):} If $\sigma^2 = \Var[g(\mathbf{X})] < \infty$, then as $N \to \infty$,
+    \[
+    \frac{\sqrt{N}(S_N - \mu)}{\sigma} \xrightarrow{\;d\;} \mathcal{N}(0, 1).
+    \]
+\end{itemize}
+
+In practice, $\sigma^2$ is unknown and is estimated by the \textbf{unbiased sample variance}
+\[
+\hat{\sigma}_N^2 = \frac{1}{N - 1}\sum_{i=1}^N \bigl(g(\mathbf{X}_i) - S_N\bigr)^2.
+\]
+The \textbf{standard error} of $S_N$ is $\operatorname{SE}(S_N) = \hat{\sigma}_N / \sqrt{N}$, and by the CLT an asymptotic $(1 - \alpha)$ confidence interval for $\mu$ is
+\begin{equation}\label{eq:mc-ci}
+\left[S_N - z_{1-\alpha/2}\,\frac{\hat{\sigma}_N}{\sqrt{N}},\; S_N + z_{1-\alpha/2}\,\frac{\hat{\sigma}_N}{\sqrt{N}}\right],
+\end{equation}
+where $z_{1-\alpha/2} = \Phi^{-1}(1 - \alpha/2)$ (e.g., $z_{0.975} \approx 1.96$ for a $95\%$ confidence interval). Crucially, the statistical error shrinks at rate $\mathcal{O}(N^{-1/2})$ \textbf{independently of the dimension $d$}. The drawback is slow convergence: reducing the standard error by a factor of $10$ requires $100$ times as many simulated paths.
+
+\paragraph{General Monte Carlo Algorithm.}
+\begin{enumerate}
+    \item Generate $N$ i.i.d.\ samples $\mathbf{x}_1, \ldots, \mathbf{x}_N \in \R^d$ from the density $\phi(\mathbf{x})$.
+    \item Evaluate the payoff (integrand) $y_i = g(\mathbf{x}_i)$ for each $i = 1, \ldots, N$.
+    \item Compute the sample mean $S_N = \frac{1}{N}\sum_{i=1}^N y_i$ and unbiased sample variance $\hat{\sigma}_N^2 = \frac{1}{N-1}\sum_{i=1}^N (y_i - S_N)^2$.
+    \item Report $S_N$ together with its standard error $\hat{\sigma}_N/\sqrt{N}$ and asymptotic confidence interval \eqref{eq:mc-ci}.
+\end{enumerate}
+
+\section{Simulating Stochastic Differential Equations}
+
+In derivative pricing, the random variable $g(\mathbf{X})$ is typically a discounted payoff functional of a continuous-time asset or rate process solving a risk-neutral SDE:
+\begin{equation}\label{eq:mc-sde}
+\dd X_t = a(t, X_t)\dd t + b(t, X_t)\dd W_t^{\Q}, \qquad X_0 = x_0, \quad t \in [0, T].
+\end{equation}
+Partition $[0, T]$ into $M$ uniform time steps $0 = t_0 < t_1 < \cdots < t_M = T$ with $\Delta t = T/M$, and generate i.i.d.\ Brownian increments $\Delta W_k = W_{t_{k+1}}^{\Q} - W_{t_k}^{\Q} = \sqrt{\Delta t}\,Z_k$, where $Z_k \stackrel{\text{i.i.d.}}{\sim} \mathcal{N}(0, 1)$.
+
+\subsection*{Exact Simulation of Geometric Brownian Motion}
+When the SDE admits an explicit transition law, no time-discretization error is incurred. For geometric Brownian motion $\dd S_t = r S_t\dd t + \sigma S_t\dd W_t^{\Q}$, It\^o's Lemma on $\ln S_t$ gives the exact transition rule
+\[
+S_{t_{k+1}} = S_{t_k}\exp\!\left(\left(r - \frac{1}{2}\sigma^2\right)\Delta t + \sigma\sqrt{\Delta t}\,Z_k\right).
+\]
+For a European payoff depending only on $S_T$, a single step $\Delta t = T$ suffices; for discretely monitored path-dependent options (such as Asian or discrete barrier options), stepping exactly across the monitoring dates introduces zero discretization bias.
+
+\subsection*{Euler--Maruyama Scheme}
+For general nonlinear SDEs (such as local-volatility, CIR, or Heston dynamics) whose transition density is unavailable in closed form, the simplest time-stepping approximation is the \textbf{Euler--Maruyama scheme}:
+\begin{equation}\label{eq:euler-maruyama}
+\widehat{X}_{k+1} = \widehat{X}_k + a(t_k, \widehat{X}_k)\,\Delta t + b(t_k, \widehat{X}_k)\,\Delta W_k, \qquad \widehat{X}_0 = x_0.
+\end{equation}
+To measure discretization accuracy as $\Delta t \to 0$, two notions of convergence are standard:
+\begin{itemize}
+    \item \textbf{Strong convergence of order $\gamma_s$:} $\E\bigl[|\widehat{X}_M - X_T|\bigr] \leq C(\Delta t)^{\gamma_s}$ (pathwise accuracy, relevant for hedging simulations and multilevel Monte Carlo).
+    \item \textbf{Weak convergence of order $\gamma_w$:} $\bigl|\E[\psi(\widehat{X}_M)] - \E[\psi(X_T)]\bigr| \leq C(\Delta t)^{\gamma_w}$ for smooth payoff functions $\psi$ (distributional accuracy, relevant for option pricing).
+\end{itemize}
+Under standard global Lipschitz and linear growth conditions on $a$ and $b$, the Euler--Maruyama scheme has \textbf{strong order $\gamma_s = 1/2$} and \textbf{weak order $\gamma_w = 1$}.
+
+\subsection*{Milstein Scheme}
+To improve strong convergence to order $1$, we apply It\^o's Lemma to expand the diffusion coefficient $b(u, X_u)$ inside $\int_{t_k}^{t_{k+1}} b(u, X_u)\dd W_u^{\Q}$:
+\[
+b(u, X_u) \approx b(t_k, X_{t_k}) + \frac{\partial b}{\partial x}(t_k, X_{t_k})\,b(t_k, X_{t_k})\bigl(W_u^{\Q} - W_{t_k}^{\Q}\bigr).
+\]
+Integrating against $\dd W_u^{\Q}$ and using the It\^o identity $\int_{t_k}^{t_{k+1}} (W_u^{\Q} - W_{t_k}^{\Q})\dd W_u^{\Q} = \frac{1}{2}\bigl((\Delta W_k)^2 - \Delta t\bigr)$ yields the \textbf{Milstein scheme}:
+\begin{equation}\label{eq:milstein}
+\widehat{X}_{k+1} = \widehat{X}_k + a(t_k, \widehat{X}_k)\,\Delta t + b(t_k, \widehat{X}_k)\,\Delta W_k + \frac{1}{2}b(t_k, \widehat{X}_k)\frac{\partial b}{\partial x}(t_k, \widehat{X}_k)\bigl((\Delta W_k)^2 - \Delta t\bigr).
+\end{equation}
+Adding the quadratic correction term raises the \textbf{strong convergence order to $\gamma_s = 1$} (while the weak order remains $\gamma_w = 1$). Note that when $b(t, x)$ does not depend on $x$ (additive noise, as in Vasicek or Hull--White), $\partial b/\partial x = 0$ and the Milstein and Euler--Maruyama schemes coincide. In multi-dimensional SDEs with non-commuting diffusion matrices, the Milstein expansion requires simulating iterated stochastic integrals (L\'evy areas), so practitioners often prefer Euler--Maruyama with a small $\Delta t$ or specialized almost-exact schemes.
+
+\section{Variance Reduction Techniques}
+
+Because the standard error $\sigma/\sqrt{N}$ decreases slowly with $N$, practical Monte Carlo engines rely on \textbf{variance reduction techniques} to shrink the numerator $\sigma$ without increasing computational cost.
+
+\subsection*{Antithetic Variates}
+Suppose a simulated payoff $Y_i = g(\mathbf{Z}_i)$ is driven by a standard Gaussian vector $\mathbf{Z}_i \sim \mathcal{N}(\mathbf{0}, I_d)$. Because $-\mathbf{Z}_i$ has the exact same distribution as $\mathbf{Z}_i$, the \textbf{antithetic} payoff $\widetilde{Y}_i = g(-\mathbf{Z}_i)$ has the same mean $\mu$ and variance $\Var(Y_i)$ as $Y_i$. Averaging each pair gives $\overline{Y}_i = \frac{1}{2}(Y_i + \widetilde{Y}_i)$ and the unbiased \textbf{antithetic variates estimator}
+\[
+\widehat{\mu}_{\mathrm{AV}} = \frac{1}{N}\sum_{i=1}^N \overline{Y}_i.
+\]
+Its per-pair variance is
+\begin{align}
+\Var(\overline{Y}_i) &= \frac{1}{4}\Bigl(\Var(Y_i) + \Var(\widetilde{Y}_i) + 2\Cov(Y_i, \widetilde{Y}_i)\Bigr) \nonumber \\
+&= \frac{1}{2}\Var(Y_i)\bigl(1 + \operatorname{Corr}(Y_i, \widetilde{Y}_i)\bigr). \label{eq:antithetic-var}
+\end{align}
+Since generating $N$ antithetic pairs requires $2N$ payoff evaluations (the same effort as $2N$ independent paths, which have variance $\Var(Y_i)/(2N)$), comparing $\Var(\widehat{\mu}_{\mathrm{AV}}) = \frac{\Var(Y_i)}{2N}\bigl(1 + \operatorname{Corr}(Y_i, \widetilde{Y}_i)\bigr)$ shows that antithetic variates strictly reduce variance whenever $\operatorname{Corr}(Y_i, \widetilde{Y}_i) < 0$.
+
+\begin{proposition}[Monotonicity Guarantee for Antithetic Variates]\label{prop:antithetic-monotone}
+    If $g \colon \R \to \R$ is monotone (non-decreasing or non-increasing) and $\Var(g(Z)) < \infty$ for $Z \sim \mathcal{N}(0, 1)$, then $\Cov(g(Z), g(-Z)) \leq 0$, so antithetic variates never increase variance and strictly reduce it whenever $g$ is non-constant.
+\end{proposition}
+\begin{proof}
+    If $g$ is non-decreasing, then $h(z) = -g(-z)$ is also non-decreasing. For an independent copy $Z'$ of $Z$, $(g(Z) - g(Z'))(h(Z) - h(Z')) \geq 0$ everywhere. Taking expectations yields $2\Cov(g(Z), h(Z)) \geq 0$, i.e., $\Cov(g(Z), g(-Z)) = -\Cov(g(Z), h(Z)) \leq 0$. The non-increasing case follows by replacing $g$ with $-g$.
+\end{proof}
+Vanilla calls, puts, and Asian options have payoffs monotone in the terminal or pathwise Brownian shocks and therefore benefit reliably from antithetic variates, whereas symmetric payoffs such as at-the-money straddles ($|S_T - K|$) can exhibit positive correlation $\operatorname{Corr}(Y_i, \widetilde{Y}_i) > 0$, making antithetic variates counterproductive.
+
+\subsection*{Control Variates}
+Suppose we wish to estimate $\mu_Y = \E[Y]$, and on the \emph{same} simulated paths we also evaluate an auxiliary random variable $X$ (the \textbf{control variate}) whose exact expectation $\mu_X = \E[X]$ is known analytically. For any deterministic constant $\beta \in \R$, the controlled random variable
+\[
+Y(\beta) = Y - \beta(X - \mu_X)
+\]
+is unbiased ($\E[Y(\beta)] = \mu_Y$) with variance
+\[
+\Var\bigl(Y(\beta)\bigr) = \Var(Y) - 2\beta\Cov(Y, X) + \beta^2\Var(X).
+\]
+This quadratic in $\beta$ is uniquely minimized at the \textbf{optimal control coefficient}
+\begin{equation}\label{eq:cv-beta}
+\beta^* = \frac{\Cov(Y, X)}{\Var(X)}.
+\end{equation}
+Substituting \eqref{eq:cv-beta} back into $\Var(Y(\beta))$ yields
+\begin{equation}\label{eq:cv-var}
+\Var\bigl(Y(\beta^*)\bigr) = \Var(Y) - \frac{\Cov(Y, X)^2}{\Var(X)} = \Var(Y)\bigl(1 - \rho_{XY}^2\bigr),
+\end{equation}
+where $\rho_{XY} = \operatorname{Corr}(Y, X)$. Thus the variance reduction factor is $1 - \rho_{XY}^2$: a correlation of $|\rho_{XY}| = 0.99$ eliminates $98\%$ of the variance (a $50\times$ speedup). In practice, $\beta^*$ is estimated from sample covariances and variances (ideally on an independent pilot run to eliminate small-sample bias).
+
+A celebrated financial application is the \textbf{Kemna--Vorst (1990) method} for arithmetic Asian options (Chapter~\ref{ch:exotic-options}): using the discounted geometric Asian payoff as the control variate $X$ (whose exact risk-neutral expectation $\mu_X$ is given in closed form by Theorem~\ref{thm:geo-asian-call}) achieves $\rho_{XY} > 0.99$ and reduces the Monte Carlo standard error for the arithmetic Asian price by more than an order of magnitude.
+
+\subsection*{Importance Sampling}
+For rare-event problems, such as pricing deep out-of-the-money options or low-probability credit and barrier events, nearly all paths drawn under the original measure $\Prob$ produce zero payoff, causing the relative standard error $\operatorname{SE}(S_N) / S_N$ to explode. \textbf{Importance sampling} changes the sampling distribution from $\Prob$ (with density $p$) to an equivalent measure $\widetilde{\Prob}$ (with density $q$ satisfying $q(\mathbf{x}) > 0$ whenever $f(\mathbf{x})p(\mathbf{x}) \neq 0$) that concentrates samples in the payoff-bearing region.
+
+By the Radon--Nikodym theorem,
+\begin{equation}\label{eq:is-identity}
+\E^{\Prob}[f(\mathbf{X})] = \int f(\mathbf{x})\,p(\mathbf{x})\dd\mathbf{x}
+= \int f(\mathbf{x})\,\frac{p(\mathbf{x})}{q(\mathbf{x})}\,q(\mathbf{x})\dd\mathbf{x}
+= \E^{\widetilde{\Prob}}\!\left[f(\mathbf{X})\,\frac{\dd\Prob}{\dd\widetilde{\Prob}}(\mathbf{X})\right],
+\end{equation}
+where $L(\mathbf{x}) = \frac{\dd\Prob}{\dd\widetilde{\Prob}}(\mathbf{x}) = p(\mathbf{x})/q(\mathbf{x})$ is the \textbf{likelihood ratio}. Drawing $\mathbf{X}_1, \ldots, \mathbf{X}_N \stackrel{\text{i.i.d.}}{\sim} \widetilde{\Prob}$ gives the unbiased estimator
+\[
+\widehat{\mu}_{\mathrm{IS}} = \frac{1}{N}\sum_{i=1}^N f(\mathbf{X}_i)\,L(\mathbf{X}_i).
+\]
+If $f \geq 0$, the theoretical zero-variance density $q^*(\mathbf{x}) = f(\mathbf{x})p(\mathbf{x})/\mu$ is unattainable because its normalizing constant is the unknown price $\mu$, but any $q$ closely proportional to $f \cdot p$ achieves dramatic variance reduction.
+
+\paragraph{Gaussian Mean-Shift Tilting.}
+Consider a deep out-of-the-money European call option under Black--Scholes with terminal payoff $f(Z) = e^{-rT}\bigl(S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,Z} - K\bigr)^+$, where $Z \sim \mathcal{N}(0, 1)$ under $\Prob$. Shifting the Gaussian mean to $\theta > 0$ so that $Z \sim \mathcal{N}(\theta, 1)$ under $\widetilde{\Prob}$ (for example, choosing $\theta \approx \frac{\ln(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$ so that samples land near the strike $K$) yields the exact likelihood ratio
+\[
+\frac{\dd\Prob}{\dd\widetilde{\Prob}}(z) = \frac{\frac{1}{\sqrt{2\pi}}\exp(-z^2/2)}{\frac{1}{\sqrt{2\pi}}\exp\bigl(-(z - \theta)^2/2\bigr)} = \exp\!\left(-\theta z + \frac{1}{2}\theta^2\right).
+\]
+By \eqref{eq:is-identity}, averaging $f(Z_i)\exp\bigl(-\theta Z_i + \frac{1}{2}\theta^2\bigr)$ over $Z_i \stackrel{\text{i.i.d.}}{\sim} \mathcal{N}(\theta, 1)$ ensures that roughly half the paths finish in the money, cutting the variance by several orders of magnitude. (Notice that in continuous time, shifting the mean of Brownian increments is precisely an application of Girsanov's Theorem, Appendix~\ref{ch:girsanov-proof}.)
+
+\section{Quasi-Monte Carlo Methods}
+
+Standard Monte Carlo relies on pseudo-random sequences designed to mimic independent uniform draws in $[0, 1)^d$; inevitably, random points exhibit clusters and gaps that limit convergence to $\mathcal{O}(N^{-1/2})$. \textbf{Quasi-Monte Carlo (QMC)} replaces pseudo-random points with deterministic \textbf{low-discrepancy sequences}, such as \textbf{Halton} and \textbf{Sobol} sequences, engineered to fill the unit hypercube $[0, 1)^d$ as evenly as possible (mapping uniform points to Gaussian variates via the inverse normal CDF $\Phi^{-1}$).
+
+To quantify uniformity, define the \textbf{star discrepancy} of a point set $\{\mathbf{x}_1, \ldots, \mathbf{x}_N\} \subset [0, 1)^d$ as the worst-case difference between the empirical fraction of points in an anchored box $[\mathbf{0}, \mathbf{u}) = \prod_{j=1}^d [0, u_j)$ and its true volume:
+\[
+D_N^*(\mathbf{x}_1, \ldots, \mathbf{x}_N) = \sup_{\mathbf{u} \in [0, 1]^d} \left|\frac{1}{N}\sum_{i=1}^N \ind_{\{\mathbf{x}_i \in [\mathbf{0}, \mathbf{u})\}} - \prod_{j=1}^d u_j\right|.
+\]
+The fundamental error bound of QMC is the following deterministic inequality.
+
+\begin{theorem}[Koksma--Hlawka Inequality]\label{thm:koksma-hlawka}
+    Let $f \colon [0, 1]^d \to \R$ have bounded variation $V_{\mathrm{HK}}(f) < \infty$ in the sense of Hardy and Krause. Then for any point set $\mathbf{x}_1, \ldots, \mathbf{x}_N \in [0, 1)^d$,
+    \begin{equation}\label{eq:koksma-hlawka}
+    \left|\frac{1}{N}\sum_{i=1}^N f(\mathbf{x}_i) - \int_{[0, 1]^d} f(\mathbf{u})\dd\mathbf{u}\right| \leq V_{\mathrm{HK}}(f)\,D_N^*(\mathbf{x}_1, \ldots, \mathbf{x}_N).
+    \end{equation}
+\end{theorem}
+
+Well-constructed low-discrepancy sequences (including Sobol and Halton sequences) satisfy
+\[
+D_N^* = \mathcal{O}\!\left(\frac{(\ln N)^d}{N}\right).
+\]
+For fixed dimension $d$, the QMC error therefore decays at rate $\mathcal{O}\bigl((\ln N)^d / N\bigr)$, approaching $\mathcal{O}(N^{-1})$, which is substantially faster than the $\mathcal{O}(N^{-1/2})$ rate of standard Monte Carlo.
+
+\paragraph{Effective Dimension and Brownian Bridge Construction.}
+In high-dimensional path-dependent problems (e.g., $d = 252$ daily time steps), the $(\ln N)^d$ factor can mask the asymptotic advantage of QMC if the payoff depends equally on all coordinates, because higher-index coordinates of low-discrepancy sequences are less uniformly distributed than the leading coordinates. Financial payoffs, however, typically have low \textbf{effective dimension}: most of the variance is driven by a few global features of the path, such as its terminal level or average.
+
+Rather than generating a Brownian path sequentially step-by-step (which spreads variance uniformly across all $d$ coordinates), the \textbf{Brownian bridge construction} assigns the first Sobol coordinate to the terminal value $W_T = \sqrt{T}\,Z_1$, the second coordinate to the midpoint $W_{T/2}$ conditional on $(W_0, W_T)$:
+\[
+W_{T/2} = \frac{1}{2}(W_0 + W_T) + \sqrt{\frac{T}{4}}\,Z_2,
+\]
+and recursively fills in $W_{T/4}, W_{3T/4}, \ldots$ using conditional Gaussian distributions (or, equivalently, uses the principal components of the Brownian covariance matrix). By concentrating the bulk of the path variance into the earliest, highest-quality QMC coordinates, the Brownian bridge dramatically lowers the effective dimension and restores near-$\mathcal{O}(N^{-1})$ convergence in practice. Finally, because pure QMC is deterministic and lacks a direct standard-error estimate, practitioners commonly apply \textbf{Randomized QMC (RQMC)}, such as digital scrambling or random shifts modulo $1$, averaging $R$ independent randomized replicates (typically $R \in [10, 30]$) to obtain both QMC convergence speed and unbiased confidence intervals.
