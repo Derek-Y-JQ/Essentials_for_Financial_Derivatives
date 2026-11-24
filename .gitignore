@@ -1,5 +1,7 @@
 # LaTeX build artifacts
 build/
+.latex_cache/
+main.pdf
 *.aux
 *.bbl
 *.blg
