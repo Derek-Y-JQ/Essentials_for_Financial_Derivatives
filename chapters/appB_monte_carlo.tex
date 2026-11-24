@@ -147,7 +147,11 @@ where $L(\mathbf{x}) = \frac{\dd\Prob}{\dd\widetilde{\Prob}}(\mathbf{x}) = p(\ma
 If $f \geq 0$, the theoretical zero-variance density $q^*(\mathbf{x}) = f(\mathbf{x})p(\mathbf{x})/\mu$ is unattainable because its normalizing constant is the unknown price $\mu$, but any $q$ closely proportional to $f \cdot p$ achieves dramatic variance reduction.
 
 \paragraph{Gaussian Mean-Shift Tilting.}
-Consider a deep out-of-the-money European call option under Black--Scholes with terminal payoff $f(Z) = e^{-rT}\bigl(S_0 e^{(r - \frac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,Z} - K\bigr)^+$, where $Z \sim \mathcal{N}(0, 1)$ under $\Prob$. Shifting the Gaussian mean to $\theta > 0$ so that $Z \sim \mathcal{N}(\theta, 1)$ under $\widetilde{\Prob}$ (for example, choosing $\theta \approx \frac{\ln(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$ so that samples land near the strike $K$) yields the exact likelihood ratio
+Consider a deep out-of-the-money European call option under Black--Scholes with terminal payoff
+\[
+f(Z) = e^{-rT}\Bigl(S_0 \exp\bigl((r - \tfrac{1}{2}\sigma^2)T + \sigma\sqrt{T}\,Z\bigr) - K\Bigr)^+, \qquad Z \sim \mathcal{N}(0, 1) \text{ under } \Prob.
+\]
+Shifting the Gaussian mean to $\theta > 0$ so that $Z \sim \mathcal{N}(\theta, 1)$ under $\widetilde{\Prob}$ (for example, choosing $\theta \approx \frac{\ln(K/S_0) - (r - \frac{1}{2}\sigma^2)T}{\sigma\sqrt{T}}$ so that samples land near the strike $K$) yields the exact likelihood ratio
 \[
 \frac{\dd\Prob}{\dd\widetilde{\Prob}}(z) = \frac{\frac{1}{\sqrt{2\pi}}\exp(-z^2/2)}{\frac{1}{\sqrt{2\pi}}\exp\bigl(-(z - \theta)^2/2\bigr)} = \exp\!\left(-\theta z + \frac{1}{2}\theta^2\right).
 \]

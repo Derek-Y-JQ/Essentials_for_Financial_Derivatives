@@ -31,7 +31,7 @@
 ]
 \setmonofont{LibertinusMono-Regular.otf}[Scale=0.88]
 \usepackage{unicode-math}
-\setmathfont{LibertinusMath-Regular.otf}
+\setmathfont{LibertinusMath-Regular.otf}[BoldFont=LibertinusMath-Regular.otf]
 
 % Chinese support for Appendix E (Bilingual Table) under XeLaTeX
 \usepackage{xeCJK}
@@ -79,88 +79,55 @@
 \definecolor{corollaryTitleBG}{rgb}{0.53, 0.56, 0.8} % #8890CC
 \definecolor{lightblue}{rgb}{0.8, 0.9, 1}
 
-% Framed theorem environments
-\usepackage{mdframed}
+% Framed theorem environments (tcolorbox replaces legacy mdframed for clean page breaks)
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
 
-\newmdtheoremenv[
-    linecolor=definitionTitleBG,
-    backgroundcolor=definitionBG,
-    linewidth=3pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    roundcorner=0pt,
-    frametitlebackgroundcolor=definitionTitleBG,
-    frametitlefont=\bfseries,
-    innertopmargin=2pt,
-    innerbottommargin=8pt,
-    innerrightmargin=8pt,
-    innerleftmargin=8pt
-]{definition}{Definition}[chapter]
+\theoremstyle{plain}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
 
-\newmdtheoremenv[
-    linecolor=mistyrose,
-    backgroundcolor=seashell,
-    linewidth=3pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    roundcorner=0pt,
-    frametitlebackgroundcolor=mistyrose,
-    frametitlefont=\bfseries,
-    innertopmargin=2pt,
-    innerbottommargin=8pt,
-    innerrightmargin=8pt,
-    innerleftmargin=8pt
-]{proposition}{Proposition}[chapter]
+\tcolorboxenvironment{definition}{
+    enhanced, sharp corners,
+    boxrule=0pt, leftrule=3pt,
+    colback=definitionBG, colframe=definitionTitleBG,
+    top=5pt, bottom=6pt, left=8pt, right=8pt,
+    before skip=8pt, after skip=8pt
+}
+\tcolorboxenvironment{proposition}{
+    enhanced, sharp corners,
+    boxrule=0pt, leftrule=3pt,
+    colback=seashell, colframe=mistyrose,
+    top=5pt, bottom=6pt, left=8pt, right=8pt,
+    before skip=8pt, after skip=8pt
+}
+\tcolorboxenvironment{theorem}{
+    enhanced, sharp corners,
+    boxrule=0pt, leftrule=3pt,
+    colback=theoremBG, colframe=theoremTitleBG,
+    top=5pt, bottom=6pt, left=8pt, right=8pt,
+    before skip=8pt, after skip=8pt
+}
+\tcolorboxenvironment{lemma}{
+    enhanced, sharp corners,
+    boxrule=0pt, leftrule=3pt,
+    colback=lemmaBG, colframe=lemmaTitleBG,
+    top=5pt, bottom=6pt, left=8pt, right=8pt,
+    before skip=8pt, after skip=8pt
+}
+\tcolorboxenvironment{corollary}{
+    enhanced, sharp corners,
+    boxrule=0pt, leftrule=3pt,
+    colback=corollaryBG, colframe=corollaryTitleBG,
+    top=5pt, bottom=6pt, left=8pt, right=8pt,
+    before skip=8pt, after skip=8pt
+}
 
-\newmdtheoremenv[
-    linecolor=theoremTitleBG,
-    backgroundcolor=theoremBG,
-    linewidth=3pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    roundcorner=0pt,
-    frametitlebackgroundcolor=theoremTitleBG,
-    frametitlefont=\bfseries,
-    innertopmargin=2pt,
-    innerbottommargin=8pt,
-    innerrightmargin=8pt,
-    innerleftmargin=8pt
-]{theorem}{Theorem}[chapter]
-
-\newmdtheoremenv[
-    linecolor=lemmaTitleBG,
-    backgroundcolor=lemmaBG,
-    linewidth=3pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    roundcorner=0pt,
-    frametitlebackgroundcolor=lemmaTitleBG,
-    frametitlefont=\bfseries,
-    innertopmargin=2pt,
-    innerbottommargin=8pt,
-    innerrightmargin=8pt,
-    innerleftmargin=8pt
-]{lemma}{Lemma}[chapter]
-
-\newmdtheoremenv[
-    linecolor=corollaryTitleBG,
-    backgroundcolor=corollaryBG,
-    linewidth=3pt,
-    topline=false,
-    bottomline=false,
-    rightline=false,
-    roundcorner=0pt,
-    frametitlebackgroundcolor=corollaryTitleBG,
-    frametitlefont=\bfseries,
-    innertopmargin=2pt,
-    innerbottommargin=8pt,
-    innerrightmargin=8pt,
-    innerleftmargin=8pt
-]{corollary}{Corollary}[chapter]
+% Prevent minor inline-math Overfull hboxes cleanly
+\emergencystretch=2em
 
 % Upright theorem environments numbered by chapter
 \theoremstyle{definition}

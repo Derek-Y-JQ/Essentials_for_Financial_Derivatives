@@ -726,14 +726,12 @@ Splitting the integral at time $t$,
     \end{aligned}
     \]
     Since $u \mapsto W_u - W_t$ is continuous and $\E[(W_u - W_v)^2] = |u - v|$, these Riemann sums converge in $L^2$ to $\int_t^T (W_u - W_t)\dd u$. Each sum is a linear combination of independent mean-zero Gaussian increments $\Delta W_i$ independent of $\F_t$, so the $L^2$-limit is Gaussian with mean $0$ and independent of $\F_t$. By $L^2$-convergence (or equivalently Fubini's theorem), its variance is
-    \[
-    \begin{aligned}
+    \begin{align*}
         \E\left[\left(\int_t^T (W_u - W_t)\dd u\right)^2\right]
         &= \lim_{n \to \infty}\E\left[\left(\sum_{i=1}^{n-1}(T - t_i)\Delta W_i\right)^2\right] \\
         &= \lim_{n \to \infty}\sum_{i=1}^{n-1}(T - t_i)^2 (t_i - t_{i-1})
          = \int_t^T (T - u)^2 \dd u = \frac{(T - t)^3}{3}. \qedhere
-    \end{aligned}
-    \]
+    \end{align*}
 \end{proof}
 
 Defining
@@ -821,7 +819,11 @@ For an arithmetic Asian call option, set $I_t = \int_0^t S_u \dd u$, so $f(S, t)
 where $X_t := \frac{K - I_t/T}{S_t}$.
 
 \begin{note}
-    For $u > t$, the ratio $\frac{S_u}{S_t} = \exp\!\left(\left(r - \frac{1}{2}\sigma^2\right)(u - t) + \sigma(W_u - W_t)\right)$ is independent of $\F_t$. Hence $\E_t^{\Q}\!\left[\left(\frac{1}{T}\int_t^T \frac{S_u}{S_t}\dd u - X_t\right)^+\right]$ depends only on $(t, X_t)$.
+    For $u > t$, the ratio
+    \[
+    \frac{S_u}{S_t} = \exp\!\left(\left(r - \frac{1}{2}\sigma^2\right)(u - t) + \sigma(W_u - W_t)\right)
+    \]
+    is independent of $\F_t$. Hence $\E_t^{\Q}\!\left[\left(\frac{1}{T}\int_t^T \frac{S_u}{S_t}\dd u - X_t\right)^+\right]$ depends only on $(t, X_t)$.
 \end{note}
 
 Define $H(X_t, t) := e^{-r(T-t)}\E_t^{\Q}\!\left[\left(\frac{1}{T}\int_t^T \frac{S_u}{S_t}\dd u - X_t\right)^+\right]$, so that $V(t, S_t, I_t) = S_t H(X_t, t)$. Since
