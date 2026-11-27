@@ -39,64 +39,64 @@
     <main class="content">
       <div class="chapter-eyebrow">Appendix C</div>
       <h1>Alternative Derivation of Black–Scholes PDE</h1>
-      <p>Assume that the stock price follows geometric Brownian motion
+      <p>Assume that the stock price follows geometric Brownian motion</p>
 \[
 \dd S_t = \mu S_t\dd t + \sigma S_t\dd W_t,
 \]
-and the money market bank account follows the deterministic process
+<p>and the money market bank account follows the deterministic process</p>
 \[
 \dd B_t = r B_t\dd t.
-\]</p>
+\]
 <div class="env-box env-definition" id="def:self-financing-app"><div class="env-title">Definition C.1</div>
-<p>A portfolio strategy $(\beta_t, \kappa_t)$ investing $\beta_t$ units in the bank account and $\kappa_t$ shares in the underlying asset is called <strong>self-financing</strong> if its value process
-    \[
+<p>A portfolio strategy \((\beta_t, \kappa_t)\) investing \(\beta_t\) units in the bank account and \(\kappa_t\) shares in the underlying asset is called <strong>self-financing</strong> if its value process</p>
+\[
     \Pi_t = \beta_t B_t + \kappa_t S_t
     \]
-    satisfies
-    \[
+<p>satisfies</p>
+\[
     \dd \Pi_t = \beta_t\dd B_t + \kappa_t\dd S_t.
-    \]</p>
+    \]
 </div>
 <div class="env-box env-lemma" id="lem:riskless-portfolio"><div class="env-title">Lemma C.1</div>
-<p>If the value process $\Pi_t$ of a self-financing portfolio satisfies $\Pi_t > 0$ and has locally riskless dynamics
-    \[
+<p>If the value process \(\Pi_t\) of a self-financing portfolio satisfies \(\Pi_t > 0\) and has locally riskless dynamics</p>
+\[
     \dd \Pi_t = k_t \Pi_t\dd t,
     \]
-    where $k_t$ is an adapted process, then no arbitrage implies $k_t = r$.</p>
+<p>where \(k_t\) is an adapted process, then no arbitrage implies \(k_t = r\).</p>
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
-<p>If $k_t > r$, an investor can borrow $\Pi_t$ at the risk-free rate $r$ to invest in the portfolio and earn an instantaneous riskless profit of
-    \[
+<p>If \(k_t > r\), an investor can borrow \(\Pi_t\) at the risk-free rate \(r\) to invest in the portfolio and earn an instantaneous riskless profit of</p>
+\[
     \Pi_t(k_t - r)\dd t > 0.
     \]
-    Conversely, if $k_t < r$, an investor can short the portfolio and invest the proceeds at the risk-free rate $r$, earning an instantaneous riskless profit of
-    \[
+<p>Conversely, if \(k_t < r\), an investor can short the portfolio and invest the proceeds at the risk-free rate \(r\), earning an instantaneous riskless profit of</p>
+\[
     \Pi_t(r - k_t)\dd t > 0.
     \]
-    Hence, to preclude arbitrage, we must have $k_t = r$. <span class="qed-mark">&#9723;</span></p>
+<p>Hence, to preclude arbitrage, we must have \(k_t = r\). <span class="qed-mark">&#9723;</span></p>
 </div>
-<p>Now consider a self-financing portfolio holding $\gamma_t$ units of a derivative with price $V_t = V(t, S_t)$ and $\kappa_t$ shares of the underlying stock with price $S_t$. The value of the portfolio is $\Pi_t = \gamma_t V_t + \kappa_t S_t$. By the self-financing condition and Itô's Lemma, $\Pi_t$ has dynamics</p>
-$$\begin{aligned}
+<p>Now consider a self-financing portfolio holding \(\gamma_t\) units of a derivative with price \(V_t = V(t, S_t)\) and \(\kappa_t\) shares of the underlying stock with price \(S_t\). The value of the portfolio is \(\Pi_t = \gamma_t V_t + \kappa_t S_t\). By the self-financing condition and Itô's Lemma, \(\Pi_t\) has dynamics</p>
+\[\begin{aligned}
 \dd \Pi_t &= \gamma_t\dd V_t + \kappa_t\dd S_t \\
 &= \gamma_t \left(\left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t + \frac{\partial V}{\partial S}\dd S_t\right) + \kappa_t\dd S_t.
-\end{aligned}$$
-<p>Choose the delta-neutral hedge $\kappa_t = -\gamma_t \frac{\partial V}{\partial S}$, so that $\Pi_t = \gamma_t\bigl(V_t - S_t \frac{\partial V}{\partial S}\bigr)$. Then the $\dd S_t$ terms cancel:
+\end{aligned}\]
+<p>Choose the delta-neutral hedge \(\kappa_t = -\gamma_t \frac{\partial V}{\partial S}\), so that \(\Pi_t = \gamma_t\bigl(V_t - S_t \frac{\partial V}{\partial S}\bigr)\). Then the \(\dd S_t\) terms cancel:</p>
 \[
 \dd \Pi_t = \gamma_t\left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t.
 \]
-Assuming $V_t - S_t \frac{\partial V}{\partial S} \neq 0$, we may choose $\gamma_t$ such that $\Pi_t > 0$, i.e., $\gamma_t = \Pi_t / \bigl(V_t - S_t \frac{\partial V}{\partial S}\bigr)$, giving
+<p>Assuming \(V_t - S_t \frac{\partial V}{\partial S} \neq 0\), we may choose \(\gamma_t\) such that \(\Pi_t > 0\), i.e., \(\gamma_t = \Pi_t / \bigl(V_t - S_t \frac{\partial V}{\partial S}\bigr)\), giving</p>
 \[
 \dd \Pi_t = \frac{\Pi_t}{V_t - S_t \frac{\partial V}{\partial S}} \left(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}\right)\dd t =: k_t \Pi_t\dd t,
 \]
-where
+<p>where</p>
 \[
 \left(V_t - S_t \frac{\partial V}{\partial S}\right) k_t = \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2}.
 \]
-(Note that if $V_t - S_t \frac{\partial V}{\partial S} = 0$, then $\Pi_t = 0$, and no arbitrage directly requires $\dd \Pi_t = 0$, which yields $\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2} = 0$ and still satisfies the equation below.)</p>
-<p>By Lemma&nbsp;<a href="#lem:riskless-portfolio">C.1</a>, $k_t = r$, and we obtain the Black&ndash;Scholes PDE:
+<p>(Note that if \(V_t - S_t \frac{\partial V}{\partial S} = 0\), then \(\Pi_t = 0\), and no arbitrage directly requires \(\dd \Pi_t = 0\), which yields \(\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S_t^2 \frac{\partial^2 V}{\partial S^2} = 0\) and still satisfies the equation below.)</p>
+<p>By Lemma&nbsp;<a href="#lem:riskless-portfolio">C.1</a>, \(k_t = r\), and we obtain the Black&ndash;Scholes PDE:</p>
 \[
 \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0.
-\]</p>
+\]
       <div class="chapter-pager"><a class="pager-card prev" href="appB.html"><span class="pager-dir">&larr; Previous (Appendix B)</span><span class="pager-title">Monte Carlo Simulation</span></a><a class="pager-card next" href="appD.html"><span class="pager-dir">Next (Appendix D) &rarr;</span><span class="pager-title">Proofs of Key Stochastic Calculus Theorems</span></a></div>
     </main>
 

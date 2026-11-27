@@ -49,15 +49,15 @@
     <li>The trinomial model and market incompleteness,
     <li>The Fundamental Theorems of Asset Pricing in discrete time.
 </ol>
-<h2 id="sec-1">02.1 Single-Period Binomial Model</h2>
-<div class="env-box env-definition" id="def:portfolio"><div class="env-title">Definition 02.1</div>
-<p>A <strong>portfolio</strong> is a combination of holdings in the traded assets of the market. Suppose an investor holds $\alpha$ units of the money market account and $\beta$ shares of the stock. The portfolio is represented by the vector $h = (\alpha, \beta) \in \R^2$, and its value at time $t$ is
+<h2 id="sec-1">2.1 Single-Period Binomial Model</h2>
+<div class="env-box env-definition" id="def:portfolio"><div class="env-title">Definition 2.1</div>
+<p>A <strong>portfolio</strong> is a combination of holdings in the traded assets of the market. Suppose an investor holds \(\alpha\) units of the money market account and \(\beta\) shares of the stock. The portfolio is represented by the vector \(h = (\alpha, \beta) \in \R^2\), and its value at time \(t\) is</p>
 \[
     V_t^h = \alpha B_t + \beta S_t.
-\]</p>
+\]
 </div>
-<p>Consider a single-period market with two dates: $t = 0$ (today) and $t = T$ (<em>maturity</em>). Funds may be deposited in or borrowed from the bank at a constant continuously compounded risk-free rate $r$, or invested in a risky stock. One unit of the money market account has initial value $B_0 = 1$ and terminal value $B_T = e^{rT}$, so investing $y$ dollars in the bank at time $0$ yields $y e^{rT}$ at time $T$.</p>
-<p>The stock has initial price $S_0 = s > 0$ and terminal price $S_T = s \cdot X$, where
+<p>Consider a single-period market with two dates: \(t = 0\) (today) and \(t = T\) (<em>maturity</em>). Funds may be deposited in or borrowed from the bank at a constant continuously compounded risk-free rate \(r\), or invested in a risky stock. One unit of the money market account has initial value \(B_0 = 1\) and terminal value \(B_T = e^{rT}\), so investing \(y\) dollars in the bank at time \(0\) yields \(y e^{rT}\) at time \(T\).</p>
+<p>The stock has initial price \(S_0 = s > 0\) and terminal price \(S_T = s \cdot X\), where</p>
 \[
     X =
     \begin{cases}
@@ -65,47 +65,47 @@
         d & \text{with probability } p_d,
     \end{cases}
 \]
-with $0 < d < u$, $p_u, p_d > 0$, and $p_u + p_d = 1$. The single-period tree is shown in Figure&nbsp;<a href="#fig:1p_binomial">02.1</a>.</p>
+<p>with \(0 < d < u\), \(p_u, p_d > 0\), and \(p_u + p_d = 1\). The single-period tree is shown in Figure&nbsp;<a href="#fig:1p_binomial">2.1</a>.</p>
 <figure class="tex-fig" id="fig:1p_binomial"><img src="Figure/1p_binomial.png" alt="Single-period binomial tree." loading="lazy"><figcaption>Single-period binomial tree.</figcaption></figure>
-<p>First, we recall the no-arbitrage assumption in this setting. An <strong>arbitrage portfolio</strong> is a portfolio $h \in \R^2$ such that</p>
+<p>First, we recall the no-arbitrage assumption in this setting. An <strong>arbitrage portfolio</strong> is a portfolio \(h \in \R^2\) such that</p>
 <ol>
-<li>$V_0^h = 0$,
-    <li>$V_T^h \ge 0$ with probability $1$,
-    <li>$\Prob(V_T^h > 0) > 0$.
+<li>\(V_0^h = 0\),
+    <li>\(V_T^h \ge 0\) with probability \(1\),
+    <li>\(\Prob(V_T^h > 0) > 0\).
 </ol>
 <p>We assume throughout that the market is <strong>arbitrage-free</strong>, meaning that no arbitrage portfolio exists.</p>
-<div class="env-box env-proposition" id="prop:monotonicity"><div class="env-title">Proposition 02.1 (Monotonicity of Pricing)</div>
-<p>Assume that $V_T^{h^*} \ge V_T^h$ with probability $1$. Then, in the absence of arbitrage, $V_0^{h^*} \ge V_0^h$.</p>
+<div class="env-box env-proposition" id="prop:monotonicity"><div class="env-title">Proposition 2.1 (Monotonicity of Pricing)</div>
+<p>Assume that \(V_T^{h^*} \ge V_T^h\) with probability \(1\). Then, in the absence of arbitrage, \(V_0^{h^*} \ge V_0^h\).</p>
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
-<p>Consider the portfolio $\tilde{h} = h^* - h - \bigl(V_0^{h^*} - V_0^h,\, 0\bigr)$, which adjusts the money market holding so that its initial value is zero. Since $B_0 = 1$ and $B_T = e^{rT}$, we have
+<p>Consider the portfolio \(\tilde{h} = h^* - h - \bigl(V_0^{h^*} - V_0^h,\, 0\bigr)\), which adjusts the money market holding so that its initial value is zero. Since \(B_0 = 1\) and \(B_T = e^{rT}\), we have</p>
 \[
     V_0^{\tilde{h}} = 0, \qquad V_T^{\tilde{h}} = V_T^{h^*} - V_T^h - \bigl(V_0^{h^*} - V_0^h\bigr) e^{rT}.
 \]
-If $V_0^{h^*} < V_0^h$, then $V_T^{\tilde{h}} \ge -\bigl(V_0^{h^*} - V_0^h\bigr) e^{rT} > 0$ with probability $1$, so $\tilde{h}$ is an arbitrage portfolio, contradicting the no-arbitrage assumption. Therefore, $V_0^{h^*} \ge V_0^h$. <span class="qed-mark">&#9723;</span></p>
+<p>If \(V_0^{h^*} < V_0^h\), then \(V_T^{\tilde{h}} \ge -\bigl(V_0^{h^*} - V_0^h\bigr) e^{rT} > 0\) with probability \(1\), so \(\tilde{h}\) is an arbitrage portfolio, contradicting the no-arbitrage assumption. Therefore, \(V_0^{h^*} \ge V_0^h\). <span class="qed-mark">&#9723;</span></p>
 </div>
-<div class="env-box env-corollary" id="cor:law_of_one_price"><div class="env-title">Corollary 02.1 (Law of One Price)</div>
-<p>If two portfolios have the same terminal payoff at time $T$ (that is, $V_T^{h^*} = V_T^h$ with probability $1$), then in the absence of arbitrage they must have the same price at time $0$: $V_0^{h^*} = V_0^h$.</p>
+<div class="env-box env-corollary" id="cor:law_of_one_price"><div class="env-title">Corollary 2.1 (Law of One Price)</div>
+<p>If two portfolios have the same terminal payoff at time \(T\) (that is, \(V_T^{h^*} = V_T^h\) with probability \(1\)), then in the absence of arbitrage they must have the same price at time \(0\): \(V_0^{h^*} = V_0^h\).</p>
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
-<p>Applying Proposition&nbsp;<a href="#prop:monotonicity">02.1</a> to both $V_T^{h^*} \ge V_T^h$ and $V_T^h \ge V_T^{h^*}$ yields $V_0^{h^*} \ge V_0^h$ and $V_0^h \ge V_0^{h^*}$, whence $V_0^{h^*} = V_0^h$. <span class="qed-mark">&#9723;</span></p>
+<p>Applying Proposition&nbsp;<a href="#prop:monotonicity">2.1</a> to both \(V_T^{h^*} \ge V_T^h\) and \(V_T^h \ge V_T^{h^*}\) yields \(V_0^{h^*} \ge V_0^h\) and \(V_0^h \ge V_0^{h^*}\), whence \(V_0^{h^*} = V_0^h\). <span class="qed-mark">&#9723;</span></p>
 </div>
-<p>As an immediate application, consider a portfolio that is long one European call option, short one share of the stock, and long $K e^{-rT}$ units of the money market account. Its initial value is $C(S_0, 0) - S_0 + K e^{-rT}$, and its terminal payoff is $(S_T - K)^+ - S_T + K = (K - S_T)^+$, which matches the terminal payoff of a European put option with the same strike $K$ and maturity $T$. By the Law of One Price (Corollary&nbsp;<a href="#cor:law_of_one_price">02.1</a>), we recover put&ndash;call parity at any time $t \in [0, T]$.</p>
-<div class="env-box env-theorem" id="thm:put_call_parity_ch2"><div class="env-title">Theorem 02.1 (Put&ndash;Call Parity)</div>
-<p>In an arbitrage-free market without dividends and with a constant continuously compounded risk-free rate $r$, European call and put options with common strike $K$ and maturity $T$ satisfy
+<p>As an immediate application, consider a portfolio that is long one European call option, short one share of the stock, and long \(K e^{-rT}\) units of the money market account. Its initial value is \(C(S_0, 0) - S_0 + K e^{-rT}\), and its terminal payoff is \((S_T - K)^+ - S_T + K = (K - S_T)^+\), which matches the terminal payoff of a European put option with the same strike \(K\) and maturity \(T\). By the Law of One Price (Corollary&nbsp;<a href="#cor:law_of_one_price">2.1</a>), we recover put&ndash;call parity at any time \(t \in [0, T]\).</p>
+<div class="env-box env-theorem" id="thm:put_call_parity_ch2"><div class="env-title">Theorem 2.1 (Put&ndash;Call Parity)</div>
+<p>In an arbitrage-free market without dividends and with a constant continuously compounded risk-free rate \(r\), European call and put options with common strike \(K\) and maturity \(T\) satisfy</p>
 \[
     C(S_t, t) - P(S_t, t) = S_t - K e^{-r(T-t)} \qquad \text{for all } 0 \le t \le T.
-\]</p>
+\]
 </div>
 <p>We next characterize when the single-period binomial model is arbitrage-free.</p>
-<div class="env-box env-theorem" id="thm:no_arbitrage_1p"><div class="env-title">Theorem 02.2 (No-Arbitrage Condition in the Single-Period Binomial Model)</div>
-<p>The single-period binomial model (with $S_0 > 0$, $0 < d < u$, and $p_u, p_d > 0$) is arbitrage-free if and only if
+<div class="env-box env-theorem" id="thm:no_arbitrage_1p"><div class="env-title">Theorem 2.2 (No-Arbitrage Condition in the Single-Period Binomial Model)</div>
+<p>The single-period binomial model (with \(S_0 > 0\), \(0 < d < u\), and \(p_u, p_d > 0\)) is arbitrage-free if and only if</p>
 \[
     d < e^{rT} < u.
-\]</p>
+\]
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
-<p>($\Rightarrow$) Consider the portfolio $h = (-S_0, 1)$, which has initial value $V_0^h = -S_0 \cdot 1 + 1 \cdot S_0 = 0$ and terminal value
+<p>(\(\Rightarrow\)) Consider the portfolio \(h = (-S_0, 1)\), which has initial value \(V_0^h = -S_0 \cdot 1 + 1 \cdot S_0 = 0\) and terminal value</p>
 \[
     V_T^h =
     \begin{cases}
@@ -113,8 +113,8 @@ If $V_0^{h^*} < V_0^h$, then $V_T^{\tilde{h}} \ge -\bigl(V_0^{h^*} - V_0^h\bigr)
         S_0 (d - e^{rT}) & \text{with probability } p_d.
     \end{cases}
 \]
-If $e^{rT} \le d < u$, then $V_T^h \ge 0$ in both states and $V_T^h > 0$ in the up state (which has probability $p_u > 0$), so $h$ is an arbitrage portfolio. Similarly, if $d < u \le e^{rT}$, then $-h = (S_0, -1)$ is an arbitrage portfolio. Both cases are excluded by the absence of arbitrage, hence $d < e^{rT} < u$.</p>
-<p>($\Leftarrow$) Conversely, assume $d < e^{rT} < u$, and let $h = (\alpha, \beta)$ be any portfolio with $V_0^h = \alpha + \beta S_0 = 0$. Substituting $\alpha = -\beta S_0$ gives
+<p>If \(e^{rT} \le d < u\), then \(V_T^h \ge 0\) in both states and \(V_T^h > 0\) in the up state (which has probability \(p_u > 0\)), so \(h\) is an arbitrage portfolio. Similarly, if \(d < u \le e^{rT}\), then \(-h = (S_0, -1)\) is an arbitrage portfolio. Both cases are excluded by the absence of arbitrage, hence \(d < e^{rT} < u\).</p>
+<p>(\(\Leftarrow\)) Conversely, assume \(d < e^{rT} < u\), and let \(h = (\alpha, \beta)\) be any portfolio with \(V_0^h = \alpha + \beta S_0 = 0\). Substituting \(\alpha = -\beta S_0\) gives</p>
 \[
     V_T^h =
     \begin{cases}
@@ -122,70 +122,70 @@ If $e^{rT} \le d < u$, then $V_T^h \ge 0$ in both states and $V_T^h > 0$ in the 
         \beta S_0 (d - e^{rT}) & \text{with probability } p_d.
     \end{cases}
 \]
-Since $u - e^{rT} > 0$, $d - e^{rT} < 0$, and $S_0 > 0$, whenever $\beta > 0$ we have $V_T^h < 0$ in the down state (which occurs with probability $p_d > 0$); whenever $\beta < 0$ we have $V_T^h < 0$ in the up state (which occurs with probability $p_u > 0$); and if $\beta = 0$ then $V_T^h \equiv 0$. Thus no portfolio $h$ can be an arbitrage portfolio. <span class="qed-mark">&#9723;</span></p>
+<p>Since \(u - e^{rT} > 0\), \(d - e^{rT} < 0\), and \(S_0 > 0\), whenever \(\beta > 0\) we have \(V_T^h < 0\) in the down state (which occurs with probability \(p_d > 0\)); whenever \(\beta < 0\) we have \(V_T^h < 0\) in the up state (which occurs with probability \(p_u > 0\)); and if \(\beta = 0\) then \(V_T^h \equiv 0\). Thus no portfolio \(h\) can be an arbitrage portfolio. <span class="qed-mark">&#9723;</span></p>
 </div>
-<div class="env-box env-note"><div class="env-title">Note 02.1</div>
-<p>The economic intuition behind Theorem&nbsp;<a href="#thm:no_arbitrage_1p">02.2</a> is transparent:</p>
+<div class="env-box env-note"><div class="env-title">Note 2.1</div>
+<p>The economic intuition behind Theorem&nbsp;<a href="#thm:no_arbitrage_1p">2.2</a> is transparent:</p>
 <ul>
-<li>If $d \ge e^{rT}$, one can borrow $S_0$ from the bank at time $0$ to buy the stock. At time $T$, even in the worst case the stock is worth $d S_0 \ge S_0 e^{rT}$, covering the debt while yielding a strictly positive profit in the up state.
-    <li>If $u \le e^{rT}$, one can short-sell the stock at time $0$ and deposit the proceeds $S_0$ in the bank. At time $T$, even in the worst case the bank account holds $S_0 e^{rT} \ge u S_0$, covering the short position while yielding a strictly positive profit in the down state.
+<li>If \(d \ge e^{rT}\), one can borrow \(S_0\) from the bank at time \(0\) to buy the stock. At time \(T\), even in the worst case the stock is worth \(d S_0 \ge S_0 e^{rT}\), covering the debt while yielding a strictly positive profit in the up state.
+    <li>If \(u \le e^{rT}\), one can short-sell the stock at time \(0\) and deposit the proceeds \(S_0\) in the bank. At time \(T\), even in the worst case the bank account holds \(S_0 e^{rT} \ge u S_0\), covering the short position while yielding a strictly positive profit in the down state.
 </ul>
 </div>
-<p>Now consider a derivative with terminal payoff $\varphi(S_T)$. A portfolio $h = (\alpha, \beta)$ <strong>replicates</strong> $\varphi(S_T)$ if $V_T^h = \varphi(S_T)$ in every state, i.e.,</p>
-$$\begin{aligned}
+<p>Now consider a derivative with terminal payoff \(\varphi(S_T)\). A portfolio \(h = (\alpha, \beta)\) <strong>replicates</strong> \(\varphi(S_T)\) if \(V_T^h = \varphi(S_T)\) in every state, i.e.,</p>
+\[\begin{aligned}
     \alpha e^{rT} + \beta S_0 u &= \varphi(S_0 u), \\
     \alpha e^{rT} + \beta S_0 d &= \varphi(S_0 d).
-\end{aligned}$$
-<p>Since $u \neq d$ and $S_0 > 0$, this linear system has the unique solution</p>
-$$\begin{aligned}
+\end{aligned}\]
+<p>Since \(u \neq d\) and \(S_0 > 0\), this linear system has the unique solution</p>
+\[\begin{aligned}
     \alpha &= e^{-rT} \frac{u \varphi(S_0 d) - d \varphi(S_0 u)}{u - d}, \\
     \beta  &= \frac{\varphi(S_0 u) - \varphi(S_0 d)}{S_0 (u - d)}.
-\end{aligned}$$
-<p>By the Law of One Price (Corollary&nbsp;<a href="#cor:law_of_one_price">02.1</a>), the unique no-arbitrage price of the derivative at $t = 0$ is the initial value of the replicating portfolio:
+\end{aligned}\]
+<p>By the Law of One Price (Corollary&nbsp;<a href="#cor:law_of_one_price">2.1</a>), the unique no-arbitrage price of the derivative at \(t = 0\) is the initial value of the replicating portfolio:</p>
 \[
     V_0^h = \alpha + \beta S_0 = e^{-rT} \left[ \frac{e^{rT} - d}{u - d}\,\varphi(S_0 u) + \frac{u - e^{rT}}{u - d}\,\varphi(S_0 d) \right].
 \]
-Define
+<p>Define</p>
 \[
     q_u := \frac{e^{rT} - d}{u - d}, \qquad q_d := \frac{u - e^{rT}}{u - d} = 1 - q_u.
 \]
-Under the no-arbitrage condition $d < e^{rT} < u$, both $q_u$ and $q_d$ lie strictly in $(0, 1)$ and sum to $1$. We therefore define a probability measure $\Q$ by $\Q(S_T = S_0 u) = q_u$ and $\Q(S_T = S_0 d) = q_d$.</p>
-<div class="env-box env-theorem" id="thm:binomial_pricing_1p"><div class="env-title">Theorem 02.3 (Risk-Neutral Valuation in the Single-Period Binomial Model)</div>
-<p>Assume the single-period binomial model is arbitrage-free ($d < e^{rT} < u$). Then the unique no-arbitrage price at time $t = 0$ of any derivative with terminal payoff $\varphi(S_T)$ at time $T$ is
+<p>Under the no-arbitrage condition \(d < e^{rT} < u\), both \(q_u\) and \(q_d\) lie strictly in \((0, 1)\) and sum to \(1\). We therefore define a probability measure \(\Q\) by \(\Q(S_T = S_0 u) = q_u\) and \(\Q(S_T = S_0 d) = q_d\).</p>
+<div class="env-box env-theorem" id="thm:binomial_pricing_1p"><div class="env-title">Theorem 2.3 (Risk-Neutral Valuation in the Single-Period Binomial Model)</div>
+<p>Assume the single-period binomial model is arbitrage-free (\(d < e^{rT} < u\)). Then the unique no-arbitrage price at time \(t = 0\) of any derivative with terminal payoff \(\varphi(S_T)\) at time \(T\) is</p>
 \[
     V(0) = e^{-rT} \E^{\Q}\bigl[\varphi(S_T)\bigr].
-\]</p>
+\]
 </div>
-<p>Several key observations follow from Theorem&nbsp;<a href="#thm:binomial_pricing_1p">02.3</a>:</p>
+<p>Several key observations follow from Theorem&nbsp;<a href="#thm:binomial_pricing_1p">2.3</a>:</p>
 <ul>
-<li>The <strong>real-world probabilities</strong> $p_u$ and $p_d$ do not enter the pricing formula (provided they are strictly positive); only the risk-neutral measure $\Q$ matters.
-    <li>Under $\Q$, the discounted stock price is preserved in expectation: $S_0 = e^{-rT} \E^{\Q}[S_T]$. A probability measure with this property is called a <strong>risk-neutral probability measure</strong> (and it is unique in the binomial model).
-    <li>The no-arbitrage price of any derivative is the discounted expectation of its payoff under the risk-neutral measure $\Q$.
+<li>The <strong>real-world probabilities</strong> \(p_u\) and \(p_d\) do not enter the pricing formula (provided they are strictly positive); only the risk-neutral measure \(\Q\) matters.
+    <li>Under \(\Q\), the discounted stock price is preserved in expectation: \(S_0 = e^{-rT} \E^{\Q}[S_T]\). A probability measure with this property is called a <strong>risk-neutral probability measure</strong> (and it is unique in the binomial model).
+    <li>The no-arbitrage price of any derivative is the discounted expectation of its payoff under the risk-neutral measure \(\Q\).
 </ul>
-<div class="env-box env-example" id="ex:1p_replication_delta"><div class="env-title">Example 02.1 (Single-Period Replication and Delta Hedging)</div>
-<p>Consider a single-period binomial model with $S_0 = 100$, $u = 1.2$, $d = 0.8$, $r = 5\%$, and $T = 1$ year, and suppose we wish to price an at-the-money European call option with strike $K = 100$. Since $e^{rT} = e^{0.05} \approx 1.0513$ satisfies $d = 0.8 < 1.0513 < 1.2 = u$, the market is arbitrage-free.</p>
-<p>The terminal stock prices are $S_u = 120$ and $S_d = 80$, yielding option payoffs $C_u = (120 - 100)^+ = 20$ and $C_d = (80 - 100)^+ = 0$. The unique risk-neutral probabilities are
+<div class="env-box env-example" id="ex:1p_replication_delta"><div class="env-title">Example 2.1 (Single-Period Replication and Delta Hedging)</div>
+<p>Consider a single-period binomial model with \(S_0 = 100\), \(u = 1.2\), \(d = 0.8\), \(r = 5\%\), and \(T = 1\) year, and suppose we wish to price an at-the-money European call option with strike \(K = 100\). Since \(e^{rT} = e^{0.05} \approx 1.0513\) satisfies \(d = 0.8 < 1.0513 < 1.2 = u\), the market is arbitrage-free.</p>
+<p>The terminal stock prices are \(S_u = 120\) and \(S_d = 80\), yielding option payoffs \(C_u = (120 - 100)^+ = 20\) and \(C_d = (80 - 100)^+ = 0\). The unique risk-neutral probabilities are</p>
 \[
     q_u = \frac{e^{0.05} - 0.8}{1.2 - 0.8} \approx 0.6282, \qquad q_d = 1 - q_u \approx 0.3718.
 \]
-Solving for the replicating portfolio $h = (\alpha, \beta)$ gives</p>
-$$\begin{aligned}
+<p>Solving for the replicating portfolio \(h = (\alpha, \beta)\) gives</p>
+\[\begin{aligned}
     \beta &= \frac{C_u - C_d}{S_u - S_d} = \frac{20 - 0}{120 - 80} = 0.5000, \\
     \alpha &= e^{-0.05}\,\frac{u C_d - d C_u}{u - d} = e^{-0.05}\,\frac{1.2 \times 0 - 0.8 \times 20}{0.4} = -40\, e^{-0.05} \approx -38.0492.
-\end{aligned}$$
-<p>Indeed, at $T = 1$, the bank debt grows to $-38.0492\, e^{0.05} = -40.0000$, so in the up state $V_T^h = -40 + 0.5 \times 120 = 20 = C_u$, and in the down state $V_T^h = -40 + 0.5 \times 80 = 0 = C_d$. The unique no-arbitrage price at $t = 0$ is
+\end{aligned}\]
+<p>Indeed, at \(T = 1\), the bank debt grows to \(-38.0492\, e^{0.05} = -40.0000\), so in the up state \(V_T^h = -40 + 0.5 \times 120 = 20 = C_u\), and in the down state \(V_T^h = -40 + 0.5 \times 80 = 0 = C_d\). The unique no-arbitrage price at \(t = 0\) is</p>
 \[
     V_0 = \alpha + \beta S_0 = -38.0492 + 0.5000 \times 100 = 11.9508,
 \]
-which agrees identically with the risk-neutral expectation $e^{-0.05}(0.628178 \times 20 + 0.371822 \times 0) = 11.9508$.</p>
-<p>Economically, the stock holding $\beta = (C_u - C_d)/(S_u - S_d) = 0.5$ is the discrete-time <strong>Delta hedge</strong>: a market maker who sells the call for $\$11.9508$, borrows $\$38.0492$ from the bank, and buys $0.5$ shares of the stock constructs a completely risk-free hedge whose net terminal position is identically zero in both states of the world.</p>
+<p>which agrees identically with the risk-neutral expectation \(e^{-0.05}(0.628178 \times 20 + 0.371822 \times 0) = 11.9508\).</p>
+<p>Economically, the stock holding \(\beta = (C_u - C_d)/(S_u - S_d) = 0.5\) is the discrete-time <strong>Delta hedge</strong>: a market maker who sells the call for \($11.9508\), borrows \($38.0492\) from the bank, and buys \(0.5\) shares of the stock constructs a completely risk-free hedge whose net terminal position is identically zero in both states of the world.</p>
 </div>
-<h2 id="sec-2">02.2 Multi-Period Binomial Model</h2>
-<p>A multi-period binomial model is constructed by concatenating $n$ single-period models of equal length $\Delta t = T / n$, forming a recombining binomial tree (or lattice) over the discrete dates $t_j = j \Delta t$ for $j = 0, 1, \dots, n$. The money market account evolves deterministically as
+<h2 id="sec-2">2.2 Multi-Period Binomial Model</h2>
+<p>A multi-period binomial model is constructed by concatenating \(n\) single-period models of equal length \(\Delta t = T / n\), forming a recombining binomial tree (or lattice) over the discrete dates \(t_j = j \Delta t\) for \(j = 0, 1, \dots, n\). The money market account evolves deterministically as</p>
 \[
     B_{t_j} = e^{r t_j}, \qquad B_0 = 1,
 \]
-and the stock price evolves according to
+<p>and the stock price evolves according to</p>
 \[
     S_{t_{j+1}} = S_{t_j} X_j =
     \begin{cases}
@@ -194,25 +194,25 @@ and the stock price evolves according to
     \end{cases}
     \qquad S_0 = s > 0,
 \]
-where $X_0, \dots, X_{n-1}$ are i.i.d. random variables taking values in $\{u, d\}$ with $0 < d < u$, $p_u, p_d > 0$, and $p_u + p_d = 1$. Let $\F_j = \sigma(S_{t_0}, S_{t_1}, \dots, S_{t_j})$ denote the information available at time $t_j$.</p>
-<div class="env-box env-definition" id="def:self_financing_predictable"><div class="env-title">Definition 02.2</div>
-<p>A discrete-time trading strategy $h = \{(\alpha_j, \beta_j)\}_{j=1}^{n}$, where $(\alpha_j, \beta_j)$ denotes the holdings in the money market account and the stock over the interval $[t_{j-1}, t_j]$, is said to be:</p>
+<p>where \(X_0, \dots, X_{n-1}\) are i.i.d. random variables taking values in \(\{u, d\}\) with \(0 < d < u\), \(p_u, p_d > 0\), and \(p_u + p_d = 1\). Let \(\F_j = \sigma(S_{t_0}, S_{t_1}, \dots, S_{t_j})\) denote the information available at time \(t_j\).</p>
+<div class="env-box env-definition" id="def:self_financing_predictable"><div class="env-title">Definition 2.2</div>
+<p>A discrete-time trading strategy \(h = \{(\alpha_j, \beta_j)\}_{j=1}^{n}\), where \((\alpha_j, \beta_j)\) denotes the holdings in the money market account and the stock over the interval \([t_{j-1}, t_j]\), is said to be:</p>
 <ul>
-<li><strong>predictable</strong> if $(\alpha_j, \beta_j)$ is determined by the information $\F_{j-1}$ available at time $t_{j-1}$ for each $j = 1, \dots, n$;
+<li><strong>predictable</strong> if \((\alpha_j, \beta_j)\) is determined by the information \(\F_{j-1}\) available at time \(t_{j-1}\) for each \(j = 1, \dots, n\);
     <li><strong>self-financing</strong> if no external funds are added or withdrawn at intermediate rebalancing dates, that is,
-    \[
+\[
         \alpha_j B_{t_j} + \beta_j S_{t_j} = \alpha_{j+1} B_{t_j} + \beta_{j+1} S_{t_j} \qquad \text{for all } j = 1, \dots, n - 1.
     \]
 </ul>
 </div>
-<p>By Theorem&nbsp;<a href="#thm:no_arbitrage_1p">02.2</a> applied at every node, the $n$-period binomial model is arbitrage-free if and only if $d < e^{r \Delta t} < u$, in which case the unique per-step risk-neutral probabilities are
+<p>By Theorem&nbsp;<a href="#thm:no_arbitrage_1p">2.2</a> applied at every node, the \(n\)-period binomial model is arbitrage-free if and only if \(d < e^{r \Delta t} < u\), in which case the unique per-step risk-neutral probabilities are</p>
 \[
     q_u = \frac{e^{r \Delta t} - d}{u - d}, \qquad q_d = 1 - q_u = \frac{u - e^{r \Delta t}}{u - d}.
 \]
-A 3-period binomial tree is illustrated in Figure&nbsp;<a href="#fig:3p">02.2</a>.</p>
+<p>A 3-period binomial tree is illustrated in Figure&nbsp;<a href="#fig:3p">2.2</a>.</p>
 <figure class="tex-fig" id="fig:3p"><img src="Figure/3p_binomial.png" alt="A 3-period recombining binomial tree." loading="lazy"><figcaption>A 3-period recombining binomial tree.</figcaption></figure>
-<p>For an $n$-period model, the tree states can be stored in upper-triangular $(n+1) \times (n+1)$ matrices. Let $\mathbf{S}$ store the stock prices at time step $j$ (column $j$, $0 \le j \le n$) and downward-move count $i$ (row $i$, $0 \le i \le j$), so that $\mathbf{S}[i, j] = S_0 u^{j-i} d^i$, and let $\mathbf{V}$ store the corresponding derivative values. The time-$0$ derivative price is then obtained at $\mathbf{V}[0, 0]$.</p>
-<p>The stock price matrix $\mathbf{S}$ is populated directly from the model parameters:
+<p>For an \(n\)-period model, the tree states can be stored in upper-triangular \((n+1) \times (n+1)\) matrices. Let \(\mathbf{S}\) store the stock prices at time step \(j\) (column \(j\), \(0 \le j \le n\)) and downward-move count \(i\) (row \(i\), \(0 \le i \le j\)), so that \(\mathbf{S}[i, j] = S_0 u^{j-i} d^i\), and let \(\mathbf{V}\) store the corresponding derivative values. The time-\(0\) derivative price is then obtained at \(\mathbf{V}[0, 0]\).</p>
+<p>The stock price matrix \(\mathbf{S}\) is populated directly from the model parameters:</p>
 \[
 \mathbf{S} =
 \begin{pmatrix}
@@ -224,8 +224,8 @@ S_0 & u S_0 & u^2 S_0 & u^3 S_0 & u^4 S_0 & \cdots & u^n S_0 \\
 0 & 0 & \cdots & 0 & 0 & d^{n-1} S_0 & u d^{n-1} S_0 \\
 0 & 0 & \cdots & 0 & 0 & 0 & d^n S_0
 \end{pmatrix}.
-\]</p>
-<p>The derivative value matrix $\mathbf{V}$ is populated by backward induction. We initialize the terminal column $j = n$ with the option payoff; for example, for a European put option with strike $K$,
+\]
+<p>The derivative value matrix \(\mathbf{V}\) is populated by backward induction. We initialize the terminal column \(j = n\) with the option payoff; for example, for a European put option with strike \(K\),</p>
 \[
 \mathbf{V} =
 \begin{pmatrix}
@@ -237,76 +237,77 @@ S_0 & u S_0 & u^2 S_0 & u^3 S_0 & u^4 S_0 & \cdots & u^n S_0 \\
 0 & 0 & 0 & 0 & 0 & \cdots & (K - \mathbf{S}[n-1, n])^+ \\
 0 & 0 & 0 & 0 & 0 & \cdots & (K - \mathbf{S}[n, n])^+
 \end{pmatrix}.
-\]</p>
-<p>From node $(i, j)$ in $\mathbf{S}$, an upward move leads to node $(i, j+1)$ (multiplying by $u$), while a downward move leads to node $(i+1, j+1)$ (multiplying by $d$). The remaining columns of $\mathbf{V}$ are therefore computed by the single-period replication formula:
+\]
+<p>From node \((i, j)\) in \(\mathbf{S}\), an upward move leads to node \((i, j+1)\) (multiplying by \(u\)), while a downward move leads to node \((i+1, j+1)\) (multiplying by \(d\)). The remaining columns of \(\mathbf{V}\) are therefore computed by the single-period replication formula:</p>
 \[
     \mathbf{V}[i, j] = e^{-r \Delta t} \Bigl( q_j^u \mathbf{V}[i, j+1] + \bigl(1 - q_j^u\bigr) \mathbf{V}[i+1, j+1] \Bigr), \qquad 0 \le j < n,\;\; 0 \le i \le j,
 \]
-where $q_j^u$ denotes the risk-neutral probability of an upward move at time step $j$ (from node $(i, j)$ to $(i, j+1)$). The induction proceeds <strong>backwards</strong> from $j = n - 1$ down to $j = 0$, propagating values from later time steps to earlier ones. When the interest rate $r$ is constant, $q_j^u = q_u$ is independent of $j$; if $r$ varies with time, $q_j^u$ depends on the step index $j$ but not on the state index $i$.</p>
-<div class="env-box env-example"><div class="env-title">Example 02.2</div>
-<p>To value a European call option in a 2-period model with $\Delta t = T/2$:</p>
+<p>where \(q_j^u\) denotes the risk-neutral probability of an upward move at time step \(j\) (from node \((i, j)\) to \((i, j+1)\)). The induction proceeds <strong>backwards</strong> from \(j = n - 1\) down to \(j = 0\), propagating values from later time steps to earlier ones. When the interest rate \(r\) is constant, \(q_j^u = q_u\) is independent of \(j\); if \(r\) varies with time, \(q_j^u\) depends on the step index \(j\) but not on the state index \(i\).</p>
+<div class="env-box env-example"><div class="env-title">Example 2.2</div>
+<p>To value a European call option in a 2-period model with \(\Delta t = T/2\):</p>
 <ol>
-<li>Value at time $T/2$ after an upward move: $C_u = e^{-rT/2} (q_u C_{uu} + q_d C_{ud})$.
-    <li>Value at time $T/2$ after a downward move: $C_d = e^{-rT/2} (q_u C_{ud} + q_d C_{dd})$.
-    <li>Value at time $0$:
-    \[
+<li>Value at time \(T/2\) after an upward move: \(C_u = e^{-rT/2} (q_u C_{uu} + q_d C_{ud})\).
+    <li>Value at time \(T/2\) after a downward move: \(C_d = e^{-rT/2} (q_u C_{ud} + q_d C_{dd})\).
+    <li>Value at time \(0\):
+\[
         C = e^{-rT/2}(q_u C_u + q_d C_d) = e^{-rT}\bigl(q_u^2 C_{uu} + 2 q_u q_d C_{ud} + q_d^2 C_{dd}\bigr).
     \]
 </ol>
 </div>
-<p>For a general $n$-period tree, backward induction yields the closed-form binomial pricing formula for path-independent European claims.</p>
-<div class="env-box env-theorem" id="thm:multiperiod_binomial"><div class="env-title">Theorem 02.4 (Multi-Period Binomial Pricing Formula)</div>
-<p>Assume the $n$-period binomial model is arbitrage-free ($0 < d < e^{r \Delta t} < u$ with $\Delta t = T/n$). Then the unique no-arbitrage price at time $t = 0$ of a European derivative with path-independent terminal payoff $\varphi(S_T)$ at maturity $T = n \Delta t$ is
+<p>For a general \(n\)-period tree, backward induction yields the closed-form binomial pricing formula for path-independent European claims.</p>
+<div class="env-box env-theorem" id="thm:multiperiod_binomial"><div class="env-title">Theorem 2.4 (Multi-Period Binomial Pricing Formula)</div>
+<p>Assume the \(n\)-period binomial model is arbitrage-free (\(0 < d < e^{r \Delta t} < u\) with \(\Delta t = T/n\)). Then the unique no-arbitrage price at time \(t = 0\) of a European derivative with path-independent terminal payoff \(\varphi(S_T)\) at maturity \(T = n \Delta t\) is</p>
 \[
     V(0) = e^{-rT} \sum_{i=0}^{n} \binom{n}{i} q_u^{n-i} q_d^i\, \varphi\bigl(S_0 u^{n-i} d^i\bigr) = e^{-rT} \E^{\Q}\bigl[\varphi(S_T)\bigr].
-\]</p>
+\]
 </div>
-<div class="env-box env-example" id="ex:2p_dynamic_rebalancing"><div class="env-title">Example 02.3 (Two-Period Self-Financing Dynamic Rebalancing)</div>
-<p>Consider a 2-period binomial model with $S_0 = 100$, $u = 1.2$, $d = 0.8$, per-period gross risk-free factor $e^{r \Delta t} = 1.05$ (so $B_0 = 1$, $B_1 = 1.05$, and $B_2 = 1.05^2 = 1.1025$), and an at-the-money European call option with strike $K = 100$. The risk-neutral probabilities are
+<div class="env-box env-example" id="ex:2p_dynamic_rebalancing"><div class="env-title">Example 2.3 (Two-Period Self-Financing Dynamic Rebalancing)</div>
+<p>Consider a 2-period binomial model with \(S_0 = 100\), \(u = 1.2\), \(d = 0.8\), per-period gross risk-free factor \(e^{r \Delta t} = 1.05\) (so \(B_0 = 1\), \(B_1 = 1.05\), and \(B_2 = 1.05^2 = 1.1025\)), and an at-the-money European call option with strike \(K = 100\). The risk-neutral probabilities are</p>
 \[
     q_u = \frac{1.05 - 0.8}{1.2 - 0.8} = \frac{5}{8} = 0.625, \qquad q_d = 1 - q_u = \frac{3}{8} = 0.375.
 \]
-The stock prices evolve from $S_0 = 100$ to $S_u = 120$, $S_d = 80$ at $t = 1$, and to $S_{uu} = 144$, $S_{ud} = 96$, $S_{dd} = 64$ at $t = 2$. The terminal call payoffs are $C_{uu} = (144 - 100)^+ = 44$ and $C_{ud} = C_{dd} = 0$. Backward induction yields</p>
-$$\begin{aligned}
+<p>The stock prices evolve from \(S_0 = 100\) to \(S_u = 120\), \(S_d = 80\) at \(t = 1\), and to \(S_{uu} = 144\), \(S_{ud} = 96\), \(S_{dd} = 64\) at \(t = 2\). The terminal call payoffs are \(C_{uu} = (144 - 100)^+ = 44\) and \(C_{ud} = C_{dd} = 0\). Backward induction yields</p>
+\[\begin{aligned}
     C_u &= \frac{1}{1.05}(0.625 \times 44 + 0.375 \times 0) = \frac{550}{21} \approx 26.1905, \qquad C_d = 0, \\
     C_0 &= \frac{1}{1.05}\left(0.625 \times \frac{550}{21} + 0.375 \times 0\right) = \frac{6875}{441} \approx 15.5896.
-\end{aligned}$$
-<p>Let $(\alpha_k, \beta_k)$ denote the holdings in the money market account $B_t$ and the stock $S_t$ formed at date $k \in \{0, 1\}$ and held over $[k, k+1]$:</p>
+\end{aligned}\]
+<p>Let \((\alpha_k, \beta_k)\) denote the holdings in the money market account \(B_t\) and the stock \(S_t\) formed at date \(k \in \{0, 1\}\) and held over \([k, k+1]\):</p>
 <ul>
-<li><strong>At $t = 0$:</strong> $\beta_0 = (C_u - C_d)/(S_u - S_d) = (550/21)/40 = 55/84 \approx 0.6548$ shares, and $\alpha_0 = C_0 - \beta_0 S_0 = -22000/441 \approx -49.8866$ units of $B_0$ (initial portfolio value $V_0 = -49.8866 + 65.4762 = \$15.5896$).
-    <li><strong>At $t = 1$, up node ($S_u = 120$):</strong> Prior to rebalancing, the portfolio is worth $\alpha_0 B_1 + \beta_0 S_u = -52.3810 + 78.5714 = \$26.1905 = C_u$. To replicate the second period, we rebalance to $\beta_1^u = (44 - 0)/(144 - 96) = 11/12 \approx 0.9167$ shares and $\alpha_1^u = (C_u - \beta_1^u S_u)/B_1 = -35200/441 \approx -79.8186$ units of $B_1$ (a bank balance of $\alpha_1^u B_1 = -\$83.8095$). Buying the extra $0.2619$ shares costs $0.2619 \times 120 = \$31.4286$, which is funded entirely by increasing the bank loan from $\$52.3810$ to $\$83.8095$. Thus $\alpha_1^u B_1 + \beta_1^u S_u = -83.8095 + 110.0000 = \$26.1905$, confirming zero external cash injection.
-    <li><strong>At $t = 1$, down node ($S_d = 80$):</strong> Prior to rebalancing, the portfolio is worth $\alpha_0 B_1 + \beta_0 S_d = -52.3810 + 52.3810 = \$0 = C_d$. Liquidating all $0.6548$ shares raises $\$52.3810$, which exactly repays the bank debt, leaving $(\alpha_1^d, \beta_1^d) = (0, 0)$ with zero external cash flow.
-    <li><strong>At $t = 2$:</strong> From the up node, the bank debt compounds to $\alpha_1^u B_2 = -\$88.0000$, yielding $-88 + (11/12) \times 144 = 44 = C_{uu}$ at $S_{uu} = 144$ and $-88 + (11/12) \times 96 = 0 = C_{ud}$ at $S_{ud} = 96$. From the down node, $(\alpha_1^d, \beta_1^d) = (0, 0)$ replicates $C_{du} = C_{dd} = 0$ identically.
+<li><strong>At \(t = 0\):</strong> \(\beta_0 = (C_u - C_d)/(S_u - S_d) = (550/21)/40 = 55/84 \approx 0.6548\) shares, and \(\alpha_0 = C_0 - \beta_0 S_0 = -22000/441 \approx -49.8866\) units of \(B_0\) (initial portfolio value \(V_0 = -49.8866 + 65.4762 = $15.5896\)).
+    <li><strong>At \(t = 1\), up node (\(S_u = 120\)):</strong> Prior to rebalancing, the portfolio is worth \(\alpha_0 B_1 + \beta_0 S_u = -52.3810 + 78.5714 = $26.1905 = C_u\). To replicate the second period, we rebalance to \(\beta_1^u = (44 - 0)/(144 - 96) = 11/12 \approx 0.9167\) shares and \(\alpha_1^u = (C_u - \beta_1^u S_u)/B_1 = -35200/441 \approx -79.8186\) units of \(B_1\) (a bank balance of \(\alpha_1^u B_1 = -$83.8095\)). Buying the extra \(0.2619\) shares costs \(0.2619 \times 120 = $31.4286\), which is funded entirely by increasing the bank loan from \($52.3810\) to \($83.8095\). Thus \(\alpha_1^u B_1 + \beta_1^u S_u = -83.8095 + 110.0000 = $26.1905\), confirming zero external cash injection.
+    <li><strong>At \(t = 1\), down node (\(S_d = 80\)):</strong> Prior to rebalancing, the portfolio is worth \(\alpha_0 B_1 + \beta_0 S_d = -52.3810 + 52.3810 = $0 = C_d\). Liquidating all \(0.6548\) shares raises \($52.3810\), which exactly repays the bank debt, leaving \((\alpha_1^d, \beta_1^d) = (0, 0)\) with zero external cash flow.
+    <li><strong>At \(t = 2\):</strong> From the up node, the bank debt compounds to \(\alpha_1^u B_2 = -$88.0000\), yielding \(-88 + (11/12) \times 144 = 44 = C_{uu}\) at \(S_{uu} = 144\) and \(-88 + (11/12) \times 96 = 0 = C_{ud}\) at \(S_{ud} = 96\). From the down node, \((\alpha_1^d, \beta_1^d) = (0, 0)\) replicates \(C_{du} = C_{dd} = 0\) identically.
 </ul>
-<p>Table&nbsp;<a href="#tab:2p_rebalancing">02.1</a> summarizes the complete self-financing trajectory.</p>
+<p>Table&nbsp;<a href="#tab:2p_rebalancing">2.1</a> summarizes the complete self-financing trajectory.</p>
 <div class="table-wrap" id="tab:2p_rebalancing"><table class="booktabs">
-<caption>Self-financing dynamic replication of a 2-period European call ($S_0 = K = 100$, $u = 1.2$, $d = 0.8$, $e^{r\Delta t} = 1.05$).</caption>
+<caption>Self-financing dynamic replication of a 2-period European call (\(S_0 = K = 100\), \(u = 1.2\), \(d = 0.8\), \(e^{r\Delta t} = 1.05\)).</caption>
 <thead>
-<tr><th>Date / Node</th><th>$S_t$</th><th>Pre-Rebal. Value</th><th>$(\alpha_k, \beta_k)$</th><th>Bank Balance $\alpha_k B_t$</th><th>Post-Rebal. / Terminal Value</th></tr>
+<tr><th>Date / Node</th><th>\(S_t\)</th><th>Pre-Rebal. Value</th><th>\((\alpha_k, \beta_k)\)</th><th>Bank Balance \(\alpha_k B_t\)</th><th>Post-Rebal. / Terminal Value</th></tr>
 </thead>
 <tbody>
-<tr><td>$t = 0$</td><td>$100$</td><td>&mdash;</td><td>$(-49.8866,\; 0.6548)$</td><td>$-49.8866$</td><td>$15.5896$</td></tr>
-<tr><td>$t = 1$ (Up)</td><td>$120$</td><td>$26.1905$</td><td>$(-79.8186,\; 0.9167)$</td><td>$-83.8095$</td><td>$26.1905$</td></tr>
-<tr><td>$t = 1$ (Down)</td><td>$80$</td><td>$0.0000$</td><td>$(0.0000,\; 0.0000)$</td><td>$0.0000$</td><td>$0.0000$</td></tr>
-<tr><td>$t = 2$ ($uu$)</td><td>$144$</td><td>$44.0000$</td><td>&mdash;</td><td>$-88.0000$</td><td>$44.0000 = C_{uu}$</td></tr>
-<tr><td>$t = 2$ ($ud$)</td><td>$96$</td><td>$0.0000$</td><td>&mdash;</td><td>$-88.0000$</td><td>$0.0000 = C_{ud}$</td></tr>
-<tr><td>$t = 2$ ($du,\, dd$)</td><td>$96,\, 64$</td><td>$0.0000$</td><td>&mdash;</td><td>$0.0000$</td><td>$0.0000 = C_{du},\, C_{dd}$</td></tr>
-</tbody></table></div>
+<tr><td>\(t = 0\)</td><td>\(100\)</td><td>&mdash;</td><td>\((-49.8866,\; 0.6548)\)</td><td>\(-49.8866\)</td><td>\(15.5896\)</td></tr>
+<tr><td>\(t = 1\) (Up)</td><td>\(120\)</td><td>\(26.1905\)</td><td>\((-79.8186,\; 0.9167)\)</td><td>\(-83.8095\)</td><td>\(26.1905\)</td></tr>
+<tr><td>\(t = 1\) (Down)</td><td>\(80\)</td><td>\(0.0000\)</td><td>\((0.0000,\; 0.0000)\)</td><td>\(0.0000\)</td><td>\(0.0000\)</td></tr>
+<tr><td>\(t = 2\) (\(uu\))</td><td>\(144\)</td><td>\(44.0000\)</td><td>&mdash;</td><td>\(-88.0000\)</td><td>\(44.0000 = C_{uu}\)</td></tr>
+<tr><td>\(t = 2\) (\(ud\))</td><td>\(96\)</td><td>\(0.0000\)</td><td>&mdash;</td><td>\(-88.0000\)</td><td>\(0.0000 = C_{ud}\)</td></tr>
+<tr><td>\(t = 2\) (\(du,\, dd\))</td><td>\(96,\, 64\)</td><td>\(0.0000\)</td><td>&mdash;</td><td>\(0.0000\)</td><td>\(0.0000 = C_{du},\, C_{dd}\)</td></tr>
+</tbody></table>
 </div>
-<div class="env-box env-example"><div class="env-title">Example 02.4</div>
-<p>Consider a 1-period binomial model with parameters
+</div>
+<div class="env-box env-example"><div class="env-title">Example 2.4</div>
+<p>Consider a 1-period binomial model with parameters</p>
 \[
     p_u = 0.4, \quad p_d = 0.6, \quad r = \ln(1.1), \quad T = 1, \quad d = 0.9, \quad u = 1.05, \quad S_0 = 10.
 \]
-Because $e^{rT} = 1.1 > u = 1.05$, an arbitrage opportunity exists: one can short-sell the stock and invest the proceeds of $10$ in the risk-free asset. At $T = 1$, the risk-free investment grows to $11$, so even if the stock rises to $10.5$, one covers the short position and earns a riskless profit of $0.5$.</p>
-<p>Now modify the parameters to $u = 1.1$ and $r = 0$, and introduce an intermediate step at $t = 0.5$ so that $\Delta t = 0.5$ (the stock moves by factor $u$ or $d$ over $[0, 0.5]$ and again over $[0.5, 1]$). In this 2-period binomial model, we price an at-the-money <strong>lookback option</strong> with path-dependent terminal payoff
+<p>Because \(e^{rT} = 1.1 > u = 1.05\), an arbitrage opportunity exists: one can short-sell the stock and invest the proceeds of \(10\) in the risk-free asset. At \(T = 1\), the risk-free investment grows to \(11\), so even if the stock rises to \(10.5\), one covers the short position and earns a riskless profit of \(0.5\).</p>
+<p>Now modify the parameters to \(u = 1.1\) and \(r = 0\), and introduce an intermediate step at \(t = 0.5\) so that \(\Delta t = 0.5\) (the stock moves by factor \(u\) or \(d\) over \([0, 0.5]\) and again over \([0.5, 1]\)). In this 2-period binomial model, we price an at-the-money <strong>lookback option</strong> with path-dependent terminal payoff</p>
 \[
     \varphi(S_{0.5}, S_1) = \bigl(\max\{S_0, S_{0.5}, S_1\} - 10\bigr)^+
 \]
-in two ways: via replication and via risk-neutral valuation.</p>
+<p>in two ways: via replication and via risk-neutral valuation.</p>
 <ol>
 <li><em>Via replication.</em> The stock price matrix is
-    \[
+\[
         \mathbf{S} =
         \begin{pmatrix}
             10 & 11 & 12.1 \\
@@ -314,90 +315,91 @@ in two ways: via replication and via risk-neutral valuation.</p>
             0 & 0 & 8.1
         \end{pmatrix}.
     \]
-    Let $(\alpha_k, \beta_k)$ denote the holdings in the risk-free asset and the stock. Because the payoff is path-dependent, we track the running maximum along each branch:
+<p>Let \((\alpha_k, \beta_k)\) denote the holdings in the risk-free asset and the stock. Because the payoff is path-dependent, we track the running maximum along each branch:</p>
 <ul>
-<li>At node $S_{0.5} = 11$, the terminal payoffs are $V_{uu} = (12.1 - 10)^+ = 2.1$ (path $10 \to 11 \to 12.1$) and $V_{ud} = (11 - 10)^+ = 1$ (path $10 \to 11 \to 9.9$). Solving
-        \[
+<li>At node \(S_{0.5} = 11\), the terminal payoffs are \(V_{uu} = (12.1 - 10)^+ = 2.1\) (path \(10 \to 11 \to 12.1\)) and \(V_{ud} = (11 - 10)^+ = 1\) (path \(10 \to 11 \to 9.9\)). Solving
+\[
             \begin{cases}
                 \alpha_1 + 12.1 \beta_1 = 2.1, \\
                 \alpha_1 + 9.9 \beta_1 = 1
             \end{cases}
         \]
-        gives $\alpha_1 = -3.95$, $\beta_1 = 0.5$, and option value $V_u = 0.5 \times 11 - 3.95 = 1.55$.
-        <li>At node $S_{0.5} = 9$, the running maximum never exceeds $10$ along either path ($10 \to 9 \to 9.9$ or $10 \to 9 \to 8.1$), so $V_{du} = V_{dd} = 0$, giving $\alpha_2 = \beta_2 = 0$ and $V_d = 0$.
-        <li>At node $S_0 = 10$, solving
-        \[
+<p>gives \(\alpha_1 = -3.95\), \(\beta_1 = 0.5\), and option value \(V_u = 0.5 \times 11 - 3.95 = 1.55\).
+        <li>At node \(S_{0.5} = 9\), the running maximum never exceeds \(10\) along either path (\(10 \to 9 \to 9.9\) or \(10 \to 9 \to 8.1\)), so \(V_{du} = V_{dd} = 0\), giving \(\alpha_2 = \beta_2 = 0\) and \(V_d = 0\).
+        <li>At node \(S_0 = 10\), solving</p>
+\[
             \begin{cases}
                 \alpha_0 + 11 \beta_0 = 1.55, \\
                 \alpha_0 + 9 \beta_0 = 0
             \end{cases}
         \]
-        gives $\alpha_0 = -6.975$, $\beta_0 = 0.775$, and time-$0$ option price $V_0 = 0.775 \times 10 - 6.975 = 0.775$.
+<p>gives \(\alpha_0 = -6.975\), \(\beta_0 = 0.775\), and time-\(0\) option price \(V_0 = 0.775 \times 10 - 6.975 = 0.775\).</p>
 </ul>
-<li><em>Via risk-neutral valuation.</em> With $\Delta t = 0.5$ and $r = 0$, the per-step risk-neutral probabilities are
-    \[
+<li><em>Via risk-neutral valuation.</em> With \(\Delta t = 0.5\) and \(r = 0\), the per-step risk-neutral probabilities are
+\[
         q_u = \frac{e^{r \Delta t} - d}{u - d} = \frac{1 - 0.9}{1.1 - 0.9} = 0.5, \qquad q_d = \frac{u - e^{r \Delta t}}{u - d} = 0.5.
     \]
-    Because the payoff is path-dependent ($V_{ud} = 1 \neq 0 = V_{du}$ even though both paths finish at $S_1 = 9.9$), we enumerate all four paths in Table&nbsp;<a href="#tab:lookback_paths">02.2</a> rather than recombining intermediate nodes:
-    \[
+<p>Because the payoff is path-dependent (\(V_{ud} = 1 \neq 0 = V_{du}\) even though both paths finish at \(S_1 = 9.9\)), we enumerate all four paths in Table&nbsp;<a href="#tab:lookback_paths">2.2</a> rather than recombining intermediate nodes:</p>
+\[
         V_0 = e^{-rT}\bigl(q_u^2 V_{uu} + q_u q_d V_{ud} + q_d q_u V_{du} + q_d^2 V_{dd}\bigr) = 0.25 \times (2.1 + 1 + 0 + 0) = 0.775.
     \]
 </ol>
 <div class="table-wrap" id="tab:lookback_paths"><table class="booktabs">
-<caption>Path-by-path enumeration for the 2-period lookback option ($S_0 = 10$, $u = 1.1$, $d = 0.9$, $r = 0$).</caption>
+<caption>Path-by-path enumeration for the 2-period lookback option (\(S_0 = 10\), \(u = 1.1\), \(d = 0.9\), \(r = 0\)).</caption>
 <thead>
-<tr><th>Path</th><th>Price Trajectory $(S_0, S_{0.5}, S_1)$</th><th>Running Max $M_1$</th><th>Payoff $(M_1 - 10)^+$</th><th>$\Q(\text{path})$</th></tr>
+<tr><th>Path</th><th>Price Trajectory \((S_0, S_{0.5}, S_1)\)</th><th>Running Max \(M_1\)</th><th>Payoff \((M_1 - 10)^+\)</th><th>\(\Q(\text{path})\)</th></tr>
 </thead>
 <tbody>
-<tr><td>$uu$</td><td>$(10,\; 11,\; 12.1)$</td><td>$12.1$</td><td>$2.1$</td><td>$0.25$</td></tr>
-<tr><td>$ud$</td><td>$(10,\; 11,\; 9.9)$</td><td>$11.0$</td><td>$1.0$</td><td>$0.25$</td></tr>
-<tr><td>$du$</td><td>$(10,\; 9,\; 9.9)$</td><td>$10.0$</td><td>$0.0$</td><td>$0.25$</td></tr>
-<tr><td>$dd$</td><td>$(10,\; 9,\; 8.1)$</td><td>$10.0$</td><td>$0.0$</td><td>$0.25$</td></tr>
-</tbody></table></div>
+<tr><td>\(uu\)</td><td>\((10,\; 11,\; 12.1)\)</td><td>\(12.1\)</td><td>\(2.1\)</td><td>\(0.25\)</td></tr>
+<tr><td>\(ud\)</td><td>\((10,\; 11,\; 9.9)\)</td><td>\(11.0\)</td><td>\(1.0\)</td><td>\(0.25\)</td></tr>
+<tr><td>\(du\)</td><td>\((10,\; 9,\; 9.9)\)</td><td>\(10.0\)</td><td>\(0.0\)</td><td>\(0.25\)</td></tr>
+<tr><td>\(dd\)</td><td>\((10,\; 9,\; 8.1)\)</td><td>\(10.0\)</td><td>\(0.0\)</td><td>\(0.25\)</td></tr>
+</tbody></table>
 </div>
-<h3 id="sub-s-6">The Limit of the Multi-Period Binomial Model: Cox&ndash;Ross&ndash;Rubinstein</h3>
-<p>We can approximate a continuous-time asset price process over $[0, T]$ by an $N$-step discrete-time process on the grid $0, \Delta t, 2\Delta t, \dots, N\Delta t$ with $\Delta t = T / N$. In the <strong>Cox&ndash;Ross&ndash;Rubinstein (CRR)</strong> parameterization, the up and down factors are chosen as
+</div>
+<h3 id="sub-s-3">The Limit of the Multi-Period Binomial Model: Cox&ndash;Ross&ndash;Rubinstein</h3>
+<p>We can approximate a continuous-time asset price process over \([0, T]\) by an \(N\)-step discrete-time process on the grid \(0, \Delta t, 2\Delta t, \dots, N\Delta t\) with \(\Delta t = T / N\). In the <strong>Cox&ndash;Ross&ndash;Rubinstein (CRR)</strong> parameterization, the up and down factors are chosen as</p>
 \[
     u = e^{\sigma \sqrt{\Delta t}}, \qquad d = e^{-\sigma \sqrt{\Delta t}} = \frac{1}{u},
 \]
-with risk-neutral probabilities $q_u = (e^{r\Delta t} - d) / (u - d)$ and $q_d = 1 - q_u$.</p>
-<p>The CRR model provides a discrete-time approximation to the geometric Brownian motion used in the Black&ndash;Scholes model. Indeed, denoting $\Delta S_t = S_{t + \Delta t} - S_t$, the conditional first and second moments under the risk-neutral measure $\Q$ satisfy, as $\Delta t \to 0$,</p>
-$$\begin{aligned}
+<p>with risk-neutral probabilities \(q_u = (e^{r\Delta t} - d) / (u - d)\) and \(q_d = 1 - q_u\).</p>
+<p>The CRR model provides a discrete-time approximation to the geometric Brownian motion used in the Black&ndash;Scholes model. Indeed, denoting \(\Delta S_t = S_{t + \Delta t} - S_t\), the conditional first and second moments under the risk-neutral measure \(\Q\) satisfy, as \(\Delta t \to 0\),</p>
+\[\begin{aligned}
     \E^{\Q}[\Delta S_t \mid S_t] &= (q_u u + q_d d - 1) S_t = (e^{r \Delta t} - 1) S_t = r S_t \Delta t + o(\Delta t), \\
     \Var^{\Q}(\Delta S_t \mid S_t) &= \E^{\Q}\bigl[(\Delta S_t)^2 \mid S_t\bigr] - \bigl(\E^{\Q}[\Delta S_t \mid S_t]\bigr)^2 \\
     &= \bigl(q_u (u - 1)^2 + q_d (1 - d)^2\bigr) S_t^2 - \bigl(\E^{\Q}[\Delta S_t \mid S_t]\bigr)^2 \\
     &= \sigma^2 S_t^2 \Delta t + o(\Delta t).
-\end{aligned}$$
-<p>This matches the local drift and variance of the Euler discretization of geometric Brownian motion under $\Q$:
+\end{aligned}\]
+<p>This matches the local drift and variance of the Euler discretization of geometric Brownian motion under \(\Q\):</p>
 \[
     \Delta S(t) = r S(t) \Delta t + \sigma S(t) z(t) \sqrt{\Delta t}, \qquad z(t) \sim \mathcal{N}(0, 1).
-\]</p>
-<div class="env-box env-remark"><div class="env-title">Remark 02.1</div>
-<p>Companion Python scripts implementing the CRR binomial tree pricing algorithm and generating Figures&nbsp;<a href="#fig:binomial">02.3</a>, <a href="#fig:asset_price_tree">02.4</a>, and&nbsp;<a href="#fig:american_binomial">02.5</a> are available in <code>code/ch02_discrete_time_models.py</code>.</p>
+\]
+<div class="env-box env-remark"><div class="env-title">Remark 2.1</div>
+<p>Companion Python scripts implementing the CRR binomial tree pricing algorithm and generating Figures&nbsp;<a href="#fig:binomial">2.3</a>, <a href="#fig:asset_price_tree">2.4</a>, and&nbsp;<a href="#fig:american_binomial">2.5</a> are available in <code>code/ch02_discrete_time_models.py</code>.</p>
 </div>
-<p>Figure&nbsp;<a href="#fig:binomial">02.3</a> displays European call and put prices computed via a 100-step CRR binomial tree alongside their terminal payoffs, and Figure&nbsp;<a href="#fig:asset_price_tree">02.4</a> illustrates a 20-step asset price tree.</p>
+<p>Figure&nbsp;<a href="#fig:binomial">2.3</a> displays European call and put prices computed via a 100-step CRR binomial tree alongside their terminal payoffs, and Figure&nbsp;<a href="#fig:asset_price_tree">2.4</a> illustrates a 20-step asset price tree.</p>
 <figure class="tex-fig" id="fig:binomial"><img src="Figure/binomial_model.png" alt="European call and put prices computed with the CRR binomial model." loading="lazy"><figcaption>European call and put prices computed with the CRR binomial model.</figcaption></figure>
 <figure class="tex-fig" id="fig:asset_price_tree"><img src="Figure/asset_price_tree.png" alt="Recombining binomial tree for underlying asset prices." loading="lazy"><figcaption>Recombining binomial tree for underlying asset prices.</figcaption></figure>
-<h2 id="sec-3">02.3 Discrete-Time Model for American Options</h2>
-<p>The binomial tree framework extends naturally to <strong>American options</strong>, which differ from European options in that the holder may exercise the contract at any date $t \le T$ up to and including maturity. If exercised at time $t \le T$:</p>
+<h2 id="sec-3">2.3 Discrete-Time Model for American Options</h2>
+<p>The binomial tree framework extends naturally to <strong>American options</strong>, which differ from European options in that the holder may exercise the contract at any date \(t \le T\) up to and including maturity. If exercised at time \(t \le T\):</p>
 <ul>
-<li>an American call option pays its intrinsic value $(S_t - K)^+$,
-    <li>an American put option pays its intrinsic value $(K - S_t)^+$.
+<li>an American call option pays its intrinsic value \((S_t - K)^+\),
+    <li>an American put option pays its intrinsic value \((K - S_t)^+\).
 </ul>
-<p>A rational holder exercises an American option at a node <strong>whenever its immediate exercise (intrinsic) value exceeds its continuation value</strong> (the discounted risk-neutral expectation of holding the option for one more step). Accordingly, for an American put option on an $n$-period tree, we set the terminal condition
+<p>A rational holder exercises an American option at a node <strong>whenever its immediate exercise (intrinsic) value exceeds its continuation value</strong> (the discounted risk-neutral expectation of holding the option for one more step). Accordingly, for an American put option on an \(n\)-period tree, we set the terminal condition</p>
 \[
     \mathbf{V}[i, n] = \bigl(K - \mathbf{S}[i, n]\bigr)^+, \qquad 0 \le i \le n,
 \]
-and evaluate earlier nodes by backward induction for $0 \le j < n$ and $0 \le i \le j$:
+<p>and evaluate earlier nodes by backward induction for \(0 \le j < n\) and \(0 \le i \le j\):</p>
 \[
     \mathbf{V}[i, j] = \max\left\{ e^{-r \Delta t} \Bigl( q_j^u \mathbf{V}[i, j+1] + \bigl(1 - q_j^u\bigr) \mathbf{V}[i+1, j+1] \Bigr),\; \bigl(K - \mathbf{S}[i, j]\bigr)^+ \right\}.
-\]</p>
-<div class="env-box env-example"><div class="env-title">Example 02.5</div>
-<p>Consider a 2-period binomial model for an American put option with $S_0 = 4$, $K = 5$, $u = 2$, $d = 1/2$, and discrete per-period interest rate $r = 0.25$ (discount factor $(1 + r)^{-1} = 4/5$). The risk-neutral probabilities are
+\]
+<div class="env-box env-example"><div class="env-title">Example 2.5</div>
+<p>Consider a 2-period binomial model for an American put option with \(S_0 = 4\), \(K = 5\), \(u = 2\), \(d = 1/2\), and discrete per-period interest rate \(r = 0.25\) (discount factor \((1 + r)^{-1} = 4/5\)). The risk-neutral probabilities are</p>
 \[
     q_u = \frac{1 + r - d}{u - d} = \frac{1.25 - 0.5}{2 - 0.5} = 0.5, \qquad q_d = 1 - q_u = 0.5,
 \]
-so $(1 + r)^{-1} q_u = (1 + r)^{-1} q_d = 2/5$. The stock price tree is
+<p>so \((1 + r)^{-1} q_u = (1 + r)^{-1} q_d = 2/5\). The stock price tree is</p>
 \[
     \mathbf{S} =
     \begin{pmatrix}
@@ -406,12 +408,12 @@ so $(1 + r)^{-1} q_u = (1 + r)^{-1} q_d = 2/5$. The stock price tree is
         0 & 0 & 1
     \end{pmatrix}.
 \]
-The option value function $v_j(s)$ at time step $j \in \{0, 1, 2\}$ satisfies</p>
-$$\begin{aligned}
+<p>The option value function \(v_j(s)\) at time step \(j \in \{0, 1, 2\}\) satisfies</p>
+\[\begin{aligned}
     v_2(s) &= (5 - s)^+, \\
     v_j(s) &= \max\left\{ \frac{2}{5} \left[ v_{j+1}\!\left(\frac{s}{2}\right) + v_{j+1}(2s) \right],\; (5 - s)^+ \right\}, \qquad j = 0, 1.
-\end{aligned}$$
-<p>Working backwards yields the option value matrix
+\end{aligned}\]
+<p>Working backwards yields the option value matrix</p>
 \[
     \mathbf{V} =
     \begin{pmatrix}
@@ -420,132 +422,132 @@ $$\begin{aligned}
         0 & 0 & 4
     \end{pmatrix}.
 \]
-Notice that at node $(i, j) = (1, 1)$ where $s = 2$, the continuation value is $\frac{2}{5}(4 + 1) = 2$, whereas the immediate exercise value is $(5 - 2)^+ = 3$; hence early exercise is strictly optimal at that node.</p>
+<p>Notice that at node \((i, j) = (1, 1)\) where \(s = 2\), the continuation value is \(\frac{2}{5}(4 + 1) = 2\), whereas the immediate exercise value is \((5 - 2)^+ = 3\); hence early exercise is strictly optimal at that node.</p>
 </div>
-<p>Figure&nbsp;<a href="#fig:american_binomial">02.5</a> shows American call and put prices computed via the CRR binomial tree (implemented in <code>code/ch02_discrete_time_models.py</code>).</p>
+<p>Figure&nbsp;<a href="#fig:american_binomial">2.5</a> shows American call and put prices computed via the CRR binomial tree (implemented in <code>code/ch02_discrete_time_models.py</code>).</p>
 <figure class="tex-fig" id="fig:american_binomial"><img src="Figure/american_binomial_model.png" alt="American call and put prices computed with the CRR binomial model." loading="lazy"><figcaption>American call and put prices computed with the CRR binomial model.</figcaption></figure>
-<p>Because an American option grants all the rights of the corresponding European option plus the flexibility of early exercise, <strong>an American option is always at least as valuable as its European counterpart</strong>: denoting European and American prices by subscripts $E$ and $A$, we have $C_A(S_t, t) \ge C_E(S_t, t)$ and $P_A(S_t, t) \ge P_E(S_t, t)$.</p>
-<div class="env-box env-lemma" id="lem:call_bounds"><div class="env-title">Lemma 02.1 (Bounds for Call Options)</div>
-<p>Assume the market is arbitrage-free, the underlying stock pays no dividends, and the continuously compounded risk-free rate satisfies $r \ge 0$. Then, for all $0 \le t \le T$,
+<p>Because an American option grants all the rights of the corresponding European option plus the flexibility of early exercise, <strong>an American option is always at least as valuable as its European counterpart</strong>: denoting European and American prices by subscripts \(E\) and \(A\), we have \(C_A(S_t, t) \ge C_E(S_t, t)\) and \(P_A(S_t, t) \ge P_E(S_t, t)\).</p>
+<div class="env-box env-lemma" id="lem:call_bounds"><div class="env-title">Lemma 2.1 (Bounds for Call Options)</div>
+<p>Assume the market is arbitrage-free, the underlying stock pays no dividends, and the continuously compounded risk-free rate satisfies \(r \ge 0\). Then, for all \(0 \le t \le T\),</p>
 \[
     \bigl(S_t - K e^{-r(T-t)}\bigr)^+ \stackrel{(1)}{\le} C_E(S_t, t) \le C_A(S_t, t) \stackrel{(2)}{\le} S_t.
-\]</p>
+\]
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
 <ol>
-<li>At time $t$, form a portfolio that is long one European call, short one share of the stock, and long $K e^{-r(T-t)}$ in the money market account. Its value at time $t$ is $V_t = C_E(S_t, t) - S_t + K e^{-r(T-t)}$, and its terminal value at time $T$ is
-    \[
+<li>At time \(t\), form a portfolio that is long one European call, short one share of the stock, and long \(K e^{-r(T-t)}\) in the money market account. Its value at time \(t\) is \(V_t = C_E(S_t, t) - S_t + K e^{-r(T-t)}\), and its terminal value at time \(T\) is
+\[
         V_T = (S_T - K)^+ - S_T + K = (K - S_T)^+ \ge 0.
     \]
-    By Proposition&nbsp;<a href="#prop:monotonicity">02.1</a>, $V_t \ge 0$, so $C_E(S_t, t) \ge S_t - K e^{-r(T-t)}$. Since $C_E(S_T, T) = (S_T - K)^+ \ge 0$, Proposition&nbsp;<a href="#prop:monotonicity">02.1</a> also implies $C_E(S_t, t) \ge 0$. Combining these two lower bounds gives
-    \[
+<p>By Proposition&nbsp;<a href="#prop:monotonicity">2.1</a>, \(V_t \ge 0\), so \(C_E(S_t, t) \ge S_t - K e^{-r(T-t)}\). Since \(C_E(S_T, T) = (S_T - K)^+ \ge 0\), Proposition&nbsp;<a href="#prop:monotonicity">2.1</a> also implies \(C_E(S_t, t) \ge 0\). Combining these two lower bounds gives</p>
+\[
         C_E(S_t, t) \ge \max\bigl(0,\, S_t - K e^{-r(T-t)}\bigr) = \bigl(S_t - K e^{-r(T-t)}\bigr)^+.
     \]
-    <li>Suppose toward a contradiction that $C_A(S_t, t) > S_t$. At time $t$, sell one American call, buy one share of the stock, and invest the strictly positive surplus $C_A(S_t, t) - S_t > 0$ in the money market account. If the holder exercises at some stopping time $\tau \in [t, T]$, deliver the share and receive $K > 0$, leaving a strictly positive balance of $(C_A(S_t, t) - S_t) e^{r(\tau - t)} + K > 0$. If the option is never exercised, at maturity $T$ the portfolio is worth $(C_A(S_t, t) - S_t) e^{r(T-t)} + S_T > 0$. Either outcome violates the no-arbitrage assumption. Thus $C_A(S_t, t) \le S_t$.
+<li>Suppose toward a contradiction that \(C_A(S_t, t) > S_t\). At time \(t\), sell one American call, buy one share of the stock, and invest the strictly positive surplus \(C_A(S_t, t) - S_t > 0\) in the money market account. If the holder exercises at some stopping time \(\tau \in [t, T]\), deliver the share and receive \(K > 0\), leaving a strictly positive balance of \((C_A(S_t, t) - S_t) e^{r(\tau - t)} + K > 0\). If the option is never exercised, at maturity \(T\) the portfolio is worth \((C_A(S_t, t) - S_t) e^{r(T-t)} + S_T > 0\). Either outcome violates the no-arbitrage assumption. Thus \(C_A(S_t, t) \le S_t\).
 </ol>
  <span class="qed-mark">&#9723;</span>
 </div>
-<p>A striking consequence of Lemma&nbsp;<a href="#lem:call_bounds">02.1</a> is that an American call on a non-dividend-paying stock should never be exercised early.</p>
-<div class="env-box env-theorem" id="thm:american_call_early_exercise"><div class="env-title">Theorem 02.5 (No Early Exercise for American Calls without Dividends)</div>
-<p>Assume the market is arbitrage-free, the underlying stock pays no dividends, and $r \ge 0$. Then the right to exercise an American call option early has zero value, and
+<p>A striking consequence of Lemma&nbsp;<a href="#lem:call_bounds">2.1</a> is that an American call on a non-dividend-paying stock should never be exercised early.</p>
+<div class="env-box env-theorem" id="thm:american_call_early_exercise"><div class="env-title">Theorem 2.5 (No Early Exercise for American Calls without Dividends)</div>
+<p>Assume the market is arbitrage-free, the underlying stock pays no dividends, and \(r \ge 0\). Then the right to exercise an American call option early has zero value, and</p>
 \[
     C_A(S_t, t) = C_E(S_t, t) \qquad \text{for all } 0 \le t \le T.
-\]</p>
+\]
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
-<p>At any time $\tau \in [t, T]$, because $r \ge 0$ we have $e^{-r(T-\tau)} \le 1$, and therefore by Lemma&nbsp;<a href="#lem:call_bounds">02.1</a>,
+<p>At any time \(\tau \in [t, T]\), because \(r \ge 0\) we have \(e^{-r(T-\tau)} \le 1\), and therefore by Lemma&nbsp;<a href="#lem:call_bounds">2.1</a>,</p>
 \[
     (S_\tau - K)^+ \le \bigl(S_\tau - K e^{-r(T-\tau)}\bigr)^+ \le C_E(S_\tau, \tau) \le C_A(S_\tau, \tau).
 \]
-Thus the immediate exercise value never exceeds the continuation value of holding the option (indeed, it never exceeds the value of the corresponding European call). Consequently, it is never strictly optimal to exercise early, and $C_A(S_t, t) = C_E(S_t, t)$. <span class="qed-mark">&#9723;</span></p>
+<p>Thus the immediate exercise value never exceeds the continuation value of holding the option (indeed, it never exceeds the value of the corresponding European call). Consequently, it is never strictly optimal to exercise early, and \(C_A(S_t, t) = C_E(S_t, t)\). <span class="qed-mark">&#9723;</span></p>
 </div>
-<h3 id="sub-5-1">02.5.1 Early Exercise of American Calls under Dividends and Negative Interest Rates</h3>
-<p>Theorem&nbsp;<a href="#thm:american_call_early_exercise">02.5</a> relies crucially on two hypotheses: the underlying stock pays no dividends and the risk-free rate is non-negative ($r \ge 0$). When either assumption fails, early exercise of an American call can become strictly optimal, so that $C_A(S_t, t) > C_E(S_t, t)$.</p>
+<h3 id="sub-3-1">2.3.1 Early Exercise of American Calls under Dividends and Negative Interest Rates</h3>
+<p>Theorem&nbsp;<a href="#thm:american_call_early_exercise">2.5</a> relies crucially on two hypotheses: the underlying stock pays no dividends and the risk-free rate is non-negative (\(r \ge 0\)). When either assumption fails, early exercise of an American call can become strictly optimal, so that \(C_A(S_t, t) > C_E(S_t, t)\).</p>
 <ol>
-<li><strong>Negative interest rates ($r < 0$):</strong> In negative-rate regimes (as observed in European and Japanese sovereign debt markets), $e^{-r(T - t)} > 1$, reversing the key inequality in the proof of Theorem&nbsp;<a href="#thm:american_call_early_exercise">02.5</a>. By put&ndash;call parity,
-    \[
+<li><strong>Negative interest rates (\(r < 0\)):</strong> In negative-rate regimes (as observed in European and Japanese sovereign debt markets), \(e^{-r(T - t)} > 1\), reversing the key inequality in the proof of Theorem&nbsp;<a href="#thm:american_call_early_exercise">2.5</a>. By put&ndash;call parity,
+\[
         C_E(S_t, t) = S_t - K e^{-r(T - t)} + P_E(S_t, t),
     \]
-    so the gap between immediate exercise and the European call value is
-    \[
+<p>so the gap between immediate exercise and the European call value is</p>
+\[
         (S_t - K) - C_E(S_t, t) = K\bigl(e^{-r(T - t)} - 1\bigr) - P_E(S_t, t).
     \]
-    Because $K(e^{-r(T - t)} - 1) > 0$ while $P_E(S_t, t) \to 0$ as $S_t \to \infty$, for sufficiently deep-in-the-money stock prices we obtain $S_t - K > C_E(S_t, t)$. Economically, deferring the payment of $K$ forces the holder to carry cash at a negative interest rate; exercising early avoids this negative carry on the strike price.
-<li><strong>Continuous dividend yield ($q > 0$):</strong> By Corollary&nbsp;<a href="ch01.html#cor:put_call_parity_dividends">01.1</a>, put&ndash;call parity gives
-    \[
+<p>Because \(K(e^{-r(T - t)} - 1) > 0\) while \(P_E(S_t, t) \to 0\) as \(S_t \to \infty\), for sufficiently deep-in-the-money stock prices we obtain \(S_t - K > C_E(S_t, t)\). Economically, deferring the payment of \(K\) forces the holder to carry cash at a negative interest rate; exercising early avoids this negative carry on the strike price.</p>
+<li><strong>Continuous dividend yield (\(q > 0\)):</strong> By Corollary&nbsp;<a href="ch01.html#cor:put_call_parity_dividends">1.1</a>, put&ndash;call parity gives
+\[
         (S_t - K) - C_E(S_t, t) = S_t\bigl(1 - e^{-q(T - t)}\bigr) - K\bigl(1 - e^{-r(T - t)}\bigr) - P_E(S_t, t).
     \]
-    Since $1 - e^{-q(T - t)} > 0$ and $P_E(S_t, t) \to 0$ as $S_t \to \infty$, immediate exercise strictly dominates holding the European call whenever $S_t$ is sufficiently large. Exercising early allows the holder to capture the dividend stream that is otherwise forfeited while holding the option.
-<li><strong>Discrete dividend $D$ at an ex-dividend date $t_{\mathrm{ex}} \in (0, T)$:</strong> Suppose $r \ge 0$ and the stock pays a single deterministic cash dividend $D > 0$ at $t_{\mathrm{ex}}$, causing the stock price to drop from its cum-dividend level $S_{t_{\mathrm{ex}}^-}$ to its ex-dividend level $S_{t_{\mathrm{ex}}^+} = S_{t_{\mathrm{ex}}^-} - D$. Because no further dividends occur on $(t_{\mathrm{ex}}, T]$, Theorem&nbsp;<a href="#thm:american_call_early_exercise">02.5</a> ensures that early exercise is never optimal after $t_{\mathrm{ex}}$; hence the continuation value at $t_{\mathrm{ex}}^+$ equals the European call price $C_E(S_{t_{\mathrm{ex}}^-} - D, t_{\mathrm{ex}}^+)$. By put&ndash;call parity on $[t_{\mathrm{ex}}^+, T]$,
-    \[
+<p>Since \(1 - e^{-q(T - t)} > 0\) and \(P_E(S_t, t) \to 0\) as \(S_t \to \infty\), immediate exercise strictly dominates holding the European call whenever \(S_t\) is sufficiently large. Exercising early allows the holder to capture the dividend stream that is otherwise forfeited while holding the option.</p>
+<li><strong>Discrete dividend \(D\) at an ex-dividend date \(t_{\mathrm{ex}} \in (0, T)\):</strong> Suppose \(r \ge 0\) and the stock pays a single deterministic cash dividend \(D > 0\) at \(t_{\mathrm{ex}}\), causing the stock price to drop from its cum-dividend level \(S_{t_{\mathrm{ex}}^-}\) to its ex-dividend level \(S_{t_{\mathrm{ex}}^+} = S_{t_{\mathrm{ex}}^-} - D\). Because no further dividends occur on \((t_{\mathrm{ex}}, T]\), Theorem&nbsp;<a href="#thm:american_call_early_exercise">2.5</a> ensures that early exercise is never optimal after \(t_{\mathrm{ex}}\); hence the continuation value at \(t_{\mathrm{ex}}^+\) equals the European call price \(C_E(S_{t_{\mathrm{ex}}^-} - D, t_{\mathrm{ex}}^+)\). By put&ndash;call parity on \([t_{\mathrm{ex}}^+, T]\),
+\[
         (S_{t_{\mathrm{ex}}^-} - K) - C_E(S_{t_{\mathrm{ex}}^-} - D, t_{\mathrm{ex}}^+) = D - K\bigl(1 - e^{-r(T - t_{\mathrm{ex}})}\bigr) - P_E(S_{t_{\mathrm{ex}}^-} - D, t_{\mathrm{ex}}^+).
     \]
-    Because $P_E \ge 0$, early exercise at $t_{\mathrm{ex}}^-$ is never optimal if $D \le K(1 - e^{-r(T - t_{\mathrm{ex}})})$ (the interest earned by deferring $K$ exceeds the dividend). Conversely, whenever
-<span id="eq:discrete_div_threshold"></span>$$
+<p>Because \(P_E \ge 0\), early exercise at \(t_{\mathrm{ex}}^-\) is never optimal if \(D \le K(1 - e^{-r(T - t_{\mathrm{ex}})})\) (the interest earned by deferring \(K\) exceeds the dividend). Conversely, whenever</p>
+<span id="eq:discrete_div_threshold"></span>\[
     
         D > K\bigl(1 - e^{-r(T - t_{\mathrm{ex}})}\bigr),
-    $$
-<p>immediate exercise at $t_{\mathrm{ex}}^-$ strictly dominates continuation for all cum-dividend prices $S_{t_{\mathrm{ex}}^-}$ large enough that $P_E(S_{t_{\mathrm{ex}}^-} - D, t_{\mathrm{ex}}^+) < D - K(1 - e^{-r(T - t_{\mathrm{ex}})})$.</p>
+    \]
+<p>immediate exercise at \(t_{\mathrm{ex}}^-\) strictly dominates continuation for all cum-dividend prices \(S_{t_{\mathrm{ex}}^-}\) large enough that \(P_E(S_{t_{\mathrm{ex}}^-} - D, t_{\mathrm{ex}}^+) < D - K(1 - e^{-r(T - t_{\mathrm{ex}})})\).</p>
 </ol>
-<div class="env-box env-example" id="ex:american_call_dividend"><div class="env-title">Example 02.6 (American Call with a Discrete Dividend)</div>
-<p>Consider a 2-period binomial model with $S_0 = 100$, $u = 1.2$, $d = 0.8$, per-period gross risk-free factor $e^{r\Delta t} = 1.05$ (so $q_u = 0.625$ and $q_d = 0.375$), and an American call option with strike $K = 100$. Suppose the stock pays a known discrete cash dividend $D = 15$ at $t = 1$ (immediately after the cum-dividend instant $t = 1^-$). We first verify condition&nbsp;<a href="#eq:discrete_div_threshold">02.1</a>:
+<div class="env-box env-example" id="ex:american_call_dividend"><div class="env-title">Example 2.6 (American Call with a Discrete Dividend)</div>
+<p>Consider a 2-period binomial model with \(S_0 = 100\), \(u = 1.2\), \(d = 0.8\), per-period gross risk-free factor \(e^{r\Delta t} = 1.05\) (so \(q_u = 0.625\) and \(q_d = 0.375\)), and an American call option with strike \(K = 100\). Suppose the stock pays a known discrete cash dividend \(D = 15\) at \(t = 1\) (immediately after the cum-dividend instant \(t = 1^-\)). We first verify condition&nbsp;<a href="#eq:discrete_div_threshold">2.1</a>:</p>
 \[
     K\bigl(1 - e^{-r\Delta t}\bigr) = 100\left(1 - \frac{1}{1.05}\right) \approx 4.7619 < 15 = D,
 \]
-so early exercise at $t = 1^-$ can be optimal.</p>
-<p>Over the first period, the cum-dividend stock price moves to $S_u^- = 120$ or $S_d^- = 80$ (note that $e^{-r\Delta t}(q_u S_u^- + q_d S_d^-) = 100 = S_0$). Immediately after the dividend is paid, the ex-dividend prices drop to $S_u^+ = 120 - 15 = 105$ and $S_d^+ = 80 - 15 = 65$, and over the second period evolve as:</p>
+<p>so early exercise at \(t = 1^-\) can be optimal.</p>
+<p>Over the first period, the cum-dividend stock price moves to \(S_u^- = 120\) or \(S_d^- = 80\) (note that \(e^{-r\Delta t}(q_u S_u^- + q_d S_d^-) = 100 = S_0\)). Immediately after the dividend is paid, the ex-dividend prices drop to \(S_u^+ = 120 - 15 = 105\) and \(S_d^+ = 80 - 15 = 65\), and over the second period evolve as:</p>
 <ul>
-<li>From $S_u^+ = 105$: $S_{uu} = 105 \times 1.2 = 126$ and $S_{ud} = 105 \times 0.8 = 84$, with terminal call payoffs $C_{uu} = (126 - 100)^+ = 26$ and $C_{ud} = 0$.
-    <li>From $S_d^+ = 65$: $S_{du} = 65 \times 1.2 = 78$ and $S_{dd} = 65 \times 0.8 = 52$, with terminal call payoffs $C_{du} = C_{dd} = 0$.
+<li>From \(S_u^+ = 105\): \(S_{uu} = 105 \times 1.2 = 126\) and \(S_{ud} = 105 \times 0.8 = 84\), with terminal call payoffs \(C_{uu} = (126 - 100)^+ = 26\) and \(C_{ud} = 0\).
+    <li>From \(S_d^+ = 65\): \(S_{du} = 65 \times 1.2 = 78\) and \(S_{dd} = 65 \times 0.8 = 52\), with terminal call payoffs \(C_{du} = C_{dd} = 0\).
 </ul>
-<p>Evaluating the up node at $t = 1$:</p>
+<p>Evaluating the up node at \(t = 1\):</p>
 <ul>
-<li><em>Continuation value</em> (at $t = 1^+$): $\text{Cont}_u = \frac{1}{1.05}(0.625 \times 26 + 0.375 \times 0) = \frac{16.25}{1.05} \approx 15.4762$.
-    <li><em>Immediate exercise value</em> (cum-dividend at $t = 1^-$): $\text{Ex}_u = (120 - 100)^+ = 20.0000$.
+<li><em>Continuation value</em> (at \(t = 1^+\)): \(\text{Cont}_u = \frac{1}{1.05}(0.625 \times 26 + 0.375 \times 0) = \frac{16.25}{1.05} \approx 15.4762\).
+    <li><em>Immediate exercise value</em> (cum-dividend at \(t = 1^-\)): \(\text{Ex}_u = (120 - 100)^+ = 20.0000\).
 </ul>
-<p>Since $\text{Ex}_u = 20.0000 > 15.4762 = \text{Cont}_u$, early exercise at $t = 1^-$ is <strong>strictly optimal</strong> in the up state, giving $C_A(u) = 20.0000$ (whereas the European continuation value is $C_E(u) = 15.4762$). At the down node, both immediate exercise and continuation equal $0$. Stepping back to $t = 0$:</p>
-$$\begin{aligned}
+<p>Since \(\text{Ex}_u = 20.0000 > 15.4762 = \text{Cont}_u\), early exercise at \(t = 1^-\) is <strong>strictly optimal</strong> in the up state, giving \(C_A(u) = 20.0000\) (whereas the European continuation value is \(C_E(u) = 15.4762\)). At the down node, both immediate exercise and continuation equal \(0\). Stepping back to \(t = 0\):</p>
+\[\begin{aligned}
     C_E(0) &= \frac{1}{1.05}\bigl(0.625 \times 15.4762 + 0.375 \times 0\bigr) \approx 9.2120, \\
     C_A(0) &= \max\left\{\frac{1}{1.05}\bigl(0.625 \times 20 + 0.375 \times 0\bigr),\; (100 - 100)^+\right\} = \frac{12.5}{1.05} \approx 11.9048.
-\end{aligned}$$
-<p>The discrete dividend creates a strictly positive early-exercise premium of $C_A(0) - C_E(0) \approx \$2.6927$.</p>
+\end{aligned}\]
+<p>The discrete dividend creates a strictly positive early-exercise premium of \(C_A(0) - C_E(0) \approx $2.6927\).</p>
 </div>
 <p>We now establish the analogous bounds for put options.</p>
-<div class="env-box env-lemma" id="lem:put_bounds"><div class="env-title">Lemma 02.2 (Bounds for Put Options)</div>
-<p>Assume the market is arbitrage-free, the underlying stock pays no dividends, and $r \ge 0$. Then, for all $0 \le t \le T$,
+<div class="env-box env-lemma" id="lem:put_bounds"><div class="env-title">Lemma 2.2 (Bounds for Put Options)</div>
+<p>Assume the market is arbitrage-free, the underlying stock pays no dividends, and \(r \ge 0\). Then, for all \(0 \le t \le T\),</p>
 \[
     \bigl(K e^{-r(T-t)} - S_t\bigr)^+ \stackrel{(1)}{\le} P_E(S_t, t) \le P_A(S_t, t) \stackrel{(2)}{\le} K.
-\]</p>
+\]
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
 <ol>
-<li>By put&ndash;call parity (Theorem&nbsp;<a href="#thm:put_call_parity_ch2">02.1</a>) and the non-negativity of $C_E(S_t, t)$,
-    \[
+<li>By put&ndash;call parity (Theorem&nbsp;<a href="#thm:put_call_parity_ch2">2.1</a>) and the non-negativity of \(C_E(S_t, t)\),
+\[
         P_E(S_t, t) = C_E(S_t, t) + K e^{-r(T-t)} - S_t \ge K e^{-r(T-t)} - S_t.
     \]
-    Combining this with $P_E(S_t, t) \ge 0$ yields $P_E(S_t, t) \ge (K e^{-r(T-t)} - S_t)^+$.
-    <li>Suppose toward a contradiction that $P_A(S_t, t) > K$. At time $t$, sell one American put and invest the proceeds $P_A(S_t, t)$ in the money market account. Since $r \ge 0$, at any exercise time $\tau \in [t, T]$ the money market balance is $P_A(S_t, t) e^{r(\tau - t)} \ge P_A(S_t, t) > K$. Paying $K$ to acquire the stock (worth $S_\tau \ge 0$) leaves a strictly positive profit $P_A(S_t, t) e^{r(\tau - t)} - K + S_\tau > 0$; if the option is never exercised, the balance at $T$ is $P_A(S_t, t) e^{r(T-t)} > 0$. This creates an arbitrage, so $P_A(S_t, t) \le K$.
+<p>Combining this with \(P_E(S_t, t) \ge 0\) yields \(P_E(S_t, t) \ge (K e^{-r(T-t)} - S_t)^+\).
+    <li>Suppose toward a contradiction that \(P_A(S_t, t) > K\). At time \(t\), sell one American put and invest the proceeds \(P_A(S_t, t)\) in the money market account. Since \(r \ge 0\), at any exercise time \(\tau \in [t, T]\) the money market balance is \(P_A(S_t, t) e^{r(\tau - t)} \ge P_A(S_t, t) > K\). Paying \(K\) to acquire the stock (worth \(S_\tau \ge 0\)) leaves a strictly positive profit \(P_A(S_t, t) e^{r(\tau - t)} - K + S_\tau > 0\); if the option is never exercised, the balance at \(T\) is \(P_A(S_t, t) e^{r(T-t)} > 0\). This creates an arbitrage, so \(P_A(S_t, t) \le K\).</p>
 </ol>
  <span class="qed-mark">&#9723;</span>
 </div>
-<h3 id="sub-s-8">Early Exercise of American Put Options</h3>
-<p>Unlike American calls, American puts on a non-dividend-paying stock can be strictly more valuable than European puts when $r > 0$. To see this, assume $r > 0$ and consider the stopping time
+<h3 id="sub-s-6">Early Exercise of American Put Options</h3>
+<p>Unlike American calls, American puts on a non-dividend-paying stock can be strictly more valuable than European puts when \(r > 0\). To see this, assume \(r > 0\) and consider the stopping time</p>
 \[
     \tau = \inf\bigl\{ t \in [0, T] : S_t \le K - K e^{-r(T-t)} \bigr\},
 \]
-together with the suboptimal exercise strategy of exercising at $\min\{\tau, T\}$. Recall from Proposition&nbsp;<a href="ch01.html#prop:arbitrage_bounds_ch1">01.2</a> that $P_E(S_t, t) < K e^{-r(T-t)}$ whenever $S_T$ is non-degenerate (i.e., $\Prob(S_T > 0 \mid \F_t) > 0$). Then:</p>
+<p>together with the suboptimal exercise strategy of exercising at \(\min\{\tau, T\}\). Recall from Proposition&nbsp;<a href="ch01.html#prop:arbitrage_bounds_ch1">1.2</a> that \(P_E(S_t, t) < K e^{-r(T-t)}\) whenever \(S_T\) is non-degenerate (i.e., \(\Prob(S_T > 0 \mid \F_t) > 0\)). Then:</p>
 <ol>
-<li>On the event $\{\tau < T\}$, we have $S_\tau \le K - K e^{-r(T-\tau)}$, which is algebraically equivalent to
-    \[
+<li>On the event \(\{\tau < T\}\), we have \(S_\tau \le K - K e^{-r(T-\tau)}\), which is algebraically equivalent to
+\[
         K - S_\tau \ge K e^{-r(T-\tau)} > P_E(S_\tau, \tau).
     \]
-    Thus exercising at $\tau$ strictly dominates holding the European put.
-    <li>On the event $\{\tau \ge T\}$, the option is held to maturity $T$ and delivers the exact same payoff as the European put.
+<p>Thus exercising at \(\tau\) strictly dominates holding the European put.
+    <li>On the event \(\{\tau \ge T\}\), the option is held to maturity \(T\) and delivers the exact same payoff as the European put.</p>
 </ol>
-<p>Whenever $\Prob(\tau < T) > 0$, this feasible exercise strategy strictly outperforms the European put, proving that $P_A(S_0, 0) > P_E(S_0, 0)$ for $r > 0$. Note, however, that $\tau$ is merely a sufficient threshold demonstrating the value of early exercise; it is <em>not</em> the optimal exercise boundary (which is studied in Chapter&nbsp;<a href="ch07.html#ch:american-options">07</a>).</p>
-<h2 id="sec-4">02.4 The Trinomial Model</h2>
+<p>Whenever \(\Prob(\tau < T) > 0\), this feasible exercise strategy strictly outperforms the European put, proving that \(P_A(S_0, 0) > P_E(S_0, 0)\) for \(r > 0\). Note, however, that \(\tau\) is merely a sufficient threshold demonstrating the value of early exercise; it is <em>not</em> the optimal exercise boundary (which is studied in Chapter&nbsp;<a href="ch07.html#ch:american-options">7</a>).</p>
+<h2 id="sec-4">2.4 The Trinomial Model</h2>
 <p><span id="sec:trinomial"></span></p>
-<p>The <strong>trinomial model</strong> extends the single-period binomial model by allowing the stock price to move up, stay unchanged, or move down. Starting from $S_0 = s > 0$, the terminal stock price is $S_T = s \cdot X$, where
+<p>The <strong>trinomial model</strong> extends the single-period binomial model by allowing the stock price to move up, stay unchanged, or move down. Starting from \(S_0 = s > 0\), the terminal stock price is \(S_T = s \cdot X\), where</p>
 \[
     X =
     \begin{cases}
@@ -554,115 +556,115 @@ together with the suboptimal exercise strategy of exercising at $\min\{\tau, T\}
         d & \text{with probability } p_d,
     \end{cases}
 \]
-with $0 < d < e^{rT} < u$, $p_u, p_e, p_d > 0$, and $p_u + p_e + p_d = 1$.</p>
-<div class="env-box env-definition" id="def:complete_market"><div class="env-title">Definition 02.3</div>
+<p>with \(0 < d < e^{rT} < u\), \(p_u, p_e, p_d > 0\), and \(p_u + p_e + p_d = 1\).</p>
+<div class="env-box env-definition" id="def:complete_market"><div class="env-title">Definition 2.3</div>
 <p>A market is said to be <strong>complete</strong> if every contingent claim (terminal payoff) can be replicated by a self-financing trading strategy. Otherwise, the market is said to be <strong>incomplete</strong>.</p>
 </div>
-<div class="env-box env-example"><div class="env-title">Example 02.7</div>
-<p>Assume $r = 0$, $u = 1.1$, $d = 0.9$, and $S_0 = 100$. Then $S_T \in \{90, 100, 110\}$. Consider pricing a European call option with strike $K = 100$, whose payoffs in the three states are $0$, $0$, and $10$, respectively. Attempting to find a replicating portfolio $h = (\alpha, \beta)$ yields the overdetermined linear system</p>
-$$\begin{aligned}
+<div class="env-box env-example"><div class="env-title">Example 2.7</div>
+<p>Assume \(r = 0\), \(u = 1.1\), \(d = 0.9\), and \(S_0 = 100\). Then \(S_T \in \{90, 100, 110\}\). Consider pricing a European call option with strike \(K = 100\), whose payoffs in the three states are \(0\), \(0\), and \(10\), respectively. Attempting to find a replicating portfolio \(h = (\alpha, \beta)\) yields the overdetermined linear system</p>
+\[\begin{aligned}
     \alpha + 90\beta &= 0, \\
     \alpha + 100\beta &= 0, \\
     \alpha + 110\beta &= 10.
-\end{aligned}$$
-<p>The first two equations force $\alpha = \beta = 0$, which contradicts the third equation. Hence no replicating portfolio exists.</p>
+\end{aligned}\]
+<p>The first two equations force \(\alpha = \beta = 0\), which contradicts the third equation. Hence no replicating portfolio exists.</p>
 </div>
 <figure class="tex-fig" id="fig:trinomial"><img src="Figure/Trinomial.png" alt="Super-replicating and sub-replicating portfolios in the trinomial model." loading="lazy"><figcaption>Super-replicating and sub-replicating portfolios in the trinomial model.</figcaption></figure>
-<div class="env-box env-proposition" id="prop:trinomial_incomplete"><div class="env-title">Proposition 02.2</div>
+<div class="env-box env-proposition" id="prop:trinomial_incomplete"><div class="env-title">Proposition 2.2</div>
 <p>The single-period trinomial model with one risky asset and one risk-free asset is incomplete.</p>
 </div>
 <p>Even though exact replication fails in an incomplete market, no-arbitrage still yields tight price bounds through super- and sub-replication.</p>
-<div class="env-box env-definition" id="def:super_sub_replicate"><div class="env-title">Definition 02.4</div>
-<p>Consider a derivative with terminal payoff $\varphi(S_T)$.</p>
+<div class="env-box env-definition" id="def:super_sub_replicate"><div class="env-title">Definition 2.4</div>
+<p>Consider a derivative with terminal payoff \(\varphi(S_T)\).</p>
 <ul>
-<li>A portfolio $h$ <strong>super-replicates</strong> $\varphi(S_T)$ if $V_T^h \ge \varphi(S_T)$ with probability $1$.
-    <li>A portfolio $h$ <strong>sub-replicates</strong> $\varphi(S_T)$ if $V_T^h \le \varphi(S_T)$ with probability $1$.
+<li>A portfolio \(h\) <strong>super-replicates</strong> \(\varphi(S_T)\) if \(V_T^h \ge \varphi(S_T)\) with probability \(1\).
+    <li>A portfolio \(h\) <strong>sub-replicates</strong> \(\varphi(S_T)\) if \(V_T^h \le \varphi(S_T)\) with probability \(1\).
 </ul>
-<p>By Proposition&nbsp;<a href="#prop:monotonicity">02.1</a>, the cheapest super-replicating portfolio and the most expensive sub-replicating portfolio provide upper and lower bounds for the no-arbitrage price of the derivative.</p>
+<p>By Proposition&nbsp;<a href="#prop:monotonicity">2.1</a>, the cheapest super-replicating portfolio and the most expensive sub-replicating portfolio provide upper and lower bounds for the no-arbitrage price of the derivative.</p>
 </div>
-<p>In the preceding example, as illustrated in Figure&nbsp;<a href="#fig:trinomial">02.6</a>, the three blue dots depict the call option payoff across the three terminal states:</p>
+<p>In the preceding example, as illustrated in Figure&nbsp;<a href="#fig:trinomial">2.6</a>, the three blue dots depict the call option payoff across the three terminal states:</p>
 <ul>
-<li>The red line represents the cheapest super-replicating portfolio, $h = (-45, 1/2)$, whose initial value is $V_0^h = -45 + 100/2 = 5$.
-    <li>The green lines represent the most expensive sub-replicating portfolios, $h_1^* = (0, 0)$ and $h_2^* = (-100, 1)$, both having initial value $V_0^{h_1^*} = V_0^{h_2^*} = 0$.
+<li>The red line represents the cheapest super-replicating portfolio, \(h = (-45, 1/2)\), whose initial value is \(V_0^h = -45 + 100/2 = 5\).
+    <li>The green lines represent the most expensive sub-replicating portfolios, \(h_1^* = (0, 0)\) and \(h_2^* = (-100, 1)\), both having initial value \(V_0^{h_1^*} = V_0^{h_2^*} = 0\).
 </ul>
-<p>Equivalently, we can characterize the set of no-arbitrage prices via equivalent risk-neutral measures. For any $q \in (0, 1)$, the probability measure $\Q_q$ defined by
+<p>Equivalently, we can characterize the set of no-arbitrage prices via equivalent risk-neutral measures. For any \(q \in (0, 1)\), the probability measure \(\Q_q\) defined by</p>
 \[
     \Q_q(S_T = 90) = \Q_q(S_T = 110) = \frac{1 - q}{2}, \qquad \Q_q(S_T = 100) = q,
 \]
-assigns strictly positive probability to all three states and satisfies $\E^{\Q_q}[S_T] = 100 = S_0$, so $\Q_q$ is an equivalent risk-neutral measure. Every equivalent risk-neutral measure $\Q_q$ produces a valid no-arbitrage price:
+<p>assigns strictly positive probability to all three states and satisfies \(\E^{\Q_q}[S_T] = 100 = S_0\), so \(\Q_q\) is an equivalent risk-neutral measure. Every equivalent risk-neutral measure \(\Q_q\) produces a valid no-arbitrage price:</p>
 \[
     e^{-rT} \E^{\Q_q}\bigl[(S_T - 100)^+\bigr] = 10 \cdot \frac{1 - q}{2} = 5(1 - q) \in (0, 5).
 \]
-Hence the set of no-arbitrage prices is the <strong>open interval $(0, 5)$</strong>. Indeed, neither endpoint is arbitrage-free:</p>
+<p>Hence the set of no-arbitrage prices is the <strong>open interval \((0, 5)\)</strong>. Indeed, neither endpoint is arbitrage-free:</p>
 <ul>
-<li>If the call price were $0$, buying the call would cost $0$ while delivering a non-negative payoff that is strictly positive ($10$) when $S_T = 110$ (which occurs with probability $p_u > 0$), creating an arbitrage.
-    <li>If the call price were $5$, selling the call and buying the super-replicating portfolio $h = (-45, 1/2)$ would cost $5 - 5 = 0$ today and yield terminal payoff $V_T^h - (S_T - 100)^+$, which equals $0$ for $S_T \in \{90, 110\}$ and equals $5 > 0$ when $S_T = 100$ (which occurs with probability $p_e > 0$), again creating an arbitrage.
+<li>If the call price were \(0\), buying the call would cost \(0\) while delivering a non-negative payoff that is strictly positive (\(10\)) when \(S_T = 110\) (which occurs with probability \(p_u > 0\)), creating an arbitrage.
+    <li>If the call price were \(5\), selling the call and buying the super-replicating portfolio \(h = (-45, 1/2)\) would cost \(5 - 5 = 0\) today and yield terminal payoff \(V_T^h - (S_T - 100)^+\), which equals \(0\) for \(S_T \in \{90, 110\}\) and equals \(5 > 0\) when \(S_T = 100\) (which occurs with probability \(p_e > 0\)), again creating an arbitrage.
 </ul>
-<h2 id="sec-5">02.5 Fundamental Theorems of Asset Pricing in Discrete Time</h2>
-<p>The sharp contrast between the binomial model (exact replication, unique price, unique $\Q$) and the trinomial model (no exact replication, open interval of no-arbitrage prices, infinitely many risk-neutral measures $\Q_q$) is not an accident: it is a manifestation of the two <strong>Fundamental Theorems of Asset Pricing (FTAP)</strong>. We formulate and prove both theorems in a finite discrete-time tree market with dates $0 = t_0 < t_1 < \dots < t_n = T$, a strictly positive money market account $B_{t_j} = e^{r t_j}$ ($B_0 = 1$), a risky stock $S_{t_j}$, and a finite sample space $\Omega$ with $\Prob(\omega) > 0$ for every path $\omega \in \Omega$.</p>
-<div class="env-box env-definition" id="def:emm_discrete"><div class="env-title">Definition 02.5 (Equivalent Martingale Measure)</div>
-<p>A probability measure $\Q$ on $\Omega$ is an <strong>equivalent martingale measure (EMM)</strong> (or <strong>risk-neutral measure</strong>) if:</p>
+<h2 id="sec-5">2.5 Fundamental Theorems of Asset Pricing in Discrete Time</h2>
+<p>The sharp contrast between the binomial model (exact replication, unique price, unique \(\Q\)) and the trinomial model (no exact replication, open interval of no-arbitrage prices, infinitely many risk-neutral measures \(\Q_q\)) is not an accident: it is a manifestation of the two <strong>Fundamental Theorems of Asset Pricing (FTAP)</strong>. We formulate and prove both theorems in a finite discrete-time tree market with dates \(0 = t_0 < t_1 < \dots < t_n = T\), a strictly positive money market account \(B_{t_j} = e^{r t_j}\) (\(B_0 = 1\)), a risky stock \(S_{t_j}\), and a finite sample space \(\Omega\) with \(\Prob(\omega) > 0\) for every path \(\omega \in \Omega\).</p>
+<div class="env-box env-definition" id="def:emm_discrete"><div class="env-title">Definition 2.5 (Equivalent Martingale Measure)</div>
+<p>A probability measure \(\Q\) on \(\Omega\) is an <strong>equivalent martingale measure (EMM)</strong> (or <strong>risk-neutral measure</strong>) if:</p>
 <ol>
-<li>$\Q$ is equivalent to $\Prob$ ($\Q \sim \Prob$), meaning $\Q(\omega) > 0$ for every $\omega \in \Omega$;
-    <li>the discounted stock price $\tilde{S}_{t_j} := S_{t_j} / B_{t_j}$ is a $\Q$-martingale with respect to the filtration $\{\F_j\}_{j=0}^{n}$, i.e.,
-    \[
+<li>\(\Q\) is equivalent to \(\Prob\) (\(\Q \sim \Prob\)), meaning \(\Q(\omega) > 0\) for every \(\omega \in \Omega\);
+    <li>the discounted stock price \(\tilde{S}_{t_j} := S_{t_j} / B_{t_j}\) is a \(\Q\)-martingale with respect to the filtration \(\{\F_j\}_{j=0}^{n}\), i.e.,
+\[
         \E^{\Q}\bigl[\tilde{S}_{t_{j+1}} \mid \F_j\bigr] = \tilde{S}_{t_j} \qquad \text{for all } j = 0, 1, \dots, n - 1.
     \]
 </ol>
 </div>
-<p>A key property of any EMM $\Q$ is that the discounted value $\tilde{V}_{t_j}^h := V_{t_j}^h / B_{t_j}$ of every predictable, self-financing trading strategy $h$ is automatically a $\Q$-martingale: indeed, by the self-financing condition (Definition&nbsp;<a href="#def:self_financing_predictable">02.2</a>),
+<p>A key property of any EMM \(\Q\) is that the discounted value \(\tilde{V}_{t_j}^h := V_{t_j}^h / B_{t_j}\) of every predictable, self-financing trading strategy \(h\) is automatically a \(\Q\)-martingale: indeed, by the self-financing condition (Definition&nbsp;<a href="#def:self_financing_predictable">2.2</a>),</p>
 \[
     \tilde{V}_{t_{j+1}}^h - \tilde{V}_{t_j}^h = \beta_{j+1}\bigl(\tilde{S}_{t_{j+1}} - \tilde{S}_{t_j}\bigr),
 \]
-and taking conditional expectation under $\Q$ given $\F_j$ yields $\E^{\Q}[\tilde{V}_{t_{j+1}}^h - \tilde{V}_{t_j}^h \mid \F_j] = \beta_{j+1} \E^{\Q}[\tilde{S}_{t_{j+1}} - \tilde{S}_{t_j} \mid \F_j] = 0$.</p>
-<div class="env-box env-theorem" id="thm:ftap1_discrete"><div class="env-title">Theorem 02.6 (First Fundamental Theorem of Asset Pricing (FTAP 1))</div>
-<p>A finite discrete-time market model is arbitrage-free if and only if there exists at least one equivalent martingale measure $\Q \sim \Prob$.</p>
+<p>and taking conditional expectation under \(\Q\) given \(\F_j\) yields \(\E^{\Q}[\tilde{V}_{t_{j+1}}^h - \tilde{V}_{t_j}^h \mid \F_j] = \beta_{j+1} \E^{\Q}[\tilde{S}_{t_{j+1}} - \tilde{S}_{t_j} \mid \F_j] = 0\).</p>
+<div class="env-box env-theorem" id="thm:ftap1_discrete"><div class="env-title">Theorem 2.6 (First Fundamental Theorem of Asset Pricing (FTAP 1))</div>
+<p>A finite discrete-time market model is arbitrage-free if and only if there exists at least one equivalent martingale measure \(\Q \sim \Prob\).</p>
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
-<p>($\Leftarrow$) Suppose an EMM $\Q \sim \Prob$ exists, and let $h$ be any self-financing trading strategy with $V_0^h = 0$ and $V_T^h \ge 0$ everywhere. Because $\tilde{V}^h$ is a $\Q$-martingale,
+<p>(\(\Leftarrow\)) Suppose an EMM \(\Q \sim \Prob\) exists, and let \(h\) be any self-financing trading strategy with \(V_0^h = 0\) and \(V_T^h \ge 0\) everywhere. Because \(\tilde{V}^h\) is a \(\Q\)-martingale,</p>
 \[
     \E^{\Q}\bigl[\tilde{V}_T^h\bigr] = \tilde{V}_0^h = V_0^h = 0.
 \]
-Since $\tilde{V}_T^h(\omega) = V_T^h(\omega) / B_T \ge 0$ and $\Q(\omega) > 0$ for every $\omega \in \Omega$, we must have $V_T^h(\omega) = 0$ for all $\omega \in \Omega$. Hence no arbitrage exists.</p>
-<p>($\Rightarrow$) Conversely, assume the market is arbitrage-free. We prove the single-period case ($n = 1$) with $M = |\Omega|$ states $\Omega = \{\omega_1, \dots, \omega_M\}$; in a multi-period tree, applying the exact same argument conditionally at every node yields strictly positive one-step risk-neutral transition probabilities whose product along each path defines a global EMM $\Q \sim \Prob$.</p>
-<p>Identify random variables on $\Omega$ with vectors in $\R^M$. Let
+<p>Since \(\tilde{V}_T^h(\omega) = V_T^h(\omega) / B_T \ge 0\) and \(\Q(\omega) > 0\) for every \(\omega \in \Omega\), we must have \(V_T^h(\omega) = 0\) for all \(\omega \in \Omega\). Hence no arbitrage exists.</p>
+<p>(\(\Rightarrow\)) Conversely, assume the market is arbitrage-free. We prove the single-period case (\(n = 1\)) with \(M = |\Omega|\) states \(\Omega = \{\omega_1, \dots, \omega_M\}\); in a multi-period tree, applying the exact same argument conditionally at every node yields strictly positive one-step risk-neutral transition probabilities whose product along each path defines a global EMM \(\Q \sim \Prob\).</p>
+<p>Identify random variables on \(\Omega\) with vectors in \(\R^M\). Let</p>
 \[
     \mathcal{K} := \bigl\{ \tilde{V}_T^h - V_0^h \in \R^M : h = (\alpha, \beta) \in \R^2 \bigr\} = \operatorname{span}\bigl\{\tilde{S}_T - S_0 \mathbf{1}\bigr\}
 \]
-be the linear subspace of discounted net portfolio gains (where $\mathbf{1} = (1, \dots, 1)^\top \in \R^M$), and let
+<p>be the linear subspace of discounted net portfolio gains (where \(\mathbf{1} = (1, \dots, 1)^\top \in \R^M\)), and let</p>
 \[
     \mathcal{C} := \left\{ x \in \R^M : x_m \ge 0 \text{ for all } m,\;\; \sum_{m=1}^{M} x_m = 1 \right\}
 \]
-be the compact convex unit simplex. The absence of arbitrage is equivalent to $\mathcal{K} \cap \mathcal{C} = \emptyset$ (any $y \in \mathcal{K} \cap \mathcal{C}$ would be a non-negative, nonzero terminal gain achieved at zero initial cost). By the strict Separating Hyperplane Theorem in $\R^M$, there exists a vector $q \in \R^M$ such that $q^\top y = 0$ for all $y \in \mathcal{K}$ and $q^\top x > 0$ for all $x \in \mathcal{C}$. Evaluating $q^\top x > 0$ on each standard basis vector $e_m \in \mathcal{C}$ shows $q_m > 0$ for every $m = 1, \dots, M$. Normalizing $\tilde{q}_m := q_m / \sum_{k=1}^{M} q_k$ defines a probability measure $\Q \sim \Prob$ with $\Q(\omega_m) = \tilde{q}_m > 0$. Finally, since $\tilde{S}_T - S_0 \mathbf{1} \in \mathcal{K}$, we have
+<p>be the compact convex unit simplex. The absence of arbitrage is equivalent to \(\mathcal{K} \cap \mathcal{C} = \emptyset\) (any \(y \in \mathcal{K} \cap \mathcal{C}\) would be a non-negative, nonzero terminal gain achieved at zero initial cost). By the strict Separating Hyperplane Theorem in \(\R^M\), there exists a vector \(q \in \R^M\) such that \(q^\top y = 0\) for all \(y \in \mathcal{K}\) and \(q^\top x > 0\) for all \(x \in \mathcal{C}\). Evaluating \(q^\top x > 0\) on each standard basis vector \(e_m \in \mathcal{C}\) shows \(q_m > 0\) for every \(m = 1, \dots, M\). Normalizing \(\tilde{q}_m := q_m / \sum_{k=1}^{M} q_k\) defines a probability measure \(\Q \sim \Prob\) with \(\Q(\omega_m) = \tilde{q}_m > 0\). Finally, since \(\tilde{S}_T - S_0 \mathbf{1} \in \mathcal{K}\), we have</p>
 \[
     \E^{\Q}\bigl[\tilde{S}_T\bigr] - S_0 = \tilde{q}^\top (\tilde{S}_T - S_0 \mathbf{1}) = 0,
 \]
-so $\Q$ is an EMM. <span class="qed-mark">&#9723;</span></p>
+<p>so \(\Q\) is an EMM. <span class="qed-mark">&#9723;</span></p>
 </div>
-<div class="env-box env-theorem" id="thm:ftap2_discrete"><div class="env-title">Theorem 02.7 (Second Fundamental Theorem of Asset Pricing (FTAP 2))</div>
-<p>An arbitrage-free finite discrete-time market model is complete if and only if the equivalent martingale measure $\Q \sim \Prob$ is unique.</p>
+<div class="env-box env-theorem" id="thm:ftap2_discrete"><div class="env-title">Theorem 2.7 (Second Fundamental Theorem of Asset Pricing (FTAP 2))</div>
+<p>An arbitrage-free finite discrete-time market model is complete if and only if the equivalent martingale measure \(\Q \sim \Prob\) is unique.</p>
 </div>
 <div class="env-proof"><div class="env-title">Proof.</div>
-<p>($\Rightarrow$) Suppose the market is complete and let $\Q_1, \Q_2$ be two EMMs. For any event $A \subseteq \Omega$, completeness guarantees a self-financing strategy $h$ replicating the indicator claim $V_T^h = \ind_A$. Because $\tilde{V}^h$ is a martingale under both $\Q_1$ and $\Q_2$,
+<p>(\(\Rightarrow\)) Suppose the market is complete and let \(\Q_1, \Q_2\) be two EMMs. For any event \(A \subseteq \Omega\), completeness guarantees a self-financing strategy \(h\) replicating the indicator claim \(V_T^h = \ind_A\). Because \(\tilde{V}^h\) is a martingale under both \(\Q_1\) and \(\Q_2\),</p>
 \[
     B_T^{-1} \Q_1(A) = \E^{\Q_1}\bigl[\tilde{V}_T^h\bigr] = V_0^h = \E^{\Q_2}\bigl[\tilde{V}_T^h\bigr] = B_T^{-1} \Q_2(A).
 \]
-Multiplying by $B_T > 0$ gives $\Q_1(A) = \Q_2(A)$ for every event $A \subseteq \Omega$, so $\Q_1 = \Q_2$.</p>
-<p>($\Leftarrow$) We prove the contrapositive in the single-period setting with $M$ states (in a multi-period tree, incompleteness implies incompleteness at some single-period node, where the same perturbation produces a second global EMM). Assume the market is incomplete, so the subspace of attainable discounted payoffs $\mathcal{A} := \{\tilde{V}_T^h \in \R^M : h = (\alpha, \beta) \in \R^2\} = \operatorname{span}\{\mathbf{1}, \tilde{S}_T\}$ is a proper subspace of $\R^M$. Therefore, there exists a nonzero vector $z \in \R^M \setminus \{0\}$ orthogonal to $\mathcal{A}$, satisfying
+<p>Multiplying by \(B_T > 0\) gives \(\Q_1(A) = \Q_2(A)\) for every event \(A \subseteq \Omega\), so \(\Q_1 = \Q_2\).</p>
+<p>(\(\Leftarrow\)) We prove the contrapositive in the single-period setting with \(M\) states (in a multi-period tree, incompleteness implies incompleteness at some single-period node, where the same perturbation produces a second global EMM). Assume the market is incomplete, so the subspace of attainable discounted payoffs \(\mathcal{A} := \{\tilde{V}_T^h \in \R^M : h = (\alpha, \beta) \in \R^2\} = \operatorname{span}\{\mathbf{1}, \tilde{S}_T\}\) is a proper subspace of \(\R^M\). Therefore, there exists a nonzero vector \(z \in \R^M \setminus \{0\}\) orthogonal to \(\mathcal{A}\), satisfying</p>
 \[
     z^\top \mathbf{1} = \sum_{m=1}^{M} z_m = 0 \qquad \text{and} \qquad z^\top \tilde{S}_T = \sum_{m=1}^{M} z_m \tilde{S}_T(\omega_m) = 0.
 \]
-By Theorem&nbsp;<a href="#thm:ftap1_discrete">02.6</a>, at least one EMM $\Q = (q_1, \dots, q_M)$ with $q_m > 0$ exists. Choosing $\varepsilon > 0$ small enough that $q_m + \varepsilon z_m > 0$ for all $m = 1, \dots, M$, define $\Q_\varepsilon(\omega_m) := q_m + \varepsilon z_m$. Then $\Q_\varepsilon(\omega_m) > 0$, $\sum_{m=1}^{M} \Q_\varepsilon(\omega_m) = 1 + \varepsilon z^\top \mathbf{1} = 1$, and
+<p>By Theorem&nbsp;<a href="#thm:ftap1_discrete">2.6</a>, at least one EMM \(\Q = (q_1, \dots, q_M)\) with \(q_m > 0\) exists. Choosing \(\varepsilon > 0\) small enough that \(q_m + \varepsilon z_m > 0\) for all \(m = 1, \dots, M\), define \(\Q_\varepsilon(\omega_m) := q_m + \varepsilon z_m\). Then \(\Q_\varepsilon(\omega_m) > 0\), \(\sum_{m=1}^{M} \Q_\varepsilon(\omega_m) = 1 + \varepsilon z^\top \mathbf{1} = 1\), and</p>
 \[
     \E^{\Q_\varepsilon}\bigl[\tilde{S}_T\bigr] = \E^{\Q}\bigl[\tilde{S}_T\bigr] + \varepsilon z^\top \tilde{S}_T = S_0.
 \]
-Since $z \neq 0$, $\Q_\varepsilon \neq \Q$ is a second distinct EMM. Thus uniqueness of the EMM implies market completeness. <span class="qed-mark">&#9723;</span></p>
+<p>Since \(z \neq 0\), \(\Q_\varepsilon \neq \Q\) is a second distinct EMM. Thus uniqueness of the EMM implies market completeness. <span class="qed-mark">&#9723;</span></p>
 </div>
-<p>Theorems&nbsp;<a href="#thm:ftap1_discrete">02.6</a> and&nbsp;<a href="#thm:ftap2_discrete">02.7</a> unify the discrete-time models of this chapter. In the binomial tree, each node branches into $M = 2$ successor states spanned by two traded assets ($B$ and $S$), so $\dim(\mathcal{A}) = 2 = M$: the market is complete, the EMM $\Q$ is unique (Theorem&nbsp;<a href="#thm:ftap2_discrete">02.7</a>), and every derivative has a unique no-arbitrage price given by its discounted $\Q$-expectation. In the trinomial tree, each node branches into $M = 3$ successor states with only two traded assets, so $\dim(\mathcal{A}) = 2 < 3$: the market is incomplete, the orthogonal complement of $\mathcal{A}$ is one-dimensional, and there is a one-parameter family of EMMs $\{\Q_q\}_{q \in (0, 1)}$, generating the open no-arbitrage pricing interval $(0, 5)$ observed in Section&nbsp;<a href="#sec:trinomial">02.4</a>. In continuous time (Chapter&nbsp;<a href="ch04.html#ch:black-scholes">04</a>), the Black&ndash;Scholes model recovers completeness because continuous trading in a single Brownian-driven stock and a risk-free account uniquely pins down the EMM via Girsanov's theorem.</p>
+<p>Theorems&nbsp;<a href="#thm:ftap1_discrete">2.6</a> and&nbsp;<a href="#thm:ftap2_discrete">2.7</a> unify the discrete-time models of this chapter. In the binomial tree, each node branches into \(M = 2\) successor states spanned by two traded assets (\(B\) and \(S\)), so \(\dim(\mathcal{A}) = 2 = M\): the market is complete, the EMM \(\Q\) is unique (Theorem&nbsp;<a href="#thm:ftap2_discrete">2.7</a>), and every derivative has a unique no-arbitrage price given by its discounted \(\Q\)-expectation. In the trinomial tree, each node branches into \(M = 3\) successor states with only two traded assets, so \(\dim(\mathcal{A}) = 2 < 3\): the market is incomplete, the orthogonal complement of \(\mathcal{A}\) is one-dimensional, and there is a one-parameter family of EMMs \(\{\Q_q\}_{q \in (0, 1)}\), generating the open no-arbitrage pricing interval \((0, 5)\) observed in Section&nbsp;<a href="#sec:trinomial">2.4</a>. In continuous time (Chapter&nbsp;<a href="ch04.html#ch:black-scholes">4</a>), the Black&ndash;Scholes model recovers completeness because continuous trading in a single Brownian-driven stock and a risk-free account uniquely pins down the EMM via Girsanov's theorem.</p>
       <div class="chapter-pager"><a class="pager-card prev" href="ch01.html"><span class="pager-dir">&larr; Previous (Chapter 1)</span><span class="pager-title">Introduction</span></a><a class="pager-card next" href="ch03.html"><span class="pager-dir">Next (Chapter 3) &rarr;</span><span class="pager-title">Math Preliminaries</span></a></div>
     </main>
 
-    <aside class="toc-panel"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-h2"><a href="#lab-2">Interactive Quant Lab</a></li><li class="toc-h2"><a href="#sec-1">02.1 Single-Period Binomial Model</a></li><li class="toc-h2"><a href="#sec-2">02.2 Multi-Period Binomial Model</a></li><li class="toc-h2"><a href="#sec-3">02.3 Discrete-Time Model for American Options</a></li><li class="toc-h2"><a href="#sec-4">02.4 The Trinomial Model</a></li><li class="toc-h2"><a href="#sec-5">02.5 Fundamental Theorems of Asset Pricing in Discrete Time</a></li><li class="toc-h3"><a href="#sub-s-6">The Limit of the Multi-Period Binomial Model: Cox--Ross--Rubinstein</a></li><li class="toc-h3"><a href="#sub-5-1">02.5.1 Early Exercise of American Calls under Dividends and Negative Interest Rates</a></li><li class="toc-h3"><a href="#sub-s-8">Early Exercise of American Put Options</a></li></ul></aside>
+    <aside class="toc-panel"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-h2"><a href="#lab-2">Interactive Quant Lab</a></li><li class="toc-h2"><a href="#sec-1">2.1 Single-Period Binomial Model</a></li><li class="toc-h2"><a href="#sec-2">2.2 Multi-Period Binomial Model</a></li><li class="toc-h3"><a href="#sub-s-3">The Limit of the Multi-Period Binomial Model: Cox&ndash;Ross&ndash;Rubinstein</a></li><li class="toc-h2"><a href="#sec-3">2.3 Discrete-Time Model for American Options</a></li><li class="toc-h3"><a href="#sub-3-1">2.3.1 Early Exercise of American Calls under Dividends and Negative Interest Rates</a></li><li class="toc-h3"><a href="#sub-s-6">Early Exercise of American Put Options</a></li><li class="toc-h2"><a href="#sec-4">2.4 The Trinomial Model</a></li><li class="toc-h2"><a href="#sec-5">2.5 Fundamental Theorems of Asset Pricing in Discrete Time</a></li></ul></aside>
   </div>
 </body>
 </html>

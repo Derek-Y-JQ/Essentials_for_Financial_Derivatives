@@ -53,14 +53,12 @@
       });
     }
 
-    // 4. Render KaTeX with all macros matching outline.tex
+    // 4. Render KaTeX with all macros matching outline.tex (use \[...\] and \(...\) only so literal currency $ never triggers math mode)
     if (window.renderMathInElement) {
       renderMathInElement(document.body, {
         delimiters: [
-          { left: '$$', right: '$$', display: true },
           { left: '\\[', right: '\\]', display: true },
-          { left: '\\(', right: '\\)', display: false },
-          { left: '$', right: '$', display: false }
+          { left: '\\(', right: '\\)', display: false }
         ],
         throwOnError: false,
         strict: false,
@@ -72,7 +70,7 @@
           '\\N': '\\mathbb{N}',
           '\\F': '\\mathcal{F}',
           '\\dd': '\\,\\mathrm{d}',
-          '\\ind': '\\mathbb{1}',
+          '\\ind': '\\mathbf{1}',
           '\\Var': '\\operatorname{Var}',
           '\\Cov': '\\operatorname{Cov}',
           '\\BS': '\\operatorname{BS}',

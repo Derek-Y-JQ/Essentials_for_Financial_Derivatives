@@ -40,157 +40,157 @@
       <div class="chapter-eyebrow">Appendix A</div>
       <h1>Expectation, Information and Conditioning</h1>
       <h2 id="sec-1">A.1 Expectation</h2>
-<p>Let $X$ be a random variable defined on a probability space $(\Omega, \F, \Prob)$. We would like to compute an &ldquo;average value&rdquo; of $X$, taking the probabilities into account when averaging. If $\Omega$ is finite, we simply define this average value by
+<p>Let \(X\) be a random variable defined on a probability space \((\Omega, \F, \Prob)\). We would like to compute an &ldquo;average value&rdquo; of \(X\), taking the probabilities into account when averaging. If \(\Omega\) is finite, we simply define this average value by</p>
 \[
 \E[X] = \sum_{\omega \in \Omega} X(\omega)\,\Prob(\{\omega\}).
 \]
-If $\Omega$ is <strong>countably infinite</strong>, its elements can be listed in a sequence $\omega_1, \omega_2, \omega_3, \ldots$, and (provided the series converges absolutely) we can define $\E[X]$ as an infinite sum:
+<p>If \(\Omega\) is <strong>countably infinite</strong>, its elements can be listed in a sequence \(\omega_1, \omega_2, \omega_3, \ldots\), and (provided the series converges absolutely) we can define \(\E[X]\) as an infinite sum:</p>
 \[
 \E[X] = \sum_{k=1}^{\infty} X(\omega_k)\,\Prob(\{\omega_k\}).
-\]</p>
-<p>However, if $\Omega$ is <strong>uncountably infinite</strong>, we cannot list its elements in a sequence, and uncountable sums cannot be defined in this way.</p>
-<h3 id="sub-s-4">Riemann Integral Revisited</h3>
-<p>If $f(x)$ is a continuous function defined for all $x$ in the closed interval $[a, b]$, we define the Riemann integral $\int_a^b f(x)\dd x$ as follows. First partition $[a, b]$ into subintervals $[x_0, x_1], [x_1, x_2], \ldots, [x_{n-1}, x_n]$, where $a = x_0 < x_1 < \cdots < x_n = b$. We denote by $\Pi = \{x_0, x_1, \ldots, x_n\}$ the set of partition points and by
+\]
+<p>However, if \(\Omega\) is <strong>uncountably infinite</strong>, we cannot list its elements in a sequence, and uncountable sums cannot be defined in this way.</p>
+<h3 id="sub-s-2">Riemann Integral Revisited</h3>
+<p>If \(f(x)\) is a continuous function defined for all \(x\) in the closed interval \([a, b]\), we define the Riemann integral \(\int_a^b f(x)\dd x\) as follows. First partition \([a, b]\) into subintervals \([x_0, x_1], [x_1, x_2], \ldots, [x_{n-1}, x_n]\), where \(a = x_0 < x_1 < \cdots < x_n = b\). We denote by \(\Pi = \{x_0, x_1, \ldots, x_n\}\) the set of partition points and by</p>
 \[
 \|\Pi\| = \max_{1 \leq k \leq n} (x_k - x_{k-1})
 \]
-the <strong>mesh</strong> (length of the longest subinterval) of the partition. For each subinterval $[x_{k-1}, x_k]$, we set $M_k = \max_{x_{k-1} \leq x \leq x_k} f(x)$ and $m_k = \min_{x_{k-1} \leq x \leq x_k} f(x)$. The upper Riemann sum is
+<p>the <strong>mesh</strong> (length of the longest subinterval) of the partition. For each subinterval \([x_{k-1}, x_k]\), we set \(M_k = \max_{x_{k-1} \leq x \leq x_k} f(x)\) and \(m_k = \min_{x_{k-1} \leq x \leq x_k} f(x)\). The upper Riemann sum is</p>
 \[
 \operatorname{Riemann\ Sum}_{\Pi}^{+}(f) = \sum_{k=1}^n M_k (x_k - x_{k-1}),
 \]
-and the lower Riemann sum is
+<p>and the lower Riemann sum is</p>
 \[
 \operatorname{Riemann\ Sum}_{\Pi}^{-}(f) = \sum_{k=1}^n m_k (x_k - x_{k-1}).
-\]</p>
+\]
 <div class="env-box env-definition" id="def:riemann-integral"><div class="env-title">Definition A.1</div>
-<p>As $\|\Pi\|$ converges to zero, the upper Riemann sum and the lower Riemann sum converge to the same limit, which we denote by $\int_a^b f(x)\dd x$. This common limit is the <strong>Riemann integral</strong>.</p>
+<p>As \(\|\Pi\|\) converges to zero, the upper Riemann sum and the lower Riemann sum converge to the same limit, which we denote by \(\int_a^b f(x)\dd x\). This common limit is the <strong>Riemann integral</strong>.</p>
 </div>
 <figure class="tex-fig" id="fig:riemann-integral"><img src="Figure/RM_integral.png" alt="Riemann Integral" loading="lazy"><figcaption>Riemann Integral</figcaption></figure>
-<h3 id="sub-s-5">Lebesgue Integral</h3>
-<p>Recall that a random variable is a measurable function $X : \Omega \to \R$, where $\Omega$ is the sample space. The difficulty with imitating the Riemann procedure to define expectation is that $X$, unlike the function $f$ above, is defined on an abstract space $\Omega$ that is often not a subset of $\R$. In Figure&nbsp;<a href="#fig:lebesgue-integral">A.2</a>, the &ldquo;$x$-axis&rdquo; is not the real line but an abstract space $\Omega$, so there is no natural way to partition $\Omega$ as we partitioned $[a, b]$ in Figure&nbsp;<a href="#fig:riemann-integral">A.1</a>. Therefore, we partition the $y$-axis instead.</p>
-<p>Assume for the moment that $0 \leq X(\omega) < \infty$ for every $\omega \in \Omega$, and let $\Pi = \{y_0, y_1, y_2, \ldots\}$ be a partition of $[0, \infty)$ such that $0 = y_0 < y_1 < y_2 < \cdots$ with $\lim_{k \to \infty} y_k = \infty$. For each subinterval $[y_k, y_{k+1})$ ($k = 0, 1, 2, \ldots$), we set
+<h3 id="sub-s-3">Lebesgue Integral</h3>
+<p>Recall that a random variable is a measurable function \(X : \Omega \to \R\), where \(\Omega\) is the sample space. The difficulty with imitating the Riemann procedure to define expectation is that \(X\), unlike the function \(f\) above, is defined on an abstract space \(\Omega\) that is often not a subset of \(\R\). In Figure&nbsp;<a href="#fig:lebesgue-integral">A.2</a>, the &ldquo;\(x\)-axis&rdquo; is not the real line but an abstract space \(\Omega\), so there is no natural way to partition \(\Omega\) as we partitioned \([a, b]\) in Figure&nbsp;<a href="#fig:riemann-integral">A.1</a>. Therefore, we partition the \(y\)-axis instead.</p>
+<p>Assume for the moment that \(0 \leq X(\omega) < \infty\) for every \(\omega \in \Omega\), and let \(\Pi = \{y_0, y_1, y_2, \ldots\}\) be a partition of \([0, \infty)\) such that \(0 = y_0 < y_1 < y_2 < \cdots\) with \(\lim_{k \to \infty} y_k = \infty\). For each subinterval \([y_k, y_{k+1})\) (\(k = 0, 1, 2, \ldots\)), we set</p>
 \[
 A_k = \{\omega \in \Omega : y_k \leq X(\omega) < y_{k+1}\}.
-\]</p>
-<p>In the Riemann integral, the measure of a subinterval along the $x$-axis is its length, and the height along the $y$-axis is the value of the function. Here, the measure of the corresponding event along the horizontal axis is its probability $\Prob(A_k)$. Therefore, we define the lower Lebesgue sum to be
+\]
+<p>In the Riemann integral, the measure of a subinterval along the \(x\)-axis is its length, and the height along the \(y\)-axis is the value of the function. Here, the measure of the corresponding event along the horizontal axis is its probability \(\Prob(A_k)\). Therefore, we define the lower Lebesgue sum to be</p>
 \[
 \operatorname{Lebesgue\ Sum}_{\Pi}^{-}(X) = \sum_{k=0}^{\infty} y_k\,\Prob(A_k).
 \]
-<figure class="tex-fig" id="fig:lebesgue-integral"><img src="Figure/Lebesgue.png" alt="Lebesgue Integral" loading="lazy"><figcaption>Lebesgue Integral</figcaption></figure></p>
-<p>As $\|\Pi\| = \sup_{k \geq 0} (y_{k+1} - y_k)$ approaches zero (with $y_k \to \infty$), this lower sum converges to a limit in $[0, \infty]$, which we define to be the <strong>Lebesgue integral</strong> $\int_{\Omega} X(\omega)\dd\Prob(\omega)$, or simply $\int_{\Omega} X\dd\Prob$. The Lebesgue integral may equal $+\infty$, because we have not placed any bound on how large the values of $X$ can be.</p>
-<p>We assumed above that $0 \leq X(\omega) < \infty$ for every $\omega \in \Omega$. If the set of $\omega$ violating this condition has probability zero, there is no effect on the integral. If $\Prob\{\omega : X(\omega) \geq 0\} = 1$ and $\Prob\{\omega : X(\omega) = \infty\} > 0$, then we define $\int_{\Omega} X(\omega)\dd\Prob(\omega) = +\infty$.</p>
-<p>Finally, we consider random variables $X$ that can take both positive and negative values. For such a random variable, we define the positive and negative parts of $X$ by
+<figure class="tex-fig" id="fig:lebesgue-integral"><img src="Figure/Lebesgue.png" alt="Lebesgue Integral" loading="lazy"><figcaption>Lebesgue Integral</figcaption></figure>
+<p>As \(\|\Pi\| = \sup_{k \geq 0} (y_{k+1} - y_k)\) approaches zero (with \(y_k \to \infty\)), this lower sum converges to a limit in \([0, \infty]\), which we define to be the <strong>Lebesgue integral</strong> \(\int_{\Omega} X(\omega)\dd\Prob(\omega)\), or simply \(\int_{\Omega} X\dd\Prob\). The Lebesgue integral may equal \(+\infty\), because we have not placed any bound on how large the values of \(X\) can be.</p>
+<p>We assumed above that \(0 \leq X(\omega) < \infty\) for every \(\omega \in \Omega\). If the set of \(\omega\) violating this condition has probability zero, there is no effect on the integral. If \(\Prob\{\omega : X(\omega) \geq 0\} = 1\) and \(\Prob\{\omega : X(\omega) = \infty\} > 0\), then we define \(\int_{\Omega} X(\omega)\dd\Prob(\omega) = +\infty\).</p>
+<p>Finally, we consider random variables \(X\) that can take both positive and negative values. For such a random variable, we define the positive and negative parts of \(X\) by</p>
 \[
 X^{+}(\omega) = \max\{X(\omega), 0\}, \qquad X^{-}(\omega) = \max\{-X(\omega), 0\}.
 \]
-Both $X^{+}$ and $X^{-}$ are nonnegative random variables satisfying $X = X^{+} - X^{-}$ and $|X| = X^{+} + X^{-}$. Both $\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega)$ and $\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega)$ are defined by the procedure above, and provided they are not both $\infty$, we define
+<p>Both \(X^{+}\) and \(X^{-}\) are nonnegative random variables satisfying \(X = X^{+} - X^{-}\) and \(|X| = X^{+} + X^{-}\). Both \(\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega)\) and \(\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega)\) are defined by the procedure above, and provided they are not both \(\infty\), we define</p>
 \[
 \int_{\Omega} X(\omega)\dd\Prob(\omega) = \int_{\Omega} X^{+}(\omega)\dd\Prob(\omega) - \int_{\Omega} X^{-}(\omega)\dd\Prob(\omega).
-\]</p>
-<p>If $\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega)$ and $\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega)$ are both finite, we say that $X$ is <strong>integrable</strong>, and $\int_{\Omega} X(\omega)\dd\Prob(\omega)$ is finite. If $\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega) = \infty$ and $\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega) < \infty$, then $\int_{\Omega} X(\omega)\dd\Prob(\omega) = +\infty$; symmetrically, if $\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega) < \infty$ and $\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega) = \infty$, then $\int_{\Omega} X(\omega)\dd\Prob(\omega) = -\infty$. However, if <em>both</em> $\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega) = \infty$ and $\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega) = \infty$, then $\int_{\Omega} X(\omega)\dd\Prob(\omega)$ is <strong>undefined</strong>.</p>
+\]
+<p>If \(\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega)\) and \(\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega)\) are both finite, we say that \(X\) is <strong>integrable</strong>, and \(\int_{\Omega} X(\omega)\dd\Prob(\omega)\) is finite. If \(\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega) = \infty\) and \(\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega) < \infty\), then \(\int_{\Omega} X(\omega)\dd\Prob(\omega) = +\infty\); symmetrically, if \(\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega) < \infty\) and \(\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega) = \infty\), then \(\int_{\Omega} X(\omega)\dd\Prob(\omega) = -\infty\). However, if <em>both</em> \(\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega) = \infty\) and \(\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega) = \infty\), then \(\int_{\Omega} X(\omega)\dd\Prob(\omega)\) is <strong>undefined</strong>.</p>
 <div class="env-box env-proposition" id="prop:lebesgue-props"><div class="env-title">Proposition A.1</div>
-<p>Let $X, Y$ be random variables on a probability space $(\Omega, \F, \Prob)$. The Lebesgue integral $\int_{\Omega} X(\omega)\dd\Prob(\omega)$ is defined if and only if at least one of $\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega)$ or $\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega)$ is finite; moreover, $X$ is integrable if and only if both are finite. The following properties hold:</p>
+<p>Let \(X, Y\) be random variables on a probability space \((\Omega, \F, \Prob)\). The Lebesgue integral \(\int_{\Omega} X(\omega)\dd\Prob(\omega)\) is defined if and only if at least one of \(\int_{\Omega} X^{+}(\omega)\dd\Prob(\omega)\) or \(\int_{\Omega} X^{-}(\omega)\dd\Prob(\omega)\) is finite; moreover, \(X\) is integrable if and only if both are finite. The following properties hold:</p>
 <ol>
-<li>If $X$ takes only finitely many values $y_0, y_1, \ldots, y_n$, then
-    \[
+<li>If \(X\) takes only finitely many values \(y_0, y_1, \ldots, y_n\), then
+\[
     \int_{\Omega} X(\omega)\dd\Prob(\omega) = \sum_{k=0}^n y_k\,\Prob\{X = y_k\}.
     \]
-    <li>(<strong>Integrability</strong>) The random variable $X$ is integrable if and only if
-    \[
+<li>(<strong>Integrability</strong>) The random variable \(X\) is integrable if and only if
+\[
     \int_{\Omega} |X(\omega)|\dd\Prob(\omega) < \infty.
     \]
-    <li>(<strong>Comparison</strong>) If $X \leq Y$ almost surely (i.e., $\Prob\{X \leq Y\} = 1$), and if $\int_{\Omega} X(\omega)\dd\Prob(\omega)$ and $\int_{\Omega} Y(\omega)\dd\Prob(\omega)$ are defined, then
-    \[
+<li>(<strong>Comparison</strong>) If \(X \leq Y\) almost surely (i.e., \(\Prob\{X \leq Y\} = 1\)), and if \(\int_{\Omega} X(\omega)\dd\Prob(\omega)\) and \(\int_{\Omega} Y(\omega)\dd\Prob(\omega)\) are defined, then
+\[
     \int_{\Omega} X(\omega)\dd\Prob(\omega) \leq \int_{\Omega} Y(\omega)\dd\Prob(\omega).
     \]
-    In particular, if $X = Y$ almost surely and one of the integrals is defined, then both are defined and
-    \[
+<p>In particular, if \(X = Y\) almost surely and one of the integrals is defined, then both are defined and</p>
+\[
     \int_{\Omega} X(\omega)\dd\Prob(\omega) = \int_{\Omega} Y(\omega)\dd\Prob(\omega).
     \]
-    <li>(<strong>Linearity</strong>) If $\alpha, \beta \in \R$ and $X, Y$ are integrable, or if $\alpha, \beta \geq 0$ and $X, Y \geq 0$ almost surely, then
-    \[
+<li>(<strong>Linearity</strong>) If \(\alpha, \beta \in \R\) and \(X, Y\) are integrable, or if \(\alpha, \beta \geq 0\) and \(X, Y \geq 0\) almost surely, then
+\[
     \int_{\Omega} \bigl(\alpha X(\omega) + \beta Y(\omega)\bigr)\dd\Prob(\omega) = \alpha \int_{\Omega} X(\omega)\dd\Prob(\omega) + \beta \int_{\Omega} Y(\omega)\dd\Prob(\omega).
     \]
 </ol>
 </div>
 <div class="env-box env-definition" id="def:expectation"><div class="env-title">Definition A.2</div>
-<p>Let $X$ be a random variable on a probability space $(\Omega, \F, \Prob)$. The <strong>expectation</strong> (or expected value) of $X$ is defined to be
-    \[
+<p>Let \(X\) be a random variable on a probability space \((\Omega, \F, \Prob)\). The <strong>expectation</strong> (or expected value) of \(X\) is defined to be</p>
+\[
     \E[X] = \int_{\Omega} X(\omega)\dd\Prob(\omega).
     \]
-    This definition is well-defined whenever $X$ is integrable, i.e.,
-    \[
+<p>This definition is well-defined whenever \(X\) is integrable, i.e.,</p>
+\[
     \E[|X|] = \int_{\Omega} |X(\omega)|\dd\Prob(\omega) < \infty,
     \]
-    or whenever $X \geq 0$ almost surely (in which case $\E[X]$ may be $+\infty$).</p>
+<p>or whenever \(X \geq 0\) almost surely (in which case \(\E[X]\) may be \(+\infty\)).</p>
 </div>
 <h2 id="sec-2">A.2 Convergence of Integrals</h2>
 <div class="env-box env-theorem" id="thm:mct"><div class="env-title">Theorem A.1 (Monotone Convergence Theorem)</div>
-<p>Let $X_1, X_2, \ldots$ be a sequence of nonnegative random variables on a probability space $(\Omega, \F, \Prob)$ such that $0 \leq X_1(\omega) \leq X_2(\omega) \leq \cdots$ for every $\omega \in \Omega$, and let $X(\omega) = \lim_{n \to \infty} X_n(\omega)$ for every $\omega \in \Omega$. Then
-    \[
+<p>Let \(X_1, X_2, \ldots\) be a sequence of nonnegative random variables on a probability space \((\Omega, \F, \Prob)\) such that \(0 \leq X_1(\omega) \leq X_2(\omega) \leq \cdots\) for every \(\omega \in \Omega\), and let \(X(\omega) = \lim_{n \to \infty} X_n(\omega)\) for every \(\omega \in \Omega\). Then</p>
+\[
     \lim_{n \to \infty} \int_{\Omega} X_n(\omega)\dd\Prob(\omega) = \int_{\Omega} X(\omega)\dd\Prob(\omega),
     \]
-    that is,
-    \[
+<p>that is,</p>
+\[
     \lim_{n \to \infty} \E[X_n] = \E[X].
-    \]</p>
+    \]
 </div>
 <p>Another fundamental convergence result is the <strong>Dominated Convergence Theorem</strong>.</p>
 <div class="env-box env-theorem" id="thm:dct"><div class="env-title">Theorem A.2 (Dominated Convergence Theorem)</div>
-<p>Let $X_1, X_2, \ldots$ be a sequence of random variables on a probability space $(\Omega, \F, \Prob)$ such that $X_n(\omega) \to X(\omega)$ as $n \to \infty$ for every $\omega \in \Omega$. Suppose there exists an integrable random variable $Y$ such that $|X_n(\omega)| \leq Y(\omega)$ for every $n$ and every $\omega \in \Omega$. Then $X$ is integrable and
-    \[
+<p>Let \(X_1, X_2, \ldots\) be a sequence of random variables on a probability space \((\Omega, \F, \Prob)\) such that \(X_n(\omega) \to X(\omega)\) as \(n \to \infty\) for every \(\omega \in \Omega\). Suppose there exists an integrable random variable \(Y\) such that \(|X_n(\omega)| \leq Y(\omega)\) for every \(n\) and every \(\omega \in \Omega\). Then \(X\) is integrable and</p>
+\[
     \lim_{n \to \infty} \E[X_n] = \E[X].
-    \]</p>
+    \]
 </div>
 <p><em>Reference.</em> For standard measure-theoretic proofs of Theorems&nbsp;<a href="#thm:mct">A.1</a> and&nbsp;<a href="#thm:dct">A.2</a>, see G.&nbsp;B.&nbsp;Folland (1999), <em>Real Analysis</em>, Chapter&nbsp;2, or W.&nbsp;Rudin (1987), <em>Real and Complex Analysis</em>, Chapter&nbsp;1.</p>
 <h2 id="sec-3">A.3 Information and Conditional Expectation</h2>
 <div class="env-box env-definition" id="def:filtration-app"><div class="env-title">Definition A.3</div>
-<p>Let $\Omega$ be a nonempty set, let $T > 0$ be fixed, and assume that for each $t \in [0, T]$ there is a $\sigma$-algebra $\F(t) \subseteq \F$. If $s \leq t$ implies $\F(s) \subseteq \F(t)$, then the collection $\{\F(t)\}_{0 \leq t \leq T}$ is called a <strong>filtration</strong>.</p>
+<p>Let \(\Omega\) be a nonempty set, let \(T > 0\) be fixed, and assume that for each \(t \in [0, T]\) there is a \(\sigma\)-algebra \(\F(t) \subseteq \F\). If \(s \leq t\) implies \(\F(s) \subseteq \F(t)\), then the collection \(\{\F(t)\}_{0 \leq t \leq T}\) is called a <strong>filtration</strong>.</p>
 </div>
-<p>A filtration represents the <strong>information</strong> available over time. More precisely, at time $t$, we know for every event $A \in \F(t)$ whether the realized outcome $\omega$ belongs to $A$. In financial modelling, we frequently evaluate the expected value of a future quantity given the information available at an earlier time $s < t$. This leads to <strong>conditional expectation</strong>.</p>
+<p>A filtration represents the <strong>information</strong> available over time. More precisely, at time \(t\), we know for every event \(A \in \F(t)\) whether the realized outcome \(\omega\) belongs to \(A\). In financial modelling, we frequently evaluate the expected value of a future quantity given the information available at an earlier time \(s < t\). This leads to <strong>conditional expectation</strong>.</p>
 <div class="env-box env-definition" id="def:cond-exp-app"><div class="env-title">Definition A.4</div>
-<p>Let $X$ be an integrable random variable ($\E[|X|] < \infty$) on a probability space $(\Omega, \F, \Prob)$, and let $\mathcal{G} \subseteq \F$ be a sub-$\sigma$-algebra. The <strong>conditional expectation</strong> of $X$ given $\mathcal{G}$ is an integrable random variable, denoted by $\E[X \mid \mathcal{G}]$, characterized (uniquely up to almost sure equality) by the following two properties:</p>
+<p>Let \(X\) be an integrable random variable (\(\E[|X|] < \infty\)) on a probability space \((\Omega, \F, \Prob)\), and let \(\mathcal{G} \subseteq \F\) be a sub-\(\sigma\)-algebra. The <strong>conditional expectation</strong> of \(X\) given \(\mathcal{G}\) is an integrable random variable, denoted by \(\E[X \mid \mathcal{G}]\), characterized (uniquely up to almost sure equality) by the following two properties:</p>
 <ol>
-<li>$\E[X \mid \mathcal{G}]$ is $\mathcal{G}$-measurable;
-    <li>For every $A \in \mathcal{G}$,
-    \[
+<li>\(\E[X \mid \mathcal{G}]\) is \(\mathcal{G}\)-measurable;
+    <li>For every \(A \in \mathcal{G}\),
+\[
     \int_{A} \E[X \mid \mathcal{G}]\dd\Prob = \int_{A} X\dd\Prob.
     \]
 </ol>
 </div>
 <div class="env-box env-note"><div class="env-title">Note A.1</div>
-<p>If $\mathcal{G}$ is the $\sigma$-algebra generated by another random variable $Y$ (i.e., $\mathcal{G} = \sigma(Y)$), we typically write $\E[X \mid Y]$ instead of $\E[X \mid \sigma(Y)]$.</p>
+<p>If \(\mathcal{G}\) is the \(\sigma\)-algebra generated by another random variable \(Y\) (i.e., \(\mathcal{G} = \sigma(Y)\)), we typically write \(\E[X \mid Y]\) instead of \(\E[X \mid \sigma(Y)]\).</p>
 </div>
 <p>There are three key properties of conditional expectation:</p>
 <div class="env-box env-proposition" id="prop:cond-exp-props"><div class="env-title">Proposition A.2</div>
-<p>Let $(\Omega, \F, \Prob)$ be a probability space and $\mathcal{G} \subseteq \F$ a sub-$\sigma$-algebra.</p>
+<p>Let \((\Omega, \F, \Prob)\) be a probability space and \(\mathcal{G} \subseteq \F\) a sub-\(\sigma\)-algebra.</p>
 <ol>
-<li>(<strong>Taking out what is known</strong>) If $Y$ and $XY$ are integrable random variables and $X$ is $\mathcal{G}$-measurable, then
-    \[
+<li>(<strong>Taking out what is known</strong>) If \(Y\) and \(XY\) are integrable random variables and \(X\) is \(\mathcal{G}\)-measurable, then
+\[
     \E[XY \mid \mathcal{G}] = X\,\E[Y \mid \mathcal{G}] \qquad \text{a.s.}
     \]
-    <li>(<strong>Tower Property / Law of Iterated Expectations</strong>) If $\mathcal{H}$ is a sub-$\sigma$-algebra of $\mathcal{G}$ (so $\mathcal{H}$ contains less information than $\mathcal{G}$) and $X$ is an integrable random variable, then
-    \[
+<li>(<strong>Tower Property / Law of Iterated Expectations</strong>) If \(\mathcal{H}\) is a sub-\(\sigma\)-algebra of \(\mathcal{G}\) (so \(\mathcal{H}\) contains less information than \(\mathcal{G}\)) and \(X\) is an integrable random variable, then
+\[
     \E\bigl[\E[X \mid \mathcal{G}] \mid \mathcal{H}\bigr] = \E[X \mid \mathcal{H}] \qquad \text{a.s.}
     \]
-    <li>(<strong>Independence</strong>) If $X$ is integrable and independent of $\mathcal{G}$, then
-    \[
+<li>(<strong>Independence</strong>) If \(X\) is integrable and independent of \(\mathcal{G}\), then
+\[
     \E[X \mid \mathcal{G}] = \E[X] \qquad \text{a.s.}
     \]
 </ol>
 </div>
 <div class="env-box env-definition" id="def:markov-process"><div class="env-title">Definition A.5</div>
-<p>Let $(\Omega, \F, \Prob)$ be a probability space, let $T > 0$ be fixed, and let $\{\F(t)\}_{0 \leq t \leq T}$ be a filtration of sub-$\sigma$-algebras of $\F$. Consider an adapted stochastic process $\{X(t)\}_{0 \leq t \leq T}$. Suppose that for all $0 \leq s \leq t \leq T$ and every nonnegative Borel-measurable function $f$, there exists a Borel-measurable function $g$ such that
+<p>Let \((\Omega, \F, \Prob)\) be a probability space, let \(T > 0\) be fixed, and let \(\{\F(t)\}_{0 \leq t \leq T}\) be a filtration of sub-\(\sigma\)-algebras of \(\F\). Consider an adapted stochastic process \(\{X(t)\}_{0 \leq t \leq T}\). Suppose that for all \(0 \leq s \leq t \leq T\) and every nonnegative Borel-measurable function \(f\), there exists a Borel-measurable function \(g\) such that</p>
 \[
 \E[f(X(t)) \mid \F(s)] = g(X(s)) \qquad \text{a.s.}
 \]
-Then $X$ is called a <strong>Markov process</strong>.</p>
+<p>Then \(X\) is called a <strong>Markov process</strong>.</p>
 </div>
 <p>The Markov property is a strong form of conditional independence: given the present state of the process, its future evolution is independent of its past history.</p>
       <div class="chapter-pager"><a class="pager-card prev" href="ch09.html"><span class="pager-dir">&larr; Previous (Chapter 9)</span><span class="pager-title">Problem Set</span></a><a class="pager-card next" href="appB.html"><span class="pager-dir">Next (Appendix B) &rarr;</span><span class="pager-title">Monte Carlo Simulation</span></a></div>
     </main>
 
-    <aside class="toc-panel"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-h2"><a href="#sec-1">A.1 Expectation</a></li><li class="toc-h2"><a href="#sec-2">A.2 Convergence of Integrals</a></li><li class="toc-h2"><a href="#sec-3">A.3 Information and Conditional Expectation</a></li><li class="toc-h3"><a href="#sub-s-4">Riemann Integral Revisited</a></li><li class="toc-h3"><a href="#sub-s-5">Lebesgue Integral</a></li></ul></aside>
+    <aside class="toc-panel"><div class="toc-title">On this page</div><ul class="toc-list"><li class="toc-h2"><a href="#sec-1">A.1 Expectation</a></li><li class="toc-h3"><a href="#sub-s-2">Riemann Integral Revisited</a></li><li class="toc-h3"><a href="#sub-s-3">Lebesgue Integral</a></li><li class="toc-h2"><a href="#sec-2">A.2 Convergence of Integrals</a></li><li class="toc-h2"><a href="#sec-3">A.3 Information and Conditional Expectation</a></li></ul></aside>
   </div>
 </body>
 </html>
